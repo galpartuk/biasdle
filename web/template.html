@@ -271,7 +271,9 @@ function setVolume(v){
 }
 
 const FILTER_KEY = "biasdle.filters";
-const GENS = [3, 4, 5];
+// 2 is here only because of soloists: IU (2008), HyunA (2010) and Sunmi
+// (2013) predate the gen-3 floor the group roster uses.
+const GENS = [2, 3, 4, 5];
 const TIERS = [
   {v:1, label:"Household names"},
   {v:2, label:"If you follow K-pop"},
@@ -313,10 +315,13 @@ const groupByName = {};
 function passes(item, f){
   if(f.groups.length && f.groups.indexOf(item.group || item.name) < 0) return false;
   const g = groupByName[item.group || item.name];
-  if(!g) return true;
-  if(f.gens.indexOf(g.gen) < 0) return false;
-  if(f.tiers.indexOf(g.tier) < 0) return false;
-  if(!f.disbanded && g.status !== "Active") return false;
+  // Soloists carry their own generation and tier — there is no group to read
+  // them from — so prefer the item's own fields and fall back to the group's.
+  const gen  = item.gen  != null ? item.gen  : (g ? g.gen  : null);
+  const tier = item.tier != null ? item.tier : (g ? g.tier : null);
+  if(gen  != null && f.gens.indexOf(gen)   < 0) return false;
+  if(tier != null && f.tiers.indexOf(tier) < 0) return false;
+  if(!f.disbanded && g && g.status !== "Active") return false;
   if(!f.former && item.status === "Former member") return false;
   return true;
 }
@@ -828,6 +833,11 @@ function factsFor(a){
   if(S.mode==="group")
     return [["Label",a.company],["Debut",a.debut],["Members",a.size],
             ["Gen",ordinal(a.gen)],["Status",a.status]];
+  if(a.group === "Soloist")
+    return [["Label",a.company],
+            ...(a.former ? [["Formerly",a.former]] : []),
+            ["From",[].concat(a.nationality).join(" / ")],
+            ["Born",a.birth],["Solo debut",a.debut],["Gen",ordinal(a.gen)]];
   return [["Group",a.group],["Label",a.company],
           ["From",[].concat(a.nationality).join(" / ")],
           ["Born",a.birth],["Debut",a.debut],["Gen",ordinal(a.gen)],
@@ -996,6 +1006,9 @@ function renderFilters(){
      the list instead of being buried alphabetically among the deep cuts. */
   const sorted = DATA.groups.slice().sort((a, b) =>
     a.tier - b.tier || a.name.localeCompare(b.name));
+  // Soloists are not a group, but they are a thing a player wants to filter to.
+  if(DATA.members.some(m => m.group === "Soloist"))
+    sorted.unshift({name:"Soloist", tier:1});
 
   host.innerHTML = `<div class="filters">
     <div class="frow">

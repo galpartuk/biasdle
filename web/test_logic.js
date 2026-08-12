@@ -94,15 +94,23 @@ eq(badNat.map(m => m.name), [], "nationality is always a non-empty array");
 const badYear = DATA.members.filter(m => !(m.birth > 1980 && m.birth < 2015));
 eq(badYear.map(m => `${m.name}:${m.birth}`), [], "birth years are plausible");
 
-const badDebut = DATA.members.filter(m => !(m.debut >= 2014 && m.debut <= 2026));
-eq(badDebut.map(m => `${m.name}:${m.debut}`), [], "debut years inside gen 3-5");
+/* Soloists carry their SOLO debut, which is deliberately allowed to predate
+   the gen-3 floor the group roster uses — see the soloists section. */
+const badDebut = DATA.members.filter(
+  m => m.group !== "Soloist" && !(m.debut >= 2014 && m.debut <= 2026));
+eq(badDebut.map(m => `${m.name}:${m.debut}`), [], "group debut years inside gen 3-5");
+const badSolo = DATA.members.filter(
+  m => m.group === "Soloist" && !(m.debut >= 2000 && m.debut <= 2026));
+eq(badSolo.map(m => `${m.name}:${m.debut}`), [], "solo debut years are plausible");
 
 /* Size must equal the number of members actually shipped for that group,
    otherwise the Members column's arrows point the wrong way. */
 const counted = {};
 DATA.members.forEach(m => { counted[m.group] = (counted[m.group] || 0) + 1; });
+/* "Soloist" is a label, not a group: its size is 1 per person by definition,
+   not a headcount of everyone who happens to be solo. */
 const sizeMismatch = DATA.members
-  .filter(m => m.size !== counted[m.group])
+  .filter(m => m.group !== "Soloist" && m.size !== counted[m.group])
   .map(m => `${m.group}: column says ${m.size}, pool has ${counted[m.group]}`);
 eq([...new Set(sizeMismatch)], [], "group size column matches the shipped roster");
 
@@ -393,13 +401,31 @@ S.filters = Object.assign(defaultFilters(), {groups: ["TWICE", "LE SSERAFIM"]});
 eq(groupsIn(), ["LE SSERAFIM", "TWICE"], "both selected -> both, not neither");
 ok(endlessPool().length > twiceOnly, "adding a group widens rather than narrows");
 
+/* Read tier and generation the way passes() does — off the item, falling back
+   to its group. Soloists have no group to look up, which used to crash this. */
+const tierOfItem = x => x.tier != null ? x.tier
+                        : (groupByName[x.group || x.name] || {}).tier;
+const genOfItem  = x => x.gen  != null ? x.gen
+                        : (groupByName[x.group || x.name] || {}).gen;
+
 S.filters = Object.assign(defaultFilters(), {tiers: [1]});
-const t1 = groupsIn();
-ok(t1.every(n => groupByName[n].tier === 1), "tier filter keeps only tier 1");
-ok(t1.length >= 5, `tier 1 still leaves a real pool (${t1.length} groups)`);
+ok(endlessPool().every(x => tierOfItem(x) === 1), "tier filter keeps only tier 1");
+ok(groupsIn().length >= 5,
+   `tier 1 still leaves a real pool (${groupsIn().length} artists)`);
 
 S.filters = Object.assign(defaultFilters(), {gens: [5]});
-ok(groupsIn().every(n => groupByName[n].gen === 5), "generation filter holds");
+ok(endlessPool().every(x => genOfItem(x) === 5), "generation filter holds");
+
+/* Soloists have to be filterable too — they carry gen 2, which nothing else
+   does, and "Soloist" has to work as a group chip. */
+S.filters = Object.assign(defaultFilters(), {gens: [2]});
+ok(endlessPool().every(x => genOfItem(x) === 2), "generation 2 filters cleanly");
+S.mode = "member";
+S.filters = Object.assign(defaultFilters(), {groups: ["Soloist"]});
+ok(endlessPool().length > 0 &&
+   endlessPool().every(m => m.group === "Soloist"),
+   `"Soloist" works as a group filter (${endlessPool().length} entries)`);
+S.mode = "song";
 
 /* An impossible combination must fall back to everything rather than deal
    undefined forever. */
@@ -414,8 +440,11 @@ S.filters = Object.assign(defaultFilters(), {former: false});
 ok(!endlessPool().some(m => m.status === "Former member"),
    "former members can be excluded");
 S.filters = Object.assign(defaultFilters(), {disbanded: false});
-ok(!endlessPool().some(m => groupByName[m.group].status !== "Active"),
+ok(!endlessPool().some(m => groupByName[m.group] &&
+                            groupByName[m.group].status !== "Active"),
    "disbanded and inactive groups can be excluded");
+ok(endlessPool().some(m => m.group === "Soloist"),
+   "excluding disbanded groups does not sweep out soloists, who have none");
 
 S.filters = defaultFilters();
 S.play = "daily"; S.mode = "member";
@@ -480,6 +509,62 @@ ok(sample.every(u => /^https:\/\/commons\.wikimedia\.org\/wiki\/Special:FilePath
    "photo urls point at Commons FilePath");
 ok(sample.every(u => !/[ ]/.test(u)), "no raw spaces survive into the url");
 
+
+/* ====================================================================== */
+section("soloists");
+const solo = DATA.members.filter(m => m.group === "Soloist");
+ok(solo.length >= 15, `soloists reached the pool (${solo.length})`);
+
+/* They have no group, so every column that a group would supply has to be
+   filled in from the soloist's own row instead — a blank cell in the grid
+   reads as a hint. */
+const SOLO_REQ = ["company", "parent", "nationality", "gen", "size",
+                  "debut", "birth", "status", "display", "search", "tier"];
+eq(solo.filter(m => SOLO_REQ.some(k => m[k] === undefined || m[k] === null ||
+                                       m[k] === "")).map(m => m.name),
+   [], "every soloist has all scored columns");
+eq(solo.filter(m => m.size !== 1).map(m => m.name), [], "a soloist is a group of one");
+eq(solo.filter(m => m.status !== "Soloist").map(m => m.name), [],
+   "soloists are marked Soloist, not Current/Former member");
+
+/* Nobody appears twice. Matching on name would have been wrong — Wonder Girls'
+   Yubin and tripleS's YuBin are different people. */
+const qids = DATA.members.map(m => m.qid).filter(Boolean);
+eq(qids.length - new Set(qids).size, 0, "no person appears twice in the pool");
+ok(solo.some(m => /^yubin$/i.test(m.name)),
+   "the soloist Yubin survived the collision with tripleS's YuBin");
+
+/* Shared names must be distinguishable in the dropdown, case-insensitively. */
+const byLower = {};
+DATA.members.forEach(m => {
+  (byLower[m.name.toLowerCase()] = byLower[m.name.toLowerCase()] || []).push(m);
+});
+const ambiguous = Object.values(byLower).filter(g => g.length > 1)
+  .flat().filter(m => m.display === m.name);
+eq(ambiguous.map(m => m.name), [], "every shared name is disambiguated on screen");
+
+/* Soloists must grade cleanly against each other and against group members. */
+solo.forEach(m => {
+  const bad = MEMBER_COLS.filter(c => grade(m, m, c).r !== "hit").map(c => c.k);
+  eq(bad, [], `${m.name} grades all-green against herself`);
+});
+const aGroupMember = DATA.members.find(m => m.group !== "Soloist");
+ok(grade(solo[0], aGroupMember, MEMBER_COLS[0]).r === "miss",
+   "a soloist does not match a group member on Group");
+
+/* Generation 2 exists only because of soloists. */
+const gen2 = DATA.members.filter(m => m.gen === 2);
+ok(gen2.length > 0 && gen2.every(m => m.group === "Soloist"),
+   `generation 2 is soloists only (${gen2.map(m => m.name).join(", ")})`);
+ok(G.defaultFilters().gens.includes(2),
+   "the generation filter offers 2, or those soloists are unreachable in endless");
+
+/* The former group is a fact, not a scored column — it must not be gradeable. */
+eq(MEMBER_COLS.filter(c => c.k === "former").map(c => c.k), [],
+   "'former group' is not a scored column");
+ok(solo.filter(m => m.former).length >= 5,
+   "several soloists carry the group they came from");
+
 /* ====================================================================== */
 /* KEEP THIS LAST. Appending a section after the summary means it runs after
    the exit code is decided, so a failure in it is reported and then ignored.
@@ -490,4 +575,3 @@ if (fail) {
   failures.forEach(f => console.log("  ✗ " + f));
   process.exit(1);
 }
-

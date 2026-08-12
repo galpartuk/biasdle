@@ -1,0 +1,379 @@
+[
+ {
+  "name": "IU",
+  "company": "EDAM Entertainment",
+  "debut": "2008-09-18",
+  "gen": 2,
+  "tier": 1,
+  "former": null,
+  "aka": [
+   "아이유",
+   "Lee Ji-eun"
+  ],
+  "wd": "Q20145",
+  "wd_label": "IU",
+  "birth": "1993-05-16",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "250718 Lee Ji-eun (이지은).png",
+  "kr": "아이유",
+  "status": "ok"
+ },
+ {
+  "name": "HyunA",
+  "company": "AT AREA",
+  "debut": "2010-01-05",
+  "gen": 2,
+  "tier": 1,
+  "former": "4Minute",
+  "aka": [
+   "현아",
+   "Kim Hyun-a"
+  ],
+  "wd": "Q234066",
+  "wd_label": "Hyuna",
+  "birth": "1992-06-06",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "20230720 Kim HyunA in July 2023 01 (cropped).png",
+  "kr": "현아",
+  "status": "ok"
+ },
+ {
+  "name": "Ailee",
+  "company": "THE L1VE",
+  "debut": "2012-02-09",
+  "gen": 2,
+  "tier": 2,
+  "former": null,
+  "aka": [
+   "에일리",
+   "Amy Lee"
+  ],
+  "wd": "Q487391",
+  "wd_label": "Ailee",
+  "birth": "1989-05-30",
+  "nationality": [
+   "South Korean",
+   "American"
+  ],
+  "image": "Ailee in March 2023 3.jpg",
+  "kr": "에일리",
+  "status": "ok"
+ },
+ {
+  "name": "Lee Hi",
+  "company": "AOMG",
+  "debut": "2012-10-28",
+  "gen": 2,
+  "tier": 2,
+  "former": null,
+  "aka": [
+   "이하이"
+  ],
+  "wd": "Q24945",
+  "wd_label": "Lee Hi",
+  "birth": "1996-09-23",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "LeeHi 2021 (derived).jpg",
+  "kr": "이하이",
+  "status": "ok"
+ },
+ {
+  "name": "Sunmi",
+  "company": "ABYSS Company",
+  "debut": "2013-08-26",
+  "gen": 2,
+  "tier": 1,
+  "former": "Wonder Girls",
+  "aka": [
+   "선미",
+   "Lee Sun-mi"
+  ],
+  "wd": "Q624995",
+  "wd_label": "Sunmi",
+  "birth": "1992-05-02",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "Lee Sunmi 이선미 2024 06.jpg",
+  "kr": "선미",
+  "status": "ok"
+ },
+ {
+  "name": "Heize",
+  "company": "P NATION",
+  "debut": "2014-05-15",
+  "gen": 3,
+  "tier": 2,
+  "former": null,
+  "aka": [
+   "헤이즈"
+  ],
+  "wd": "Q24855768",
+  "wd_label": "Heize",
+  "birth": "1991-08-09",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "Heize at Zion.T X Heize Concert on April 21, 2018 (4) (cropped).jpg",
+  "kr": "헤이즈",
+  "status": "ok"
+ },
+ {
+  "name": "Baek Yerin",
+  "company": "Blue Vinyl",
+  "debut": "2015-03-17",
+  "gen": 3,
+  "tier": 3,
+  "former": "15&",
+  "aka": [
+   "백예린",
+   "Yerin Baek"
+  ],
+  "wd": "Q9021940",
+  "wd_label": "Baek Ye-rin",
+  "birth": "1997-06-26",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "Baek Ye-rin performing \"Sugar\" on July 10, 2014.jpg",
+  "kr": "백예린",
+  "status": "ok"
+ },
+ {
+  "name": "Taeyeon",
+  "company": "SM Entertainment",
+  "debut": "2015-10-07",
+  "gen": 3,
+  "tier": 1,
+  "former": "Girls' Generation",
+  "aka": [
+   "태연",
+   "Kim Tae-yeon"
+  ],
+  "wd": "Q233371",
+  "wd_label": "Taeyeon",
+  "birth": "1989-03-09",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "251019 TAEYEON @MADLY MEDLEY 2025.jpg",
+  "kr": "태연",
+  "status": "ok"
+ },
+ {
+  "name": "Hyolyn",
+  "company": "BRIDGE",
+  "debut": "2016-01-06",
+  "gen": 3,
+  "tier": 2,
+  "former": "SISTAR",
+  "aka": [
+   "효린",
+   "Kim Hyo-jung"
+  ],
+  "wd": "Q496329",
+  "wd_label": "Hyolyn",
+  "birth": "1990-12-11",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "“흰티에 청바지만 걸쳐도” ...효린, 핫한 공항패션 효린 (디패짤) 2.png",
+  "kr": "효린",
+  "status": "ok"
+ },
+ {
+  "name": "Chungha",
+  "company": "MNH Entertainment",
+  "debut": "2017-06-07",
+  "gen": 3,
+  "tier": 1,
+  "former": "I.O.I",
+  "aka": [
+   "청하",
+   "Kim Chung-ha"
+  ],
+  "wd": "Q26214034",
+  "wd_label": "Chungha",
+  "birth": "1996-02-09",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "Chung Ha in March 2025.png",
+  "kr": "김청하",
+  "status": "ok"
+ },
+ {
+  "name": "Yubin",
+  "company": "RBW",
+  "debut": "2018-06-07",
+  "gen": 3,
+  "tier": 3,
+  "former": "Wonder Girls",
+  "aka": [
+   "유빈"
+  ],
+  "wd": "Q496580",
+  "wd_label": "Yubin",
+  "birth": "1988-10-04",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "Kim Yu-bin in August 2022.png",
+  "kr": "유빈",
+  "status": "ok"
+ },
+ {
+  "name": "Jeon Somi",
+  "company": "THEBLACKLABEL",
+  "debut": "2019-06-13",
+  "gen": 4,
+  "tier": 1,
+  "former": "I.O.I",
+  "aka": [
+   "전소미",
+   "Somi"
+  ],
+  "wd": "Q22910214",
+  "wd_label": "Jeon Somi",
+  "birth": "2001-03-09",
+  "nationality": [
+   "Canadian",
+   "South Korean"
+  ],
+  "image": "20230720 Jeon Somi (전소미).jpg",
+  "kr": "전소미",
+  "status": "ok"
+ },
+ {
+  "name": "BIBI",
+  "company": "Feel Ghood Music",
+  "debut": "2019-03-06",
+  "gen": 4,
+  "tier": 2,
+  "former": null,
+  "aka": [
+   "비비",
+   "Kim Hyung-seo"
+  ],
+  "wd": "Q65060693",
+  "wd_label": "Bibi",
+  "birth": "1998-09-27",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "BIBI in June 2025 (cropped).jpg",
+  "kr": "비비",
+  "status": "ok"
+ },
+ {
+  "name": "AleXa",
+  "company": "ZB Label",
+  "debut": "2019-10-21",
+  "gen": 4,
+  "tier": 3,
+  "former": null,
+  "aka": [
+   "알렉사"
+  ],
+  "wd": "Q93132814",
+  "wd_label": "AleXa",
+  "birth": "1996-12-09",
+  "nationality": [
+   "American",
+   "South Korean"
+  ],
+  "image": "AleXa틴프로듀스48.png",
+  "kr": "알렉사",
+  "status": "ok"
+ },
+ {
+  "name": "Lee Young-ji",
+  "company": "Grandline",
+  "debut": "2020-05-27",
+  "gen": 4,
+  "tier": 2,
+  "former": null,
+  "aka": [
+   "이영지",
+   "Youngji"
+  ],
+  "wd": "Q96873744",
+  "wd_label": "Lee Young-ji",
+  "birth": "2002-09-10",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "Lee Young-ji in February 2026.png",
+  "kr": "이영지",
+  "status": "ok"
+ },
+ {
+  "name": "Kwon Eunbi",
+  "company": "Woollim Entertainment",
+  "debut": "2021-08-24",
+  "gen": 4,
+  "tier": 2,
+  "former": "IZ*ONE",
+  "aka": [
+   "권은비",
+   "Eunbi"
+  ],
+  "wd": "Q56505060",
+  "wd_label": "Kwon Eun-bi",
+  "birth": "1995-09-27",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "Kwon Eun-bi in May 2026.png",
+  "kr": "권은비",
+  "status": "ok"
+ },
+ {
+  "name": "Choi Yena",
+  "company": "Yuehua Entertainment",
+  "debut": "2022-01-17",
+  "gen": 4,
+  "tier": 2,
+  "former": "IZ*ONE",
+  "aka": [
+   "최예나",
+   "Yena"
+  ],
+  "wd": "Q55694544",
+  "wd_label": "Choi Ye-na",
+  "birth": "1999-09-29",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "CHOI YENA (최예나) – 2024.09.30 – P1.jpg",
+  "kr": "최예나",
+  "status": "ok"
+ },
+ {
+  "name": "Jo Yuri",
+  "company": "WAKEONE",
+  "debut": "2022-10-07",
+  "gen": 4,
+  "tier": 2,
+  "former": "IZ*ONE",
+  "aka": [
+   "조유리",
+   "Yuri"
+  ],
+  "wd": "Q56678033",
+  "wd_label": "Jo Yu-ri",
+  "birth": "2001-10-22",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "082125 Jo Yuri for Maradi Mercredi photo call 01.png",
+  "kr": "조유리",
+  "status": "ok"
+ }
+]

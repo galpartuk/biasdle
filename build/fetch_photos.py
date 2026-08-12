@@ -283,8 +283,6 @@ def rank_key(fn, meta):
 def main():
     groups = json.load(open(os.path.join(DATA, "groups_resolved.json"),
                             encoding="utf-8"))
-    members = json.load(open(os.path.join(DATA, "members_raw.json"),
-                             encoding="utf-8"))
     game = json.load(open(os.path.join(DATA, "game_data.json"),
                           encoding="utf-8"))
     live_groups = {g["name"] for g in game["groups"]}
@@ -294,10 +292,11 @@ def main():
         if g.get("wd") and g["name"] in live_groups:
             subjects.append(dict(id="group:" + g["name"], kind="group",
                                  name=g["name"], qid=g["wd"]))
-    by_qid = {m["qid"]: m for m in members}
+    # Take the subject list straight from the built payload. Requiring a match
+    # in members_raw.json used to silently skip every soloist, because they
+    # never pass through that file.
     for m in game["members"]:
-        raw = by_qid.get(m["qid"])
-        if raw:
+        if m.get("qid"):
             subjects.append(dict(id="member:" + m["id"], kind="member",
                                  name=m["name"], group=m["group"],
                                  qid=m["qid"]))

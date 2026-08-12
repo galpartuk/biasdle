@@ -33,7 +33,7 @@ import urllib.parse
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from songs import ITUNES_ARTIST, SONGS  # noqa: E402
+from songs import ITUNES_ARTIST, SOLO_ARTIST, SOLO_SONGS, SONGS  # noqa: E402
 
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
 CACHE = os.path.join(DATA, "deezer_cache.json")
@@ -144,8 +144,12 @@ def acceptable(rname, aname, want_t, want_a, raw_title):
     return 1
 
 
+def artists_for(group):
+    return SOLO_ARTIST.get(group) or ITUNES_ARTIST.get(group) or [group]
+
+
 def from_deezer(group, title):
-    artists = ITUNES_ARTIST.get(group, [group])
+    artists = artists_for(group)
     want_t, want_a = norm(title), {norm(a) for a in artists}
 
     # Try queries in widening order and keep going until one yields a candidate
@@ -209,7 +213,7 @@ def from_itunes_cache(group, title):
         _it
     except NameError:
         _it = json.load(open(ITUNES_CACHE, encoding="utf-8"))
-    artists = ITUNES_ARTIST.get(group, [group])
+    artists = artists_for(group)
     want_t, want_a = norm(title), {norm(a) for a in artists}
     results = []
     for a in artists[:2]:
@@ -238,9 +242,11 @@ def from_itunes_cache(group, title):
 
 def main():
     out, failed, inexact = [], [], []
-    total = sum(len(v) for v in SONGS.values())
+    catalogue = dict(SONGS)
+    catalogue.update(SOLO_SONGS)
+    total = sum(len(v) for v in catalogue.values())
     i = 0
-    for group, titles in SONGS.items():
+    for group, titles in catalogue.items():
         for title in titles:
             i += 1
             rec = from_deezer(group, title) or from_itunes_cache(group, title)

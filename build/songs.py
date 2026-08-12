@@ -138,3 +138,46 @@ ITUNES_ARTIST = {
     "tripleS": ["tripleS", "triple S"],
     "izna": ["izna", "IZNA"],
 }
+
+
+# ---------------------------------------------------------------------------
+# Solo tracks. Same contract as SONGS above: hand-typed, but a title that does
+# not exist cannot survive fetch_previews.py, so the build report is the review.
+SOLO_SONGS = {
+    "IU": ["Good Day", "Palette", "BBIBBI", "Blueming", "eight", "Celebrity",
+           "LILAC", "Love wins all"],
+    "HyunA": ["Bubble Pop!", "RED", "Roll Deep", "Lip & Hip", "FLOWER SHOWER",
+              "I'm Not Cool"],
+    "Ailee": ["Heaven", "U&I", "Don't Touch Me", "I Will Show You"],
+    "Lee Hi": ["1, 2, 3, 4", "Rose", "BREATHE", "NO ONE", "ONLY"],
+    "Sunmi": ["24 Hours", "Gashina", "Heroine", "Siren", "pporappippam",
+              "You can't sit with us"],
+    "Heize": ["Don't Know You", "You, Clouds, Rain", "HAPPEN", "Star"],
+    "Baek Yerin": ["Square", "Popo", "Maybe It's Not Our Fault", "0415"],
+    "Taeyeon": ["I", "Rain", "Why", "Fine", "Four Seasons", "INVU", "Weekend"],
+    "Hyolyn": ["Dally", "SEE SEA", "Layin' Low", "Paradise"],
+    "Chungha": ["Roller Coaster", "Why Don't You Know", "Gotta Go", "Snapping",
+                "Stay Tonight", "Bicycle", "Killing Me"],
+    "Yubin": ["Lady", "Thank U Soooo Much"],
+    "Jeon Somi": ["BIRTHDAY", "What You Waiting For", "DUMB DUMB", "XOXO",
+                  "Fast Forward"],
+    "BIBI": ["KAZINO", "BAD SAD AND MAD", "Animal Farm", "The Weekend"],
+    "AleXa": ["Bomb", "Do or Die", "Xtra", "Wonderland"],
+    "Lee Young-ji": ["Not Sorry", "Small girl", "Day&Night"],
+    "Kwon Eunbi": ["Door", "Glitch", "Underwater", "The Flash"],
+    "Choi Yena": ["SMILEY", "SMARTPHONE", "Good Morning", "Hate XX"],
+    "Jo Yuri": ["Glassy", "Love Shhh!", "TAXI"],
+}
+
+# Deezer's spelling where it differs from ours.
+SOLO_ARTIST = {
+    "Jeon Somi": ["Jeon Somi", "SOMI"],
+    "Lee Young-ji": ["Lee Young Ji", "Youngji", "이영지"],
+    "Kwon Eunbi": ["Kwon Eun Bi", "KWON EUN BI", "권은비"],
+    "Choi Yena": ["YENA", "Choi Yena", "최예나"],
+    "Jo Yuri": ["JO YURI", "Jo Yu Ri", "조유리"],
+    "Baek Yerin": ["Yerin Baek", "Baek Yerin", "백예린"],
+    "Lee Hi": ["LEE HI", "이하이"],
+    "HyunA": ["HyunA", "현아"],
+    "BIBI": ["BIBI", "비비"],
+}

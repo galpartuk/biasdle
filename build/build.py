@@ -200,6 +200,60 @@ def build_members(groups_by_name, raw):
 
 
 # --------------------------------------------------------------------------
+# soloists
+# --------------------------------------------------------------------------
+def build_soloists(members):
+    """Fold soloists into the member pool.
+
+    They share group "Soloist" and size 1 because every member column here is
+    derived from a group and a soloist has none. The other six columns stay
+    real, so a guess still scores properly against them. The group she came
+    from rides along as `former` and is shown on the answer card only — making
+    it a scored column would mean adding I.O.I, IZ*ONE, SNSD and Wonder Girls
+    as full roster entries, and they are outside this game's scope.
+    """
+    path = os.path.join(DATA, "soloists_resolved.json")
+    if not os.path.exists(path):
+        print("(no data/soloists_resolved.json — run "
+              "build/resolve_soloists.py to include soloists)")
+        return []
+    with open(path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    photos = load_photos()
+    # Match on Wikidata QID, not on name. Wonder Girls' Yubin and tripleS's
+    # YuBin are different people who happen to share a romanisation, and a
+    # name check silently dropped the soloist.
+    taken = {m["qid"] for m in members if m.get("qid")}
+    out, skipped = [], []
+    for r in raw:
+        # A soloist who is also in a group is already guessable; two entries for
+        # one person just makes the search box worse.
+        if r["wd"] in taken:
+            skipped.append(r["name"])
+            continue
+        rec = dict(
+            qid=r["wd"], name=r["name"], group="Soloist",
+            company=r["company"], parent=PARENT.get(r["company"], r["company"]),
+            nationality=r["nationality"], gen=r["gen"],
+            debut=int(r["debut"][:4]), birth=int(r["birth"][:4]),
+            status="Soloist", size=1, tier=r.get("tier", 2),
+            img=r.get("image"), kr=r.get("kr"), former=r.get("former"),
+            display=r["name"], id=slug(r["name"] + "-soloist"),
+        )
+        rec["search"] = searchable(r["name"], "soloist",
+                                   *(r.get("aka") or []),
+                                   *( [r["former"]] if r.get("former") else [] ))
+        got = photos.get("member:" + rec["id"])
+        if got:
+            rec["imgs"] = got
+        out.append(rec)
+    if skipped:
+        print(f"soloists already in a group, skipped: {', '.join(skipped)}")
+    return out
+
+
+# --------------------------------------------------------------------------
 # groups
 # --------------------------------------------------------------------------
 def build_groups(groups, members):
@@ -240,7 +294,7 @@ def build_songs(raw, groups_by_name):
         out.append(dict(
             id=slug(f"{s['group']}-{s['title']}"),
             group=s["group"], title=s["title"], kr=hangul_of(g),
-            tier=g.get("tier", 3),
+            tier=g.get("tier", 3), gen=g.get("gen"),
             track=s["track_id"], preview=s["preview"],
             art=s.get("artwork"), album=s.get("album"),
             # Deezer's search response carries no release date, so the result
@@ -299,6 +353,9 @@ def schedule(items, salt, normalize_by_group=True):
 
     ids = [x["id"] for x in items]
 
+    def weight_of(x):
+        return float(TIER_WEIGHT.get(x.get("tier", 3), 1))
+
     def apportion(keys, weights, days):
         """Largest-remainder split of `days` across `keys`."""
         tot = sum(weights[k] for k in keys) or 1.0
@@ -328,6 +385,24 @@ def schedule(items, salt, normalize_by_group=True):
         weight = {x["id"]: float(TIER_WEIGHT.get(x.get("tier", 3), 1))
                   for x in items}
         counts = apportion(ids, weight, SCHEDULE_DAYS)
+
+    # Floor: every distinct artist gets at least one day. Without this, adding
+    # 78 solo tracks to the song pool pushed WJSN, EVERGLOW, Rocket Punch,
+    # Weeekly, PURPLE KISS and Billlie out of the year entirely — their share
+    # simply rounded to zero. Silence is worse than rarity.
+    owner = {x["id"]: gkey(x) for x in items}
+    best_of = {}
+    for x in items:
+        g = gkey(x)
+        if g not in best_of or weight_of(x) > weight_of(best_of[g]):
+            best_of[g] = x
+    for g, rep in best_of.items():
+        if sum(counts[i] for i in ids if owner[i] == g):
+            continue
+        donor = max(ids, key=lambda i: counts[i])
+        if counts[donor] > 1:
+            counts[donor] -= 1
+            counts[rep["id"]] += 1
 
     live = [i for i in ids if counts[i] > 0]
     if not live:
@@ -399,13 +474,31 @@ def main():
 
     members, dropped = build_members(groups_by_name, load("members_raw.json"))
     groups = build_groups(groups_meta, members)
+    solo = build_soloists(members)
     known = {g["name"] for g in groups}
-    members = [m for m in members if m["group"] in known]
+    members = [m for m in members if m["group"] in known] + solo
+
+    # Redo the shared-name disambiguation now the pools are merged: two people
+    # can be called Yubin, and the player has to be able to tell which is which.
+    # Case-insensitively: the soloist is "Yubin" and tripleS's is "YuBin", which
+    # a player cannot tell apart in a dropdown.
+    seen = {}
+    for x in members:
+        seen[x["name"].lower()] = seen.get(x["name"].lower(), 0) + 1
+    for x in members:
+        x["display"] = (f"{x['name']} ({x['group']})"
+                        if seen[x["name"].lower()] > 1 else x["name"])
+        x["search"] = sorted(set(x["search"]) | set(searchable(x["display"])))
 
     songs_raw = load("songs_resolved.json") \
         if os.path.exists(os.path.join(DATA, "songs_resolved.json")) else []
-    songs = build_songs(songs_raw,
-                        {n: groups_by_name[n] for n in known})
+    # Soloists are not in groups_by_name but their tracks still need a
+    # generation, tier and Korean name, so they join the lookup by hand.
+    song_owners = {n: groups_by_name[n] for n in known}
+    for x in solo:
+        song_owners[x["name"]] = dict(gen=x["gen"], tier=x["tier"],
+                                      aka=[x["kr"]] if x.get("kr") else [])
+    songs = build_songs(songs_raw, song_owners)
 
     payload = dict(
         members=members, groups=groups, songs=songs,
@@ -426,7 +519,7 @@ def main():
 
     render(payload)
 
-    print(f"members : {len(members)}  (with portrait: "
+    print(f"members : {len(members)}  ({len(solo)} soloists; with portrait: "
           f"{sum(1 for m in members if m['img'])})")
     print(f"groups  : {len(groups)}")
     print(f"songs   : {len(songs)}")

@@ -11,7 +11,7 @@ Four puzzles, each with a Daily and an Endless mode:
 
 | Mode | You guess | Feedback | Guesses |
 |---|---|---|---|
-| **Idol** 아이돌 | a specific member (`Wonyoung`, `Sana`) | 8-column grid | 8 |
+| **Idol** 아이돌 | a member or soloist (`Wonyoung`, `IU`) | 8-column grid | 8 |
 | **Group** 그룹 | a girl group (`ITZY`) | 6-column grid | 8 |
 | **Face** 얼굴 | who the photocard shows | the card slides out of its sleeve | 6 |
 | **Song** 노래 | the title track playing | 1s → 2 → 4 → 7 → 11 → 16 | 6 |
@@ -19,7 +19,8 @@ Four puzzles, each with a Daily and an Endless mode:
 Everything ships in one self-contained `index.html` (~361 KB). Portraits and
 audio are the only things fetched at runtime.
 
-**Content:** 217 members across 31 groups, 269 title tracks, 3rd–5th generation.
+**Content:** 217 group members across 31 groups, **18 soloists**, 347 tracks.
+3rd–5th generation, plus 2nd-generation soloists.
 
 Three colour themes (Bubblegum, Soda, Arena), a volume slider on Song mode, and
 filters that narrow Endless by generation, fame tier or group — with TWICE and
@@ -71,6 +72,33 @@ string reaches the payload. If you re-run the fetch, **read the report**.
   "singer" for almost everyone and "rapper" for only 30, which would make the
   column actively misleading. Same reasoning that killed the Form column in
   digimondle — no vague partial credit.
+
+---
+
+## Soloists
+
+IU, Taeyeon, Sunmi, HyunA, Chungha, Jeon Somi, Kwon Eunbi and eleven others are
+in the Idol and Song pools. `build/resolve_soloists.py` will not accept anyone it
+cannot verify from Wikidata is a real, female, working musician with a birth
+date — "IU", "Ailee", "Heize" and "BIBI" all collide with unrelated items, and a
+wrong QID would silently attach a stranger's face and birthday to a name.
+
+Every member column is derived from a group, and a soloist has none, so they
+share `group = "Soloist"` and `size = 1`. The other six columns stay real. The
+group she came from is a **fact on the answer card, not a scored column** —
+making it scored would mean adding I.O.I, IZ\*ONE, Girls' Generation and Wonder
+Girls as full roster entries, and they are outside this game's scope.
+
+`debut` is the **solo** debut, which is the only reason generation 2 exists here:
+IU (2008), HyunA (2010) and Sunmi (2013) predate the gen-3 floor, and dropping
+three of the most recognisable names to keep a tidy range would be the wrong
+trade.
+
+Soloists who are already guessable through their group — Hwasa, Lisa, Rosé,
+Jennie, Soyeon, Yuqi — are deliberately absent. Two entries for one person just
+makes the search box worse. That check matches on **Wikidata QID, not name**:
+Wonder Girls' Yubin and tripleS's YuBin are different people, and a name check
+dropped the soloist.
 
 ---
 
@@ -212,7 +240,7 @@ recognise.
 | | with stage photos |
 |---|---|
 | groups | 29 / 31 |
-| members | 126 / 217 |
+| members and soloists | 143 / 235 |
 
 Up to 12 per subject, so a repeat shows a different shot. Daily indexes by day
 so everyone sees the same photo; Endless varies.
@@ -249,10 +277,11 @@ because "cute" is carried by roundness as much as by hue.
 ```bash
 python build/resolve_groups.py    # roster names -> verified Wikidata QIDs
 python build/fetch_members.py     # QIDs -> members + birth/nationality/portrait
+python build/resolve_soloists.py  # soloists -> verified QIDs + facts
 python build/fetch_previews.py    # songs.py -> Deezer track ids + preview urls
 python build/fetch_photos.py      # Commons stage photos (optional, ~20 min)
 python build/build.py             # merge + overrides + theme -> index.html
-node   web/test_logic.js          # 252 assertions against the built file
+node   web/test_logic.js          # 286 assertions against the built file
 ```
 
 Every fetch caches to `data/`, so re-running costs no network. Delete
@@ -291,6 +320,9 @@ character.
   categories, and filtering on categories alone let through
   `...concert 03 Yeji.jpg` and `...승희 (10).jpg`, which name a member only in
   the filename. Fold hyphens too, or our `Miyeon` misses `Cho Mi-yeon`.
+- **Adding soloists broke the song year.** 78 solo tracks pushed six tier-3
+  groups out of the 365 days entirely — their share rounded to zero. `schedule()`
+  now floors every artist at one day; silence is worse than rarity.
 - **Group images had to be asked for separately.** `fetch_members.py` reads P18
   for members only, so Group mode shipped with no art at all until
   `resolve_groups.py` started capturing the group's own P18.

@@ -114,6 +114,69 @@ GROUPS = [
          aka=["하츠투하츠", "Hearts 2 Hearts", "H2H"]),
 ]
 
+# ---------------------------------------------------------------------------
+# SOLOISTS
+#
+# A soloist has no group, and every member column in the game is derived from
+# one. Rather than invent a fake group, they all share `group = "Soloist"` and
+# `size = 1`; the other six columns (label, nationality, generation, debut,
+# birth year, status) stay real, so a guess still scores properly. The group
+# she came from is shown as a fact on the answer card, not as a scored column —
+# adding I.O.I, IZ*ONE, SNSD and Wonder Girls as real roster entries would mean
+# full member lists for four groups that are mostly outside this game's scope.
+#
+# Only soloists who are NOT already guessable through their group are listed.
+# Hwasa, Lisa, Rosé, Jennie, Soyeon and Yuqi all have solo careers and are all
+# deliberately absent: two entries for one person makes the search box worse.
+#
+# `debut` is the SOLO debut, which is why generation 2 appears here and nowhere
+# else — IU (2008), HyunA (2010) and Sunmi (2013) predate this game's gen-3
+# floor, and dropping three of the most recognisable names to keep a tidy range
+# would be the wrong trade.
+#
+# Hand-typed here: name, label, solo debut, former group, tier. Identity, birth
+# date, nationality and portrait all come from Wikidata, and resolve_soloists.py
+# refuses anyone it cannot verify is a real, female, Korean-industry soloist.
+SOLOISTS = [
+    dict(name="IU", company="EDAM Entertainment", debut="2008-09-18", gen=2,
+         tier=1, former=None, aka=["아이유", "Lee Ji-eun"]),
+    dict(name="HyunA", company="AT AREA", debut="2010-01-05", gen=2,
+         tier=1, former="4Minute", aka=["현아", "Kim Hyun-a"]),
+    dict(name="Ailee", company="THE L1VE", debut="2012-02-09", gen=2,
+         tier=2, former=None, aka=["에일리", "Amy Lee"]),
+    dict(name="Lee Hi", company="AOMG", debut="2012-10-28", gen=2,
+         tier=2, former=None, aka=["이하이"]),
+    dict(name="Sunmi", company="ABYSS Company", debut="2013-08-26", gen=2,
+         tier=1, former="Wonder Girls", aka=["선미", "Lee Sun-mi"]),
+    dict(name="Heize", company="P NATION", debut="2014-05-15", gen=3,
+         tier=2, former=None, aka=["헤이즈"]),
+    dict(name="Baek Yerin", company="Blue Vinyl", debut="2015-03-17", gen=3,
+         tier=3, former="15&", aka=["백예린", "Yerin Baek"]),
+    dict(name="Taeyeon", company="SM Entertainment", debut="2015-10-07", gen=3,
+         tier=1, former="Girls' Generation", aka=["태연", "Kim Tae-yeon"]),
+    dict(name="Hyolyn", company="BRIDGE", debut="2016-01-06", gen=3,
+         tier=2, former="SISTAR", aka=["효린", "Kim Hyo-jung"]),
+    dict(name="Chungha", company="MNH Entertainment", debut="2017-06-07",
+         gen=3, tier=1, former="I.O.I", aka=["청하", "Kim Chung-ha"]),
+    dict(name="Yubin", company="RBW", debut="2018-06-07", gen=3,
+         tier=3, former="Wonder Girls", aka=["유빈"]),
+    dict(name="Jeon Somi", company="THEBLACKLABEL", debut="2019-06-13", gen=4,
+         tier=1, former="I.O.I", aka=["전소미", "Somi"]),
+    dict(name="BIBI", company="Feel Ghood Music", debut="2019-03-06", gen=4,
+         tier=2, former=None, aka=["비비", "Kim Hyung-seo"]),
+    dict(name="AleXa", company="ZB Label", debut="2019-10-21", gen=4,
+         tier=3, former=None, aka=["알렉사"]),
+    dict(name="Lee Young-ji", company="Grandline", debut="2020-05-27", gen=4,
+         tier=2, former=None, aka=["이영지", "Youngji"]),
+    dict(name="Kwon Eunbi", company="Woollim Entertainment",
+         debut="2021-08-24", gen=4, tier=2, former="IZ*ONE",
+         aka=["권은비", "Eunbi"]),
+    dict(name="Choi Yena", company="Yuehua Entertainment", debut="2022-01-17",
+         gen=4, tier=2, former="IZ*ONE", aka=["최예나", "Yena"]),
+    dict(name="Jo Yuri", company="WAKEONE", debut="2022-10-07", gen=4,
+         tier=2, former="IZ*ONE", aka=["조유리", "Yuri"]),
+]
+
 # Companies get normalised for the grid column so "Source Music" vs
 # "Source Music (HYBE)" can't read as two different answers. The value here is
 # what the player sees; the parent conglomerate is a separate, coarser column.
