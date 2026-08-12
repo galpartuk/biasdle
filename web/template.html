@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BIASDLE — a daily K-pop girl group puzzle</title>
+<meta name="description" content="Four daily K-pop girl group puzzles: name the idol, the group, the face or the song.">
+<style>
+/*__CSS__*/
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mark" aria-hidden="true"></div>
+    <div class="brand">
+      <span class="eyebrow kr">최애</span>
+      <h1>BIAS<span class="dle">DLE</span></h1>
+      <div class="tag" id="tagline">Four girl group puzzles. New ones daily.</div>
+    </div>
+    <div class="spacer"></div>
+    <button class="iconbtn" id="btn-stats" title="Statistics"
+            aria-label="Statistics">&#9636;</button>
+    <button class="iconbtn" id="btn-help" title="How to play"
+            aria-label="How to play">?</button>
+  </header>
+
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Puzzle">
+      <button id="m-member" aria-pressed="true">Idol<span class="kr">아이돌</span></button>
+      <button id="m-group" aria-pressed="false">Group<span class="kr">그룹</span></button>
+      <button id="m-image" aria-pressed="false">Face<span class="kr">얼굴</span></button>
+      <button id="m-song" aria-pressed="false">Song<span class="kr">노래</span></button>
+    </div>
+    <div class="seg" role="group" aria-label="Play mode">
+      <button id="p-daily" aria-pressed="true">Daily<span class="kr">오늘</span></button>
+      <button id="p-endless" aria-pressed="false">Endless<span class="kr">무한</span></button>
+    </div>
+    <div class="spacer"></div>
+    <button class="ghost" id="btn-new" hidden>New round</button>
+    <button class="ghost" id="btn-give">Give up</button>
+  </div>
+
+  <div class="guessbar">
+    <div class="field">
+      <input id="q" autocomplete="off" autocapitalize="off" spellcheck="false"
+             placeholder="Type an idol name…" aria-label="Your guess"
+             role="combobox" aria-expanded="false" aria-controls="ac">
+      <div class="ac" id="ac" role="listbox" hidden></div>
+    </div>
+    <button class="go" id="submit">Guess</button>
+  </div>
+
+  <div class="status">
+    <div class="gauge" id="gauge" aria-hidden="true"></div>
+    <div class="count" id="count"></div>
+    <div class="streak" id="streak"></div>
+  </div>
+
+  <div id="stage"></div>
+
+  <div class="foot">
+    A fan project, not affiliated with any label. Portraits from
+    <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia
+    Commons</a>; 30-second previews streamed from Deezer.
+    <br>Facts from Wikidata. Girl groups, 3rd generation onward.
+  </div>
+</div>
+
+<dialog id="dlg-help"><button class="iconbtn close" data-close>&times;</button>
+  <div class="body">
+    <h2>How to play</h2><span class="kr">놀이 방법</span>
+    <p id="help-text"></p>
+    <div class="legend">
+      <div><span class="sw hit"></span> Exact match.</div>
+      <div><span class="sw near"></span> Close. Labels share a parent company;
+        nationalities overlap; numbers are within a year or two.</div>
+      <div><span class="sw"></span> No match. Arrows point toward the answer.</div>
+    </div>
+    <p><b>Idol</b> scores your guess against eight facts, <b>Group</b> against
+      six. <b>Face</b> slides a photocard out of its sleeve one band at a time.
+      <b>Song</b> gives you 1&nbsp;second, then 2, 4, 7, 11 and 16.</p>
+    <p><b>Daily</b> is the same puzzle for everyone and resets at midnight your
+      time; it leans toward groups you already know. <b>Endless</b> draws from
+      everyone in the game, deep cuts included.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-stats"><button class="iconbtn close" data-close>&times;</button>
+  <div class="body">
+    <h2>Statistics</h2><span class="kr">기록</span>
+    <div id="stats-body"></div>
+    <div class="actions"><button class="ghost" id="btn-share">Copy result</button></div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const DATA = /*__DATA__*/{"members":[],"groups":[],"songs":[],"epoch":"2026-01-01","schedules":{}};
+
+/* ==================================================================
+   constants
+   ================================================================== */
+const SAVE = "kpopdle:v1";
+const MAX_GUESSES = 8;          // grid modes
+const MAX_REVEAL  = 6;          // face + song modes
+const STEPS = [1, 2, 4, 7, 11, 16];   // seconds unlocked per wrong guess
+
+/* Display-only formatters. These never touch grading — "SM Entertainment" and
+   "SM" grade identically because the comparison reads the raw field. */
+const ordinal = n => n + (["th","st","nd","rd"][(n%100-n%10!=10)*(n%10)] || "th");
+const shortLabel = v => String(v).replace(/ Entertainment$/, "");
+
+/* Grading tolerance for numeric columns. Stated in the legend so "near"
+   always means a specific thing — a vague "close" is worse than no hint. */
+const MEMBER_COLS = [
+  {k:"group",       label:"Group",    kind:"exact"},
+  {k:"company",     label:"Company",  kind:"company", fmt:shortLabel},
+  {k:"nationality", label:"From",     kind:"set"},
+  {k:"gen",         label:"Gen",      kind:"num", tol:0, fmt:ordinal},
+  {k:"size",        label:"Members",  kind:"num", tol:1},
+  {k:"debut",       label:"Debut",    kind:"num", tol:2},
+  {k:"birth",       label:"Born",     kind:"num", tol:2},
+  {k:"status",      label:"Status",   kind:"exact", fmt:v=>v.replace(" member","").replace(" group","")}
+];
+const GROUP_COLS = [
+  {k:"company", label:"Company",    kind:"company", fmt:shortLabel},
+  {k:"gen",     label:"Gen",        kind:"num", tol:0, fmt:ordinal},
+  {k:"debut",   label:"Debut",      kind:"num", tol:2},
+  {k:"size",    label:"Members",    kind:"num", tol:1},
+  {k:"foreign", label:"Non-Korean", kind:"num", tol:1},
+  {k:"status",  label:"Status",     kind:"exact"}
+];
+
+const MODES = {
+  member:{pool:()=>DATA.members, cols:MEMBER_COLS, kind:"grid",
+          ph:"Type an idol name…", max:MAX_GUESSES,
+          help:"Guess the idol. Every guess is scored against eight facts about her."},
+  group: {pool:()=>DATA.groups,  cols:GROUP_COLS,  kind:"grid",
+          ph:"Type a group name…", max:MAX_GUESSES,
+          help:"Guess the group. Six columns of feedback per guess."},
+  image: {pool:()=>DATA.members.filter(m=>m.img), kind:"image",
+          ph:"Who is she?", max:MAX_REVEAL,
+          help:"A portrait starts blurred and zoomed in. Each wrong guess pulls it back into focus."},
+  song:  {pool:()=>DATA.songs,   kind:"song",
+          ph:"Name the song…", max:MAX_REVEAL,
+          help:"Listen and name the song. You start with one second; each miss buys you more."}
+};
+
+/* ==================================================================
+   small helpers
+   ================================================================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,
+  c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s||"").toLowerCase()
+  .normalize("NFKD").replace(/[̀-ͯ]/g,"")
+  .replace(/[^a-z0-9가-힣]/g,"");
+
+function commons(file, width){
+  if(!file) return "";
+  return "https://commons.wikimedia.org/wiki/Special:FilePath/"
+       + encodeURIComponent(file.replace(/ /g,"_")) + "?width=" + (width||400);
+}
+function thumbFor(item){
+  if(MODE()==="song") return item.art||"";
+  if(item.img) return commons(item.img,80);
+  return "";
+}
+
+function toast(msg){
+  const t=$("#toast"); t.textContent=msg; t.classList.add("on");
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("on"),1900);
+}
+
+/* ==================================================================
+   state
+   ================================================================== */
+const S = {
+  mode:"member", play:"daily", day:0,
+  answer:null, guesses:[], done:false, won:false, skipped:0,
+  audio:null, playing:false, endlessSeed:{}
+};
+const MODE = () => S.mode;
+const CFG  = () => MODES[S.mode];
+const MAXG = () => CFG().max;
+
+function dayIndex(){
+  const [y,m,d] = DATA.epoch.split("-").map(Number);
+  const start = new Date(y, m-1, d);
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.floor((today - start)/86400000);
+}
+function byId(mode,id){
+  const p = MODES[mode].pool();
+  return p.find(x=>x.id===id) || null;
+}
+function dailyAnswer(mode, day){
+  const sched = DATA.schedules[mode] || [];
+  if(!sched.length) return MODES[mode].pool()[0]||null;
+  const id = sched[((day % sched.length)+sched.length)%sched.length];
+  return byId(mode,id) || MODES[mode].pool()[0] || null;
+}
+
+/* ---- storage ---- */
+const loadStore = () => { try{ return JSON.parse(localStorage.getItem(SAVE))||{}; }
+                          catch(e){ return {}; } };
+const saveStore = o => { try{ localStorage.setItem(SAVE, JSON.stringify(o)); }catch(e){} };
+
+function stateKey(){ return S.mode + ":" + (S.play==="daily" ? "d"+S.day : "e"); }
+
+function persist(){
+  const st = loadStore();
+  st.rounds = st.rounds || {};
+  st.rounds[stateKey()] = {
+    a:S.answer?S.answer.id:null,
+    g:S.guesses.map(x=>x&&x.id?x.id:"~skip"),
+    d:S.done, w:S.won
+  };
+  // Keep the file small: daily rounds older than 30 days are dead weight.
+  Object.keys(st.rounds).forEach(k=>{
+    const m = /:d(-?\d+)$/.exec(k);
+    if(m && S.day - (+m[1]) > 30) delete st.rounds[k];
+  });
+  saveStore(st);
+}
+
+/* ---- stats ---- */
+const blankStats = () => ({played:0, won:0, streak:0, best:0, last:null, dist:{}});
+function statsFor(mode){
+  const st = loadStore();
+  return Object.assign(blankStats(), (st.stats||{})[mode]);
+}
+function recordResult(won, tries){
+  if(S.play!=="daily") return;
+  const st = loadStore();
+  st.stats = st.stats || {};
+  const s = Object.assign(blankStats(), st.stats[S.mode]);
+  if(s.last === S.day) { st.stats[S.mode]=s; saveStore(st); return; }
+  s.played++;
+  if(won){
+    s.won++;
+    s.streak = (s.last === S.day-1) ? s.streak+1 : 1;
+    s.best = Math.max(s.best, s.streak);
+    s.dist[tries] = (s.dist[tries]||0)+1;
+  } else {
+    s.streak = 0;
+  }
+  s.last = S.day;
+  st.stats[S.mode] = s;
+  saveStore(st);
+}
+
+/* ==================================================================
+   grading
+   ================================================================== */
+function gExact(g,a){ return {r: g===a ? "hit" : "miss"}; }
+
+function gNum(g,a,col){
+  if(g===a) return {r:"hit"};
+  const tol = col.tol==null ? 0 : col.tol;
+  const near = Math.abs(g-a) <= tol && tol>0;
+  return {r: near?"near":"miss", dir: g<a ? "up" : "down"};
+}
+function gSet(g,a){
+  const G=[].concat(g), A=[].concat(a);
+  const same = G.length===A.length && G.every(x=>A.indexOf(x)>=0);
+  if(same) return {r:"hit"};
+  return {r: G.some(x=>A.indexOf(x)>=0) ? "near" : "miss"};
+}
+/* Company is "near" when two different labels sit under one conglomerate —
+   Source Music vs ADOR are both HYBE, and that is a real hint. */
+function gCompany(guess,ans){
+  if(guess.company===ans.company) return {r:"hit"};
+  return {r: guess.parent===ans.parent ? "near" : "miss"};
+}
+function grade(guess, ans, col){
+  if(col.kind==="company") return gCompany(guess,ans);
+  const g=guess[col.k], a=ans[col.k];
+  if(col.kind==="num")   return gNum(g,a,col);
+  if(col.kind==="set")   return gSet(g,a);
+  return gExact(g,a);
+}
+
+/* ==================================================================
+   round lifecycle
+   ================================================================== */
+function endlessPool(){ return CFG().pool(); }
+
+function pickEndless(){
+  const pool = endlessPool();
+  if(!pool.length) return null;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+
+function startRound(restore){
+  stopAudio();
+  S.guesses=[]; S.done=false; S.won=false; S.skipped=0;
+  S.day = dayIndex();
+
+  if(S.play==="daily"){
+    S.answer = dailyAnswer(S.mode, S.day);
+  } else {
+    S.answer = pickEndless();
+  }
+
+  if(restore){
+    const saved = (loadStore().rounds||{})[stateKey()];
+    if(saved && saved.a){
+      const a = byId(S.mode, saved.a);
+      // An endless round only resumes if its answer still exists; a daily
+      // round must also still match today's scheduled answer, otherwise the
+      // player would resume yesterday's puzzle after midnight.
+      const ok = a && (S.play==="endless" || (S.answer && a.id===S.answer.id));
+      if(ok){
+        S.answer=a;
+        S.guesses = (saved.g||[]).map(id => id==="~skip" ? null : byId(S.mode,id));
+        S.skipped = S.guesses.filter(x=>!x).length;
+        S.done=!!saved.d; S.won=!!saved.w;
+      }
+    }
+  }
+  buildAudio();
+  render();
+}
+
+function submitGuess(item){
+  if(S.done || !S.answer) return;
+  if(item && S.guesses.some(g=>g && g.id===item.id)){
+    toast("Already guessed"); return;
+  }
+  S.guesses.push(item||null);
+  if(!item) S.skipped++;
+
+  if(item && item.id===S.answer.id){
+    S.done=true; S.won=true;
+    recordResult(true, S.guesses.length);
+  } else if(S.guesses.length >= MAXG()){
+    S.done=true; S.won=false;
+    recordResult(false, 0);
+  }
+  persist();
+  render();
+  if(S.done){
+    stopAudio();
+    setTimeout(()=>$("#stage").scrollIntoView({behavior:"smooth",block:"end"}),120);
+  } else if(S.mode==="song"){
+    playClip();
+  }
+}
+
+function giveUp(){
+  if(S.done||!S.answer) return;
+  S.done=true; S.won=false;
+  recordResult(false,0);
+  persist(); stopAudio(); render();
+}
+
+/* ==================================================================
+   audio (song mode)
+   ================================================================== */
+function unlockedSeconds(){
+  const wrong = Math.min(S.guesses.length, STEPS.length-1);
+  return S.done ? 30 : STEPS[wrong];
+}
+function buildAudio(){
+  stopAudio();
+  if(S.mode!=="song" || !S.answer) { S.audio=null; return; }
+  const a = new Audio();
+  a.preload = "auto";
+  a.src = S.answer.preview;
+  a.addEventListener("error", ()=>{
+    toast("Preview unavailable — try Give up or a new round");
+  });
+  S.audio = a;
+}
+function playClip(){
+  if(!S.audio) return;
+  const limit = unlockedSeconds();
+  clearTimeout(playClip._t);
+  clearInterval(playClip._i);
+  try{ S.audio.currentTime = 0; }catch(e){}
+  const p = S.audio.play();
+  if(p && p.catch) p.catch(()=>toast("Tap play once to allow audio"));
+  S.playing = true;
+  renderPlayer();
+  playClip._i = setInterval(()=>{
+    if(!S.audio) return;
+    if(S.audio.currentTime >= limit){ stopAudio(); }
+    else renderHead();
+  }, 60);
+  playClip._t = setTimeout(stopAudio, limit*1000 + 120);
+}
+function stopAudio(){
+  clearTimeout(playClip._t); clearInterval(playClip._i);
+  if(S.audio){ try{ S.audio.pause(); S.audio.currentTime=0; }catch(e){} }
+  S.playing=false;
+  renderHead(); renderPlayer();
+}
+function toggleAudio(){ S.playing ? stopAudio() : playClip(); }
+
+/* ==================================================================
+   search
+   ================================================================== */
+function candidates(text){
+  const q = norm(text);
+  if(!q) return [];
+  const pool = CFG().pool();
+  const guessed = new Set(S.guesses.filter(Boolean).map(x=>x.id));
+  const starts=[], contains=[];
+  for(const it of pool){
+    if(guessed.has(it.id)) continue;
+    let best = -1;
+    for(const s of it.search){
+      const n = norm(s);
+      if(!n) continue;
+      if(n.startsWith(q)){ best = 0; break; }
+      if(n.indexOf(q)>=0) best = best<0 ? 1 : best;
+    }
+    if(best===0) starts.push(it);
+    else if(best===1) contains.push(it);
+  }
+  const key = x => (x.display||x.title||x.name||"");
+  starts.sort((a,b)=>key(a).localeCompare(key(b)));
+  contains.sort((a,b)=>key(a).localeCompare(key(b)));
+  return starts.concat(contains).slice(0,40);
+}
+
+let acItems=[], acIdx=-1;
+function renderAC(list){
+  const box=$("#ac");
+  acItems=list; acIdx=list.length?0:-1;
+  if(!list.length){
+    if(!$("#q").value.trim()){ box.hidden=true; $("#q").setAttribute("aria-expanded","false"); return; }
+    box.innerHTML='<div class="empty">No match</div>';
+    box.hidden=false; return;
+  }
+  box.innerHTML = list.map((it,i)=>{
+    const th = thumbFor(it);
+    const nm = it.display || it.title || it.name;
+    const sub = S.mode==="song" ? it.group
+              : S.mode==="group" ? it.company
+              : (it.group||"");
+    return `<div class="opt" role="option" data-i="${i}"
+              aria-selected="${i===acIdx}">
+      ${th?`<img class="thumb" src="${esc(th)}" alt="" loading="lazy">`
+          :`<div class="thumb"></div>`}
+      <div><div class="nm">${esc(nm)}</div>
+           <div class="sub">${esc(sub)}</div></div></div>`;
+  }).join("");
+  box.hidden=false;
+  $("#q").setAttribute("aria-expanded","true");
+}
+function closeAC(){ $("#ac").hidden=true; acItems=[]; acIdx=-1;
+  $("#q").setAttribute("aria-expanded","false"); }
+function chooseAC(i){
+  const it=acItems[i]; if(!it) return;
+  $("#q").value=""; closeAC(); submitGuess(it);
+}
+
+/* ==================================================================
+   rendering
+   ================================================================== */
+function renderGauge(){
+  const max=MAXG(), n=S.guesses.length;
+  let h="";
+  for(let i=0;i<max;i++){
+    const cls = (S.won && i===n-1) ? "won" : (i<n ? "used" : "");
+    h += `<span class="pip ${cls}"></span>`;
+  }
+  $("#gauge").innerHTML=h;
+  $("#count").textContent = S.done
+    ? (S.won ? "Solved in "+n : "Out of guesses")
+    : (max-n) + (max-n===1 ? " guess left" : " guesses left");
+  const st = statsFor(S.mode);
+  $("#streak").innerHTML = S.play==="daily"
+    ? `streak <b>${st.streak}</b> · best <b>${st.best}</b>` : "endless";
+}
+
+function tileHTML(guess, col, res){
+  const raw = guess[col.k];
+  const val = Array.isArray(raw) ? raw.join(" / ")
+            : (col.fmt ? col.fmt(raw) : raw);
+  const arrow = res.dir==="up" ? "&uarr;" : res.dir==="down" ? "&darr;" : "";
+  return `<td><div class="tile ${res.r}">
+    ${arrow?`<span class="arrow">${arrow}</span>`:""}
+    <span>${esc(val)}</span></div></td>`;
+}
+
+function gridHTML(){
+  const cols = CFG().cols;
+  const rows = S.guesses.slice().reverse().filter(Boolean).map(g=>{
+    const name = g.display || g.name;
+    const face = g.img ? `<img class="face" src="${esc(commons(g.img,64))}" alt="" loading="lazy">` : "";
+    const head = `<td><div class="tile name"><div class="who">${face}
+        <span>${esc(name)}</span></div></div></td>`;
+    return "<tr>"+head+cols.map(c=>tileHTML(g,c,grade(g,S.answer,c))).join("")+"</tr>";
+  }).join("");
+  if(!rows) return "";
+  return `<div class="gridwrap"><table class="grid"><thead><tr>
+    <th></th>${cols.map(c=>`<th>${esc(c.label)}</th>`).join("")}
+    </tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+/* The card is in a frosted sleeve and slides down out of it, so the reveal runs
+   bottom-up: outfit and hair first, eyes last. A uniform blur would hide the
+   same amount of everything; this hands over a real band of the photo per
+   guess, which is both fairer and a lot more like holding the thing. */
+const SLEEVE_COVER = [88, 74, 58, 42, 24, 10];
+
+function imageHTML(){
+  const a=S.answer; if(!a) return "";
+  const i = Math.min(S.guesses.length, SLEEVE_COVER.length-1);
+  const cover = S.done ? 0 : SLEEVE_COVER[i];
+  return `<div class="artstage"><div class="sleeve-wrap">
+      <div class="pc">
+        <img class="pc-photo" src="${esc(commons(a.img,600))}"
+             alt="Photocard of the idol to identify">
+      </div>
+      <div class="sleeve${S.done?" gone":""}" style="--cover:${cover}%"></div>
+    </div></div>
+    <div class="artcap">${S.done
+      ? "Photo: Wikimedia Commons"
+      : "Each miss pulls the card further out of the sleeve"}</div>`
+    + wrongsHTML();
+}
+
+function playerHTML(){
+  const a=S.answer; if(!a) return "";
+  const total=30, unlocked=unlockedSeconds();
+  const ticks = STEPS.map(s=>`<i style="left:${(s/total*100).toFixed(1)}%"></i>`).join("");
+  return `<div class="player">
+    <div class="track">
+      <div class="unlocked" id="unl" style="width:${(unlocked/total*100).toFixed(1)}%"></div>
+      <div class="ticks">${ticks}</div>
+      <div class="head" id="head" style="left:0;opacity:0"></div>
+    </div>
+    <div class="ticklabels"><span>0:00</span><span>0:30</span></div>
+    <div class="playrow">
+      <button class="playbtn" id="btn-play" aria-label="Play">
+        <svg viewBox="0 0 24 24" fill="currentColor" id="play-icon">
+          <path d="M8 5v14l11-7z"/></svg></button>
+      <div class="playinfo">
+        <div class="big" id="play-label">${unlocked} second${unlocked===1?"":"s"} unlocked</div>
+        <div class="sub">${S.done ? esc(a.group)+" — "+esc(a.title)
+                                  : "Which song is this?"}</div>
+      </div>
+      <button class="skip" id="btn-skip" ${S.done?"disabled":""}>
+        ${S.guesses.length>=MAXG()-1?"Last chance":"Skip +"+
+          (STEPS[Math.min(S.guesses.length+1,STEPS.length-1)]-unlocked)+"s"}</button>
+    </div>
+  </div>` + wrongsHTML();
+}
+function renderPlayer(){
+  const btn=$("#btn-play"); if(!btn) return;
+  $("#play-icon").innerHTML = S.playing
+    ? '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'
+    : '<path d="M8 5v14l11-7z"/>';
+  btn.setAttribute("aria-label", S.playing?"Stop":"Play");
+}
+function renderHead(){
+  const h=$("#head"); if(!h||!S.audio) return;
+  if(!S.playing){ h.style.opacity="0"; return; }
+  h.style.opacity="1";
+  h.style.left = Math.min(100, S.audio.currentTime/30*100).toFixed(2)+"%";
+}
+
+function wrongsHTML(){
+  const rows = S.guesses.map(g=>{
+    if(!g) return `<div class="wrong skipped"><span class="x">&#8594;</span>
+      <span>Skipped</span></div>`;
+    const th = thumbFor(g);
+    const nm = g.display||g.title||g.name;
+    const sub = S.mode==="song" ? g.group : (g.group||g.company||"");
+    return `<div class="wrong"><span class="x">&times;</span>
+      ${th?`<img src="${esc(th)}" alt="" loading="lazy">`:""}
+      <span>${esc(nm)}</span><span class="sub">${esc(sub)}</span></div>`;
+  }).reverse().join("");
+  return rows ? `<div class="wrongs">${rows}</div>` : "";
+}
+
+function factsFor(a){
+  if(S.mode==="song")
+    return [["Group",a.group],["From",a.album||"—"]];
+  if(S.mode==="group")
+    return [["Label",a.company],["Debut",a.debut],["Members",a.size],
+            ["Gen",ordinal(a.gen)],["Status",a.status]];
+  return [["Group",a.group],["Label",a.company],
+          ["From",[].concat(a.nationality).join(" / ")],
+          ["Born",a.birth],["Debut",a.debut],["Gen",ordinal(a.gen)],
+          ["Status",a.status]];
+}
+
+/* The answer arrives as a photocard — ivory stock, foil-stamped plate, prism
+   holo that tracks the pointer the way a real card does under a light. This is
+   the only element on the page allowed to be loud. */
+function photocardHTML(a){
+  if(S.mode==="song")
+    return a.art
+      ? `<img class="sleeve-art holo" src="${esc(a.art)}" alt="">` : "";
+  if(!a.img) return "";
+  const kr = a.kr ? `<div class="pc-kr kr">${esc(a.kr)}</div>` : "";
+  return `<div class="pc holo">
+    <img class="pc-photo" src="${esc(commons(a.img,500))}" alt="">
+    <div class="pc-plate">${kr}
+      <div class="pc-name">${esc(a.name||a.display)}</div>
+      <div class="pc-group">${esc(a.group||a.company||"")}</div>
+    </div></div>`;
+}
+
+function resultHTML(){
+  if(!S.done||!S.answer) return "";
+  const a=S.answer;
+  const title = S.mode==="song" ? a.title : (a.display||a.name);
+  const sub   = S.mode==="song" ? a.group
+              : S.mode==="group" ? a.company : a.group;
+  const krLine = a.kr ? ` <span class="kr">${esc(a.kr)}</span>` : "";
+  const facts = factsFor(a).map(([k,v])=>
+    `<span class="fact"><b>${esc(k)}</b>${esc(v)}</span>`).join("");
+  return `<div class="result">
+    <div class="result-inner">
+      ${photocardHTML(a)}
+      <div class="result-body">
+        <div class="verdict ${S.won?"win":"lose"}">
+          ${S.won ? "Solved in "+S.guesses.length
+                  : "Out of guesses — it was"}</div>
+        <h2>${esc(title)}</h2>
+        <div class="sub">${esc(sub)}${krLine}</div>
+        <div class="factlist">${facts}</div>
+        <div class="actions">
+          <button class="ghost" id="btn-copy">Copy result</button>
+          <button class="ghost" id="btn-again">
+            ${S.play==="daily" ? "Keep playing" : "Next round"}</button>
+        </div>
+      </div>
+    </div></div>`;
+}
+
+function render(){
+  const cfg=CFG();
+  $("#q").placeholder = cfg.ph;
+  $("#q").disabled = S.done;
+  $("#submit").disabled = S.done;
+  $("#btn-new").hidden = S.play!=="endless";
+  $("#btn-give").hidden = S.done;
+  $("#help-text").textContent = cfg.help;
+
+  let body="";
+  if(cfg.kind==="grid")       body = gridHTML();
+  else if(cfg.kind==="image") body = imageHTML();
+  else if(cfg.kind==="song")  body = playerHTML();
+  $("#stage").innerHTML = body + resultHTML();
+
+  renderGauge();
+  wire();
+}
+
+/* ==================================================================
+   share
+   ================================================================== */
+function shareText(){
+  const names={member:"Idol",group:"Group",image:"Face",song:"Song"};
+  const head = `K-poppedle ${names[S.mode]} #${S.day} `
+    + (S.won ? S.guesses.length+"/"+MAXG() : "X/"+MAXG());
+  let grid="";
+  if(CFG().kind==="grid"){
+    grid = S.guesses.filter(Boolean).map(g=>CFG().cols.map(c=>{
+      const r=grade(g,S.answer,c).r;
+      return r==="hit"?"🟩":r==="near"?"🟨":"⬛";
+    }).join("")).join("\n");
+  } else {
+    grid = S.guesses.map((g,i)=>
+      (S.won && i===S.guesses.length-1) ? "🟩" : (g?"🟥":"⬜")).join("");
+  }
+  return head+"\n"+grid;
+}
+function copyShare(){
+  const t=shareText();
+  const done = ()=>toast("Copied");
+  if(navigator.clipboard&&navigator.clipboard.writeText)
+    navigator.clipboard.writeText(t).then(done,()=>fallbackCopy(t,done));
+  else fallbackCopy(t,done);
+}
+function fallbackCopy(t,cb){
+  const ta=document.createElement("textarea");
+  ta.value=t; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); cb(); }catch(e){ toast("Copy failed"); }
+  ta.remove();
+}
+
+function statsHTML(){
+  const s=statsFor(S.mode);
+  const pct = s.played ? Math.round(s.won/s.played*100) : 0;
+  const names={member:"Idol",group:"Group",image:"Face",song:"Song"};
+  const max = Math.max(1,...Object.values(s.dist));
+  const bars = Array.from({length:MAXG()},(_,i)=>{
+    const n=s.dist[i+1]||0;
+    return `<div style="display:flex;align-items:center;gap:8px;margin:3px 0">
+      <span style="width:14px;color:var(--dim);font-size:12px">${i+1}</span>
+      <div style="flex:1;background:var(--miss);border-radius:5px;height:18px">
+        <div style="width:${Math.max(n?12:0,n/max*100)}%;height:100%;
+          background:linear-gradient(90deg,var(--accent),var(--accent2));
+          border-radius:5px;text-align:right;color:#fff;font-size:11px;
+          padding-right:5px;line-height:18px">${n||""}</div></div></div>`;
+  }).join("");
+  return `<p style="margin-top:0">Daily &middot; ${esc(names[S.mode])}</p>
+    <div class="statgrid">
+      <div class="stat"><b>${s.played}</b><span>played</span></div>
+      <div class="stat"><b>${pct}%</b><span>win rate</span></div>
+      <div class="stat"><b>${s.streak}</b><span>streak</span></div>
+      <div class="stat"><b>${s.best}</b><span>best</span></div>
+    </div>
+    <p style="margin-bottom:4px">Guess distribution</p>${bars}`;
+}
+
+/* ==================================================================
+   wiring
+   ================================================================== */
+/* Holo tilt: the foil sweep follows the pointer across the card. Without a
+   pointer it just sits at rest — the ambient sway in CSS carries it. */
+function wireHolo(){
+  document.querySelectorAll(".holo").forEach(el=>{
+    el.onpointermove = e => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--hx", (((e.clientX-r.left)/r.width -.5)*90).toFixed(1)+"%");
+      el.style.setProperty("--hy", (((e.clientY-r.top)/r.height -.5)*90).toFixed(1)+"%");
+    };
+    el.onpointerleave = () => {
+      el.style.removeProperty("--hx"); el.style.removeProperty("--hy");
+    };
+  });
+}
+
+function wire(){
+  wireHolo();
+  const play=$("#btn-play");
+  if(play){
+    play.onclick=toggleAudio;
+    const skip=$("#btn-skip");
+    if(skip) skip.onclick=()=>submitGuess(null);
+  }
+  const copy=$("#btn-copy"); if(copy) copy.onclick=copyShare;
+  const again=$("#btn-again");
+  if(again) again.onclick=()=>{
+    if(S.play==="daily"){ setPlay("endless"); }
+    else startRound(false);
+  };
+}
+
+function setMode(m){
+  if(S.mode===m) return;
+  stopAudio();
+  S.mode=m;
+  ["member","group","image","song"].forEach(x=>
+    $("#m-"+x).setAttribute("aria-pressed", String(x===m)));
+  startRound(true);
+}
+function setPlay(p){
+  stopAudio();
+  S.play=p;
+  ["daily","endless"].forEach(x=>
+    $("#p-"+x).setAttribute("aria-pressed", String(x===p)));
+  startRound(true);
+}
+
+function init(){
+  ["member","group","image","song"].forEach(m=>
+    $("#m-"+m).onclick=()=>setMode(m));
+  ["daily","endless"].forEach(p=>
+    $("#p-"+p).onclick=()=>setPlay(p));
+  $("#btn-new").onclick=()=>startRound(false);
+  $("#btn-give").onclick=giveUp;
+  $("#btn-help").onclick=()=>$("#dlg-help").showModal();
+  $("#btn-stats").onclick=()=>{
+    $("#stats-body").innerHTML=statsHTML(); $("#dlg-stats").showModal(); };
+  $("#btn-share").onclick=copyShare;
+  document.querySelectorAll("[data-close]").forEach(b=>
+    b.onclick=e=>e.target.closest("dialog").close());
+
+  const q=$("#q");
+  q.addEventListener("input",()=>renderAC(candidates(q.value)));
+  q.addEventListener("focus",()=>{ if(q.value) renderAC(candidates(q.value)); });
+  q.addEventListener("keydown",e=>{
+    if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+      e.preventDefault();
+      if(!acItems.length) return;
+      acIdx=(acIdx+(e.key==="ArrowDown"?1:-1)+acItems.length)%acItems.length;
+      renderACSelection();
+    } else if(e.key==="Enter"){
+      e.preventDefault();
+      if(acIdx>=0) chooseAC(acIdx);
+      else { const c=candidates(q.value); if(c.length===1) { acItems=c; chooseAC(0); } }
+    } else if(e.key==="Escape"){ closeAC(); }
+  });
+  $("#ac").addEventListener("mousedown",e=>{
+    const opt=e.target.closest(".opt"); if(!opt) return;
+    e.preventDefault(); chooseAC(+opt.dataset.i);
+  });
+  $("#submit").onclick=()=>{
+    if(acIdx>=0 && acItems.length) chooseAC(acIdx);
+    else { const c=candidates(q.value); if(c.length) { acItems=c; chooseAC(0); }
+           else toast("No match"); }
+  };
+  document.addEventListener("click",e=>{
+    if(!e.target.closest(".field")) closeAC();
+  });
+  document.addEventListener("keydown",e=>{
+    if(e.key===" " && S.mode==="song" && document.activeElement!==q
+       && !document.querySelector("dialog[open]")){
+      e.preventDefault(); toggleAudio();
+    }
+  });
+
+  if(!loadStore().seen){
+    const st=loadStore(); st.seen=1; saveStore(st);
+    $("#dlg-help").showModal();
+  }
+  startRound(true);
+}
+function renderACSelection(){
+  $("#ac").querySelectorAll(".opt").forEach((o,i)=>
+    o.setAttribute("aria-selected", String(i===acIdx)));
+  const sel=$("#ac").querySelector('[aria-selected="true"]');
+  if(sel) sel.scrollIntoView({block:"nearest"});
+}
+
+if(typeof module!=="undefined" && module.exports){
+  module.exports = {DATA,S,MODES,MEMBER_COLS,GROUP_COLS,grade,gNum,gSet,ordinal,shortLabel,
+                    gCompany,gExact,norm,candidates,dailyAnswer,unlockedSeconds,
+                    STEPS,shareText,startRound,submitGuess};
+} else {
+  document.addEventListener("DOMContentLoaded",init);
+}
+</script>
+</body>
+</html>

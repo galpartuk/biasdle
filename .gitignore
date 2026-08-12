@@ -1,0 +1,10 @@
+# API response caches — large, regenerable, and pure noise in a diff.
+# wd_cache.json alone is ~19 MB. Delete either file to force a refresh.
+data/wd_cache.json
+data/itunes_cache.json
+data/itunes_fetch.log
+
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6021 @@
+[
+ {
+  "qid": "Q19483969",
+  "label": "Solar",
+  "stage": "Solar",
+  "stage_src": "label",
+  "birth": "1991-02-21",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Solar Mamamoo 4.jpg",
+  "enwiki": "Solar (singer)",
+  "aliases": [
+   "Kim Yong-sun",
+   "Solar (singer)"
+  ],
+  "groups": [
+   {
+    "group": "MAMAMOO",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q19483782",
+  "label": "Moonbyul",
+  "stage": "Moonbyul",
+  "stage_src": "label",
+  "birth": "1992-12-22",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Mamamoo Moonbyul 240324.jpg",
+  "enwiki": "Moonbyul",
+  "aliases": [
+   "Moon Byul-yi",
+   "Moon Byul Yi",
+   "Moonbyul Yi",
+   "Moon Byul",
+   "Moonstar",
+   "Byul-yi",
+   "Byulie",
+   "Moonbyulyi",
+   "Moon Byulyi"
+  ],
+  "groups": [
+   {
+    "group": "MAMAMOO",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q19603912",
+  "label": "Hwasa",
+  "stage": "Hwasa",
+  "stage_src": "label",
+  "birth": "1995-07-23",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Hwasa in January 2026.png",
+  "enwiki": "Hwasa",
+  "aliases": [
+   "Ahn Hye-jin"
+  ],
+  "groups": [
+   {
+    "group": "MAMAMOO",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q19603930",
+  "label": "Wheein",
+  "stage": "Whee In",
+  "stage_src": "P742",
+  "birth": "1995-04-17",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Wheein in 2022.jpg",
+  "enwiki": "Wheein",
+  "aliases": [
+   "Whee In",
+   "Whee-in",
+   "Jung Whee In",
+   "Jung Whee-in",
+   "Jung Wheein"
+  ],
+  "groups": [
+   {
+    "group": "MAMAMOO",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Whee In"
+  ]
+ },
+ {
+  "qid": "Q17478642",
+  "label": "Wendy",
+  "stage": "웬디",
+  "stage_src": "P742",
+  "birth": "1994-02-21",
+  "nationality": null,
+  "citizenships": [],
+  "image": "Wendy Son at Dream Concert on May 12, 2018.jpg",
+  "enwiki": "Wendy (singer)",
+  "aliases": [
+   "Son Seung-wan",
+   "Son Seungwan",
+   "Shon Seung-wan",
+   "Wendy Son"
+  ],
+  "groups": [
+   {
+    "group": "Red Velvet",
+    "former": false,
+    "since": "2014-07-27",
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "웬디",
+   "Wendy"
+  ]
+ },
+ {
+  "qid": "Q12605358",
+  "label": "Irene",
+  "stage": "Irene",
+  "stage_src": "P742",
+  "birth": "1991-03-29",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Irene Bae at GMP-KIX Airport on January 22, 2020.png",
+  "enwiki": "Irene (singer)",
+  "aliases": [
+   "Bae Joo-hyun",
+   "Joo-hyun Bae",
+   "Bae Joohyun",
+   "Joohyun Bae",
+   "Irene Bae"
+  ],
+  "groups": [
+   {
+    "group": "Red Velvet",
+    "former": false,
+    "since": "2014-07-27",
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Irene"
+  ]
+ },
+ {
+  "qid": "Q15934116",
+  "label": "Kang Seul-gi",
+  "stage": "Seulgi",
+  "stage_src": "surname-strip",
+  "birth": "1994-02-10",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Kang Seul-gi at Coca-Cola Event on January 18, 2020 03.jpg",
+  "enwiki": "Seulgi",
+  "aliases": [
+   "Seul-gi Kang",
+   "Kang Seulgi",
+   "Seulgi Kang",
+   "Seulgi"
+  ],
+  "groups": [
+   {
+    "group": "Red Velvet",
+    "former": false,
+    "since": "2014-07-27",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q17484113",
+  "label": "Joy",
+  "stage": "조이",
+  "stage_src": "P742",
+  "birth": "1996-09-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Joy Park at INK Concert in September 01, 2018 (8).jpg",
+  "enwiki": "Joy (singer)",
+  "aliases": [
+   "Park Soo-young",
+   "Park Sooyoung",
+   "Park Soo-yeong",
+   "Park Sooyeong",
+   "Sooyeong Park"
+  ],
+  "groups": [
+   {
+    "group": "Red Velvet",
+    "former": false,
+    "since": "2014-07-27",
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "조이",
+   "Joy"
+  ]
+ },
+ {
+  "qid": "Q19940498",
+  "label": "Yeri",
+  "stage": "예리",
+  "stage_src": "P742",
+  "birth": "1999-03-05",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "240511 Red Velvet Yeri.jpg",
+  "enwiki": "Yeri (singer)",
+  "aliases": [
+   "Kim Yerim",
+   "Kim Ye-rim",
+   "Kim Yeri Kati",
+   "Yerim Kim",
+   "Ye-rim Kim",
+   "Katy Kim",
+   "Kim Yeri",
+   "Yeri Kim"
+  ],
+  "groups": [
+   {
+    "group": "Red Velvet",
+    "former": false,
+    "since": "2015-03-17",
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "예리",
+   "Yeri"
+  ]
+ },
+ {
+  "qid": "Q26162651",
+  "label": "Kim So-won",
+  "stage": "Sowon",
+  "stage_src": "surname-strip",
+  "birth": "1995-12-07",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Kim So-won December 2019 (3x4 cropped).jpg",
+  "enwiki": "Kim So-won",
+  "aliases": [
+   "Sowon",
+   "Kim So-jeong"
+  ],
+  "groups": [
+   {
+    "group": "GFRIEND",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q19657363",
+  "label": "Yerin",
+  "stage": "Yerin",
+  "stage_src": "label",
+  "birth": "1996-08-19",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Yerin September 2024 (3x4 cropped).jpg",
+  "enwiki": "Yerin (entertainer)",
+  "aliases": [
+   "Jung Ye Rin"
+  ],
+  "groups": [
+   {
+    "group": "GFRIEND",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q21710247",
+  "label": "Eunha",
+  "stage": "Eunha",
+  "stage_src": "label",
+  "birth": "1997-05-30",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Eunha August 2024 (3x4 cropped).jpg",
+  "enwiki": "Eunha (singer)",
+  "aliases": [
+   "Jung Pitote Eun-bi"
+  ],
+  "groups": [
+   {
+    "group": "GFRIEND",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q20821809",
+  "label": "Yuju",
+  "stage": "Yuju",
+  "stage_src": "label",
+  "birth": "1997-10-04",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Yuju at Seoul Fashion Week, September 2024.jpg",
+  "enwiki": "Yuju (singer)",
+  "aliases": [
+   "Choi Yu-na"
+  ],
+  "groups": [
+   {
+    "group": "GFRIEND",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q21709909",
+  "label": "SinB",
+  "stage": "SinB",
+  "stage_src": "label",
+  "birth": "1998-06-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "SinB August 2024 (3x4 cropped).jpg",
+  "enwiki": "SinB",
+  "aliases": [
+   "Hwang Eun Bi",
+   "Sin B"
+  ],
+  "groups": [
+   {
+    "group": "GFRIEND",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q24572927",
+  "label": "Umji",
+  "stage": "Umji",
+  "stage_src": "label",
+  "birth": "1998-08-19",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "231102 한강 게릴라 엄지 (5).jpg",
+  "enwiki": "Umji",
+  "aliases": [
+   "Kim Ye-won"
+  ],
+  "groups": [
+   {
+    "group": "GFRIEND",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q22975425",
+  "label": "Choi Hyo-jung",
+  "stage": "Hyojung",
+  "stage_src": "surname-strip",
+  "birth": "1994-07-28",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "220618 오마이걸 효정.jpg",
+  "enwiki": "Hyojung",
+  "aliases": [
+   "Hyojung",
+   "Hyojeong",
+   "Choi Hyojeong",
+   "Choi Hyojung",
+   "JJung2eonni"
+  ],
+  "groups": [
+   {
+    "group": "OH MY GIRL",
+    "former": false,
+    "since": "2015-04-20",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q21710217",
+  "label": "Yooa",
+  "stage": "Yooa",
+  "stage_src": "label",
+  "birth": "1995-09-17",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "160805 오마이걸 뮤직뱅크 중간퇴근길 6.jpg",
+  "enwiki": "YooA",
+  "aliases": [
+   "Yoo Yeon-joo",
+   "Yoo Si-ah",
+   "YooA"
+  ],
+  "groups": [
+   {
+    "group": "OH MY GIRL",
+    "former": false,
+    "since": "2015-04-20",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q21577062",
+  "label": "Yubin",
+  "stage": "Yubin",
+  "stage_src": "label",
+  "birth": "1997-09-09",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "180413 뮤직뱅크 오마이걸 반하나 직찍 (2) (cropped).jpg",
+  "enwiki": "Binnie (singer)",
+  "aliases": [
+   "Bae Yubin",
+   "Bae Yoo-bin",
+   "Binnie"
+  ],
+  "groups": [
+   {
+    "group": "OH MY GIRL",
+    "former": false,
+    "since": "2015-04-20",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q21710585",
+  "label": "Jiho",
+  "stage": "Jiho",
+  "stage_src": "label",
+  "birth": "1997-04-04",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "151114 오마이걸 청량리 팬사인회 지호.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Ji-ho"
+  ],
+  "groups": [
+   {
+    "group": "OH MY GIRL",
+    "former": true,
+    "since": "2015-04-20",
+    "until": "2022-05-09"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q42302579",
+  "label": "JinE",
+  "stage": "JinE",
+  "stage_src": "label",
+  "birth": "1995-01-22",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20160702 오마이걸 미라클 데이 진이.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Shin Hye-jin"
+  ],
+  "groups": [
+   {
+    "group": "OH MY GIRL",
+    "former": true,
+    "since": "2015-04-20",
+    "until": "2017-10-30"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q29876869",
+  "label": "Mimi",
+  "stage": "Mimi",
+  "stage_src": "label",
+  "birth": "1995-05-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "160730 오마이걸 봉화은어축제 12.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Mihyun",
+   "Kim Mi-hyun"
+  ],
+  "groups": [
+   {
+    "group": "OH MY GIRL",
+    "former": false,
+    "since": "2015-04-20",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q21709893",
+  "label": "Hyun Seung-hee",
+  "stage": "Hyun Seung-hee",
+  "stage_src": "label",
+  "birth": "1996-01-25",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "151114 오마이걸 청량리 팬사인회 승희.jpg",
+  "enwiki": "Seunghee",
+  "aliases": [
+   "Seunghee"
+  ],
+  "groups": [
+   {
+    "group": "OH MY GIRL",
+    "former": false,
+    "since": "2015-04-20",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q29876894",
+  "label": "Arin",
+  "stage": "Arin",
+  "stage_src": "label",
+  "birth": "1999-06-18",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "241002 Oh My Girl Arin 01 (cropped).jpg",
+  "enwiki": "Arin (singer)",
+  "aliases": [
+   "Choi Ye-won",
+   "Choi Yewon"
+  ],
+  "groups": [
+   {
+    "group": "OH MY GIRL",
+    "former": false,
+    "since": "2015-04-20",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q22804243",
+  "label": "Im Nayeon",
+  "stage": "Nayeon",
+  "stage_src": "surname-strip",
+  "birth": "1995-09-22",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Nayeon in November 2025.png",
+  "enwiki": "Nayeon",
+  "aliases": [
+   "im nayeon",
+   "nayeon",
+   "im unnie"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q25374501",
+  "label": "Yoo Jeong-yeon",
+  "stage": "Jeongyeon",
+  "stage_src": "P742",
+  "birth": "1996-11-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TWICE Jeongyeon VETERAN 2 September 2024.jpg",
+  "enwiki": "Jeongyeon",
+  "aliases": [
+   "Jeongyeon"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Jeongyeon"
+  ]
+ },
+ {
+  "qid": "Q23779926",
+  "label": "Momo",
+  "stage": "Momo",
+  "stage_src": "label",
+  "birth": "1996-11-09",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17",
+   "Q884"
+  ],
+  "image": "TWICE MOMO April 2024.jpg",
+  "enwiki": "Momo Hirai",
+  "aliases": [
+   "Hirai Momo"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q23012025",
+  "label": "Minatozaki Sana",
+  "stage": "Minatozaki Sana",
+  "stage_src": "label",
+  "birth": "1996-12-29",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "Twice in Seattle 2026 - TWICE. Sana (55044987426) (cropped).jpg",
+  "enwiki": "Sana (singer)",
+  "aliases": [
+   "Sana",
+   "minatozaki"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q22774055",
+  "label": "Park Ji-hyo",
+  "stage": "Jihyo",
+  "stage_src": "surname-strip",
+  "birth": "1997-02-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Jihyo at Gucci Ancora on 05032024 (cropped).png",
+  "enwiki": "Jihyo",
+  "aliases": [
+   "Ji-hyo Park",
+   "Park Jihyo",
+   "Jihyo"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q20688186",
+  "label": "Mina Myoi",
+  "stage": "Mina Myoi",
+  "stage_src": "label",
+  "birth": "1997-03-24",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17",
+   "Q30"
+  ],
+  "image": "Twice in Seattle 2026 - TWICE. Mina (55044093787).jpg",
+  "enwiki": "Mina (Japanese singer)",
+  "aliases": [
+   "Mina Sharon Myoi",
+   "Myōi Mina"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q22773838",
+  "label": "Kim Da-hyun",
+  "stage": "Dahyun",
+  "stage_src": "surname-strip",
+  "birth": "1998-05-28",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Dahyun at press conference for You Are the Apple of My Eye 02 (cropped).png",
+  "enwiki": "Dahyun",
+  "aliases": [
+   "Dubu tofu",
+   "Dahyun"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q24043625",
+  "label": "Son Chaeyoung",
+  "stage": "Chaeyoung",
+  "stage_src": "surname-strip",
+  "birth": "1999-04-23",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Chaeyoung at Gaon Awards red carpet on January 23, 2019.jpg",
+  "enwiki": "Chaeyoung",
+  "aliases": [
+   "Chae"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q20688219",
+  "label": "Chou Tzuyu",
+  "stage": "Chou Tzuyu",
+  "stage_src": "label",
+  "birth": "1999-06-14",
+  "nationality": "Taiwanese",
+  "citizenships": [
+   "Q865"
+  ],
+  "image": "20240305 Chou Tzuyu 周子瑜 02.jpg",
+  "enwiki": "Tzuyu",
+  "aliases": [
+   "Tzuyu"
+  ],
+  "groups": [
+   {
+    "group": "TWICE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q28524707",
+  "label": "Yeoreum",
+  "stage": "Yeoreum",
+  "stage_src": "label",
+  "birth": "1999-01-10",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190324 우주소녀 여름 (2).jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Jin-sook",
+   "Lee Yeo-reum"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q26710986",
+  "label": "Yoo Yeon-jung",
+  "stage": "Yeonjung",
+  "stage_src": "surname-strip",
+  "birth": "1999-08-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "170617 유연정 미니팬미팅 (5).jpg",
+  "enwiki": "Yoo Yeon-jung",
+  "aliases": [
+   "Yeonjung"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q28870936",
+  "label": "Bona",
+  "stage": "Bona",
+  "stage_src": "label",
+  "birth": "1995-08-19",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190321 우주소녀 보나.jpg",
+  "enwiki": "Bona (singer)",
+  "aliases": [
+   "Kim Ji-yeon",
+   "Kim Jiyeon"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q24958839",
+  "label": "Exy",
+  "stage": "Exy",
+  "stage_src": "label",
+  "birth": "1995-11-06",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "160821 우주소녀 영등포 팬싸인회 엑시 (4).jpg",
+  "enwiki": "Exy",
+  "aliases": [
+   "Chu So-jung",
+   "EXY",
+   "Chu So-jeong"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q28417155",
+  "label": "Seola",
+  "stage": "Seola",
+  "stage_src": "label",
+  "birth": "1994-12-24",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190321 우주소녀 설아.jpg",
+  "enwiki": "Seola (singer)",
+  "aliases": [
+   "Kim Hyun-jung"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q25418040",
+  "label": "Dayoung",
+  "stage": "Dayoung",
+  "stage_src": "label",
+  "birth": "1999-05-14",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "170921 인천공항 출국 우주소녀 다영 직찍 (4).jpg",
+  "enwiki": "Dayoung",
+  "aliases": [
+   "Yim Da-young"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q24867616",
+  "label": "Dawon",
+  "stage": "Dawon",
+  "stage_src": "label",
+  "birth": "1997-05-27",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Cosmic Girls Nam Da-won at KCON 17 LA P1030285 (36810271345).jpg",
+  "enwiki": "Dawon (singer)",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q33574748",
+  "label": "Eunseo",
+  "stage": "Eunseo",
+  "stage_src": "label",
+  "birth": "1998-05-27",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "170115 강남팬싸인회 우주소녀 은서 성소 여름 (5).jpg",
+  "enwiki": null,
+  "aliases": [
+   "Son Ju-yeon",
+   "Son Juyeon",
+   "Son Joo-yeon",
+   "Son Jooyeon"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q52504841",
+  "label": "Luda",
+  "stage": "Luda",
+  "stage_src": "label",
+  "birth": "1997-02-06",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "161022 창녕 우포누리 농특산물 한마당축제 우주소녀 보나 루다 4.jpg",
+  "enwiki": "Lee Lu-da",
+  "aliases": [
+   "LUDA",
+   "Lee Lu-da"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q60917505",
+  "label": "Soobin",
+  "stage": "Soobin",
+  "stage_src": "label",
+  "birth": "1996-09-14",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20160910 우주소녀 신촌 게릴라 공연.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Park Su-bin",
+   "Park Soo-bin"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": false,
+    "since": "2016-02-25",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q24959132",
+  "label": "Cheng Xiao",
+  "stage": "Cheng Xiao",
+  "stage_src": "label",
+  "birth": "1998-07-15",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "170730 SICAF 폐막식 7.jpg",
+  "enwiki": "Cheng Xiao",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": true,
+    "since": "2016-02-25",
+    "until": "2023-03-03"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q28661939",
+  "label": "Meng Mei Qi",
+  "stage": "Meng Mei Qi",
+  "stage_src": "label",
+  "birth": "1998-10-15",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "180317 우주소녀 미니팬미팅 직찍 (8).jpg",
+  "enwiki": "Meng Meiqi",
+  "aliases": [
+   "Mei Qi",
+   "Meng Meiqi"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": true,
+    "since": "2016-02-25",
+    "until": "2023-03-03"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q30942487",
+  "label": "Wu Xuan Yi",
+  "stage": "Wu Xuan Yi",
+  "stage_src": "label",
+  "birth": "1995-01-26",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "Wu Xuanyi.jpg",
+  "enwiki": "Wu Xuanyi",
+  "aliases": [
+   "Xuanyi"
+  ],
+  "groups": [
+   {
+    "group": "WJSN",
+    "former": true,
+    "since": "2016-02-25",
+    "until": "2023-03-03"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q27655361",
+  "label": "Jisoo",
+  "stage": "Jisoo",
+  "stage_src": "label",
+  "birth": "1995-01-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Jisoo at Boyfriend on Demand press conference on 26022026 (12).png",
+  "enwiki": "Jisoo",
+  "aliases": [
+   "Jisoo",
+   "Kim Ji-soo"
+  ],
+  "groups": [
+   {
+    "group": "BLACKPINK",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q27655344",
+  "label": "Rosé",
+  "stage": "Rosé",
+  "stage_src": "P742",
+  "birth": "1997-02-11",
+  "nationality": "New Zealander",
+  "citizenships": [
+   "Q664",
+   "Q884"
+  ],
+  "image": "Blackpink Rosé Rimowa 1.jpg",
+  "enwiki": "Rosé (singer)",
+  "aliases": [
+   "ROSÉ"
+  ],
+  "groups": [
+   {
+    "group": "BLACKPINK",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Rosé",
+   "Rosie",
+   "Roseanne"
+  ]
+ },
+ {
+  "qid": "Q26707663",
+  "label": "Lisa",
+  "stage": "Lisa",
+  "stage_src": "P742",
+  "birth": "1997-03-27",
+  "nationality": "Thai",
+  "citizenships": [
+   "Q869"
+  ],
+  "image": "20240314 Lisa Manoban 07.png",
+  "enwiki": "Lisa (rapper)",
+  "aliases": [
+   "Lalisa Manobal",
+   "Lisa Manobal",
+   "Pranpriya Manobal",
+   "Lalisa Manoban"
+  ],
+  "groups": [
+   {
+    "group": "BLACKPINK",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Lisa",
+   "Lili"
+  ]
+ },
+ {
+  "qid": "Q26262599",
+  "label": "Jennie",
+  "stage": "Jennie",
+  "stage_src": "label",
+  "birth": "1996-01-16",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Jennie 2026 GDA 1.jpg",
+  "enwiki": "Jennie (singer)",
+  "aliases": [
+   "Jennie Ruby Jane",
+   "Jennie Kim",
+   "Kim Jennie"
+  ],
+  "groups": [
+   {
+    "group": "BLACKPINK",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q59313184",
+  "label": "JiU",
+  "stage": "JiU",
+  "stage_src": "label",
+  "birth": "1994-05-17",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20240223 Dreamcatcher Offenbach concert 02 JiU.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Min-ji",
+   "Kim JiU"
+  ],
+  "groups": [
+   {
+    "group": "Dreamcatcher",
+    "former": false,
+    "since": "2014-09-18",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q59313270",
+  "label": "SuA",
+  "stage": "SuA",
+  "stage_src": "label",
+  "birth": "1994-08-10",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20240223 Dreamcatcher Offenbach concert 48 SuA.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Bo-ra"
+  ],
+  "groups": [
+   {
+    "group": "Dreamcatcher",
+    "former": false,
+    "since": "2014-09-18",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q59313326",
+  "label": "Siyeon",
+  "stage": "Siyeon",
+  "stage_src": "label",
+  "birth": "1995-10-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20240223 Dreamcatcher Offenbach concert 30 Siyeon.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Si-yeon"
+  ],
+  "groups": [
+   {
+    "group": "Dreamcatcher",
+    "former": false,
+    "since": "2014-09-18",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q59313384",
+  "label": "Handong",
+  "stage": "Handong",
+  "stage_src": "label",
+  "birth": "1996-03-26",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "20240223 Dreamcatcher Offenbach concert 47 Handong.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Han Dong"
+  ],
+  "groups": [
+   {
+    "group": "Dreamcatcher",
+    "former": false,
+    "since": "2017-01-13",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q59313479",
+  "label": "Yoohyeon",
+  "stage": "Yoohyeon",
+  "stage_src": "label",
+  "birth": "1997-01-07",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20240223 Dreamcatcher Offenbach concert 28 Yoohyeon.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Yoo-hyeon",
+   "Yoohyun"
+  ],
+  "groups": [
+   {
+    "group": "Dreamcatcher",
+    "former": false,
+    "since": "2014-09-18",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q59313527",
+  "label": "Dami",
+  "stage": "Dami",
+  "stage_src": "label",
+  "birth": "1997-03-07",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20240223 Dreamcatcher Offenbach concert 43 Dami.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Yoo-bin"
+  ],
+  "groups": [
+   {
+    "group": "Dreamcatcher",
+    "former": false,
+    "since": "2014-09-18",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q59313606",
+  "label": "Gahyun",
+  "stage": "Gahyun",
+  "stage_src": "label",
+  "birth": "1999-02-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20240223 Dreamcatcher Offenbach concert 12 Gahyeon.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Ga-hyeon",
+   "Gahyeon",
+   "Ga-hyun",
+   "Lee Ga-hyun"
+  ],
+  "groups": [
+   {
+    "group": "Dreamcatcher",
+    "former": false,
+    "since": "2017-01-13",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q54598370",
+  "label": "Lee Sae-rom",
+  "stage": "Saerom",
+  "stage_src": "surname-strip",
+  "birth": "1997-01-07",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190611 이새롬.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Saerom",
+   "Lee Saerom"
+  ],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": true,
+    "since": null,
+    "until": "2024-00-00"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q58816368",
+  "label": "Song Ha-young",
+  "stage": "Hayoung",
+  "stage_src": "surname-strip",
+  "birth": "1997-09-29",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190611 송하영.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Hayoung",
+   "Song Hayoung",
+   "Song Ha-yeong",
+   "Song Hayeong"
+  ],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q53334919",
+  "label": "Jang Gyu-ri",
+  "stage": "Gyuri",
+  "stage_src": "surname-strip",
+  "birth": "1997-12-27",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Jang Gyu-ri in November 2024.png",
+  "enwiki": "Jang Gyu-ri",
+  "aliases": [
+   "Gyuri",
+   "Gyuri Jang",
+   "Jang GyuRi"
+  ],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": true,
+    "since": null,
+    "until": "2022-07-31"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56695886",
+  "label": "Park Ji-won",
+  "stage": "Jiwon",
+  "stage_src": "surname-strip",
+  "birth": "1998-03-20",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190611 박지원.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q58816684",
+  "label": "Roh Ji-sun",
+  "stage": "Jisun",
+  "stage_src": "surname-strip",
+  "birth": "1998-11-23",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190611 노지선.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Jisun"
+  ],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": true,
+    "since": null,
+    "until": "2024-00-00"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56660256",
+  "label": "Lee Seo-yeon",
+  "stage": "Seoyeon",
+  "stage_src": "surname-strip",
+  "birth": "2000-01-22",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190611 이서연.jpg",
+  "enwiki": "Y:SY",
+  "aliases": [
+   "Y:SY"
+  ],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": true,
+    "since": null,
+    "until": "2024-00-00"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56660258",
+  "label": "Lee Chae-young",
+  "stage": "Chaeyoung",
+  "stage_src": "surname-strip",
+  "birth": "2000-05-14",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190611 이채영.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Chae-young (penyanyi)"
+  ],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56660245",
+  "label": "Lee Na-gyung",
+  "stage": "Nagyung",
+  "stage_src": "surname-strip",
+  "birth": "2000-06-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190611 이나경.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Na-kyung",
+   "Nagyung",
+   "Nakyung",
+   "Lee Na-gyeong"
+  ],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56660176",
+  "label": "Baek Ji-heon",
+  "stage": "Jiheon",
+  "stage_src": "surname-strip",
+  "birth": "2003-04-17",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "190611 백지헌.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "fromis_9",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q26707915",
+  "label": "Jeon Soyeon",
+  "stage": "Soyeon",
+  "stage_src": "surname-strip",
+  "birth": "1998-08-26",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "0226 (여자)아이들 소연 포커스&세로캠, 2nd 미니앨범 'I made' 쇼케이스 포토타임 (derived).jpg",
+  "enwiki": "Soyeon",
+  "aliases": [
+   "Jeon So-Yeon",
+   "Soyeon"
+  ],
+  "groups": [
+   {
+    "group": "(G)I-DLE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q55287305",
+  "label": "Shuhua",
+  "stage": "Shuhua",
+  "stage_src": "label",
+  "birth": "2000-01-06",
+  "nationality": "Taiwanese",
+  "citizenships": [
+   "Q865"
+  ],
+  "image": "(G)I-DLE's Shuhua on June 2023 01.jpg",
+  "enwiki": "Shuhua",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "(G)I-DLE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56761923",
+  "label": "Minnie",
+  "stage": "Minnie",
+  "stage_src": "label",
+  "birth": "1997-10-23",
+  "nationality": "Thai",
+  "citizenships": [
+   "Q869"
+  ],
+  "image": "Minnie at Owndays popup in Plaza Singapura 01 - RSKY - 20260611.jpg",
+  "enwiki": "Minnie (singer)",
+  "aliases": [
+   "Minnie Nicha Yontararak"
+  ],
+  "groups": [
+   {
+    "group": "(G)I-DLE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q55287306",
+  "label": "Song Yuqi",
+  "stage": "Yuqi",
+  "stage_src": "surname-strip",
+  "birth": "1999-09-23",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "20230630 Song Yu-qi.jpg",
+  "enwiki": "Yuqi",
+  "aliases": [
+   "Yuqi",
+   "Sòng Yǔqí"
+  ],
+  "groups": [
+   {
+    "group": "(G)I-DLE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56259927",
+  "label": "Cho Mi-yeon",
+  "stage": "Miyeon",
+  "stage_src": "surname-strip",
+  "birth": "1997-01-31",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "(G)I-DLE Airport Departure 2024 Miyeon waving hands.png",
+  "enwiki": "Miyeon",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "(G)I-DLE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q61100297",
+  "label": "Soojin",
+  "stage": "Soojin",
+  "stage_src": "label",
+  "birth": "1998-03-09",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Seo Soo-jin of (G)I-DLE in 2020 02.png",
+  "enwiki": "Soojin",
+  "aliases": [
+   "Seo Soo-jin"
+  ],
+  "groups": [
+   {
+    "group": "(G)I-DLE",
+    "former": true,
+    "since": "2018-00-00",
+    "until": "2021-00-00"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56259179",
+  "label": "Heejin",
+  "stage": "Heejin",
+  "stage_src": "label",
+  "birth": "2000-10-19",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20231109 HeeJin @ MusicBank.png",
+  "enwiki": "Heejin",
+  "aliases": [
+   "HeeJin",
+   "Jeon Hee-jin"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q48893612",
+  "label": "Kim Hyunjin",
+  "stage": "Hyunjin",
+  "stage_src": "surname-strip",
+  "birth": "2000-11-15",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Hyunjin Loossemble Airport Departure 20230913.png",
+  "enwiki": "Hyunjin (Loona singer)",
+  "aliases": [
+   "Kim Hyun-jin",
+   "HyunJin"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q57318729",
+  "label": "Haseul",
+  "stage": "Haseul",
+  "stage_src": "label",
+  "birth": "1997-08-18",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "2017.01.21 용산 이달의소녀 팬 사인회 하슬 by 엔타로 (1).jpg",
+  "enwiki": "Haseul",
+  "aliases": [
+   "Cho Ha Seul",
+   "Jo Haseul",
+   "HaSeul"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56824821",
+  "label": "Yeojin",
+  "stage": "Yeojin",
+  "stage_src": "label",
+  "birth": "2002-11-11",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "2017.01.22 용산 이달의소녀 팬 사인회 여진 by 엔타로 (4).jpg",
+  "enwiki": "Yeojin",
+  "aliases": [
+   "YeoJin",
+   "Im Yeo-jin"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q57317398",
+  "label": "ViVi",
+  "stage": "ViVi",
+  "stage_src": "label",
+  "birth": "1996-12-09",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "ViVi LOONA on October 27 2020.jpg",
+  "enwiki": "ViVi (singer)",
+  "aliases": [
+   "黃珈熙",
+   "Wong Kahei",
+   "Huáng Jiāxī"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56816418",
+  "label": "Kim Lip",
+  "stage": "Lip",
+  "stage_src": "surname-strip",
+  "birth": "1999-02-10",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Kim Lip 210802.jpg",
+  "enwiki": "Kim Lip",
+  "aliases": [
+   "Kim Jung Eun"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56825122",
+  "label": "JinSoul",
+  "stage": "JinSoul",
+  "stage_src": "label",
+  "birth": "1997-06-13",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20250503 ARTMS Eindhoven concert 1 JinSoul.jpg",
+  "enwiki": "Jinsoul",
+  "aliases": [
+   "Jeong Jin Sol",
+   "Jinsol"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q58224261",
+  "label": "Choerry",
+  "stage": "Choerry",
+  "stage_src": "label",
+  "birth": "2001-06-04",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "170921 엠카 미니팬미팅 이달의소녀 오드아이써클 최리 직찍.jpg",
+  "enwiki": "Choerry",
+  "aliases": [
+   "Choi Ye Rim"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q58825704",
+  "label": "Yves",
+  "stage": "Yves",
+  "stage_src": "label",
+  "birth": "1997-05-24",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Yves in Tacoma P1.jpg",
+  "enwiki": "Yves (singer)",
+  "aliases": [
+   "Ha Soo Young"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56816551",
+  "label": "Chuu",
+  "stage": "츄",
+  "stage_src": "P742",
+  "birth": "1999-10-20",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Chuu Strawberry Rush Fan-Con in Tacoma (53878354556).jpg",
+  "enwiki": "Chuu",
+  "aliases": [
+   "Kim Ji Woo",
+   "Kim Ji-woo"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": true,
+    "since": "2017-00-00",
+    "until": "2022-11-25"
+   }
+  ],
+  "pseudonyms": [
+   "츄",
+   "Chuu"
+  ]
+ },
+ {
+  "qid": "Q58825794",
+  "label": "Go Won",
+  "stage": "Won",
+  "stage_src": "surname-strip",
+  "birth": "2000-11-19",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "180401 이달의소녀 고원 개인 팬사인회 직찍 (13).jpg",
+  "enwiki": null,
+  "aliases": [
+   "Park Chae Won",
+   "Chae Won"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q58825825",
+  "label": "Hyeju",
+  "stage": "올리비아 혜",
+  "stage_src": "P742",
+  "birth": "2001-11-13",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Olivia Hye 210721.jpg",
+  "enwiki": "Hyeju",
+  "aliases": [
+   "Son Hye Joo",
+   "Olivia Hye",
+   "Son Hye-ju",
+   "HyeJu"
+  ],
+  "groups": [
+   {
+    "group": "LOONA",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Olivia Hye",
+   "올리비아 혜"
+  ]
+ },
+ {
+  "qid": "Q60829936",
+  "label": "Chaeryeong",
+  "stage": "Chaeryeong",
+  "stage_src": "label",
+  "birth": "2001-06-05",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "241023 ITZY Chaeryeong.jpg",
+  "enwiki": "Chaeryeong",
+  "aliases": [
+   "Lee Chae-ryeong"
+  ],
+  "groups": [
+   {
+    "group": "ITZY",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q60870268",
+  "label": "Hwang Ye-ji",
+  "stage": "Yeji",
+  "stage_src": "surname-strip",
+  "birth": "2000-05-26",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Yeji at Tommy Hilfiger PhotoCall on October 28, 2025.png",
+  "enwiki": "Yeji (singer)",
+  "aliases": [
+   "Yeji"
+  ],
+  "groups": [
+   {
+    "group": "ITZY",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q60870266",
+  "label": "Lia",
+  "stage": "Lia",
+  "stage_src": "label",
+  "birth": "2000-07-21",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Lia of Itzy, April 17, 2025.png",
+  "enwiki": "Lia (South Korean singer)",
+  "aliases": [
+   "Choi Ji-su",
+   "Lia"
+  ],
+  "groups": [
+   {
+    "group": "ITZY",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q60870265",
+  "label": "Shin Ryu-jin",
+  "stage": "Ryujin",
+  "stage_src": "surname-strip",
+  "birth": "2001-04-17",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "ITZY's Shin Ryujin in August 2023 01.jpg",
+  "enwiki": "Ryujin (rapper)",
+  "aliases": [
+   "Ryujin"
+  ],
+  "groups": [
+   {
+    "group": "ITZY",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q60870263",
+  "label": "Shin Yu-na",
+  "stage": "Yuna",
+  "stage_src": "surname-strip",
+  "birth": "2003-12-09",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Yuna at Incheon Airport on September 22, 2025.jpg",
+  "enwiki": "Yuna (singer, born 2003)",
+  "aliases": [
+   "Yuna"
+  ],
+  "groups": [
+   {
+    "group": "ITZY",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q62919296",
+  "label": "Sihyeon",
+  "stage": "Sihyeon",
+  "stage_src": "label",
+  "birth": "1999-08-05",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Kim Sihyeon 210530.jpg",
+  "enwiki": "Kim Si-hyeon",
+  "aliases": [
+   "Sihyeon",
+   "Kim Sihyeon"
+  ],
+  "groups": [
+   {
+    "group": "EVERGLOW",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q62613278",
+  "label": "Wang Yiren",
+  "stage": "Wang Yiren",
+  "stage_src": "label",
+  "birth": "2000-12-29",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "20240127 Everglow Amsterdam concert 050 Yiren.jpg",
+  "enwiki": "Wang Yiren",
+  "aliases": [
+   "Yiren"
+  ],
+  "groups": [
+   {
+    "group": "EVERGLOW",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q62920133",
+  "label": "E:U",
+  "stage": "E:U",
+  "stage_src": "label",
+  "birth": "1998-05-19",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20240127 Everglow Amsterdam concert 061 EU.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Park Ji-won"
+  ],
+  "groups": [
+   {
+    "group": "EVERGLOW",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q62920418",
+  "label": "Han Eun-ji (Mia)",
+  "stage": "Eunji(Mia)",
+  "stage_src": "surname-strip",
+  "birth": "2000-01-13",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20240127 Everglow Amsterdam concert 054 Mia.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Mia"
+  ],
+  "groups": [
+   {
+    "group": "EVERGLOW",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q62920711",
+  "label": "Jo Se-rim",
+  "stage": "Serim",
+  "stage_src": "surname-strip",
+  "birth": "2000-05-18",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Onda"
+  ],
+  "groups": [
+   {
+    "group": "EVERGLOW",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q62920953",
+  "label": "Heo Yoo-rim",
+  "stage": "Yoorim",
+  "stage_src": "surname-strip",
+  "birth": "2000-07-21",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Aisha at a fanmeeting on September 19, 2019 (1).jpg",
+  "enwiki": null,
+  "aliases": [
+   "Aisha"
+  ],
+  "groups": [
+   {
+    "group": "EVERGLOW",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q5358943",
+  "label": "Juri Takahashi",
+  "stage": "Juri Takahashi",
+  "stage_src": "label",
+  "birth": "1997-10-03",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "Juri at Rocket Punch Debut Showcase on August 7, 2019.png",
+  "enwiki": "Juri Takahashi",
+  "aliases": [
+   "Juri",
+   "Takahashi Juri"
+  ],
+  "groups": [
+   {
+    "group": "Rocket Punch",
+    "former": false,
+    "since": "2019-00-00",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q65920400",
+  "label": "Kim Yeon-hee",
+  "stage": "Yeonhee",
+  "stage_src": "surname-strip",
+  "birth": "2000-12-06",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "2019 Pink Punch Showcase Yeon Hee.png",
+  "enwiki": null,
+  "aliases": [
+   "Kim Yeon Hee",
+   "Yeonhee"
+  ],
+  "groups": [
+   {
+    "group": "Rocket Punch",
+    "former": false,
+    "since": "2019-00-00",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q65920408",
+  "label": "Kim Su-yun",
+  "stage": "Suyun",
+  "stage_src": "surname-strip",
+  "birth": "2001-03-17",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "2019 Pink Punch Showcase Su Yun.png",
+  "enwiki": null,
+  "aliases": [
+   "Kim Su Yun",
+   "Suyun"
+  ],
+  "groups": [
+   {
+    "group": "Rocket Punch",
+    "former": false,
+    "since": "2019-00-00",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q65920433",
+  "label": "Seo Yun-kyoung",
+  "stage": "Yunkyoung",
+  "stage_src": "surname-strip",
+  "birth": "2001-11-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "2019 Pink Punch Showcase Yun Kyoung.png",
+  "enwiki": null,
+  "aliases": [
+   "Seo Yun Kyoung",
+   "Yunkyoung"
+  ],
+  "groups": [
+   {
+    "group": "Rocket Punch",
+    "former": false,
+    "since": "2019-00-00",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q65920474",
+  "label": "Kim So-hee",
+  "stage": "Sohee",
+  "stage_src": "surname-strip",
+  "birth": "2003-08-14",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "2019 Pink Punch Showcase So Hee.png",
+  "enwiki": null,
+  "aliases": [
+   "Sohee",
+   "Kim So Hee"
+  ],
+  "groups": [
+   {
+    "group": "Rocket Punch",
+    "former": false,
+    "since": "2019-00-00",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q65920506",
+  "label": "Jeong Da-hyun",
+  "stage": "Dahyun",
+  "stage_src": "surname-strip",
+  "birth": "2005-11-29",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "2019 Pink Punch Showcase Da Hyeon.png",
+  "enwiki": null,
+  "aliases": [
+   "Jeong Da Hyun",
+   "Dahyun"
+  ],
+  "groups": [
+   {
+    "group": "Rocket Punch",
+    "former": false,
+    "since": "2019-00-00",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q106518333",
+  "label": "Sumin",
+  "stage": "Sumin",
+  "stage_src": "label",
+  "birth": "2001-03-13",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "SUMIN (STAYC) 220430.jpg",
+  "enwiki": "Bae Su-min",
+  "aliases": [
+   "Bae Sumin",
+   "Bae Su-min",
+   "Sumin Bae"
+  ],
+  "groups": [
+   {
+    "group": "STAYC",
+    "former": false,
+    "since": "2020-11-12",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q16180796",
+  "label": "Park Si-eun",
+  "stage": "Sieun",
+  "stage_src": "surname-strip",
+  "birth": "2001-08-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20220804 STAYC Sieun.png",
+  "enwiki": "Park Si-eun (entertainer)",
+  "aliases": [
+   "Sieun"
+  ],
+  "groups": [
+   {
+    "group": "STAYC",
+    "former": false,
+    "since": "2020-11-12",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q106518536",
+  "label": "Isa",
+  "stage": "Isa",
+  "stage_src": "P742",
+  "birth": "2002-01-23",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "ISA (STAYC) 220430.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Chaeyeong",
+   "Lee Chae-yeong",
+   "Chaeyeong Lee"
+  ],
+  "groups": [
+   {
+    "group": "STAYC",
+    "former": false,
+    "since": "2020-11-12",
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Isa",
+   "아이사"
+  ]
+ },
+ {
+  "qid": "Q106518627",
+  "label": "Seeun",
+  "stage": "Seeun",
+  "stage_src": "label",
+  "birth": "2003-06-14",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "SEEUN (STAYC) 220430.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Yun Seeun",
+   "Yun Se-eun",
+   "Se-eun"
+  ],
+  "groups": [
+   {
+    "group": "STAYC",
+    "former": false,
+    "since": "2020-11-12",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q106518626",
+  "label": "Yoon",
+  "stage": "윤",
+  "stage_src": "P742",
+  "birth": "2004-04-14",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "YOON (STAYC) 220430.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Sim Ja-yun",
+   "Shim Ja-yoon",
+   "Shim Jayoon"
+  ],
+  "groups": [
+   {
+    "group": "STAYC",
+    "former": false,
+    "since": "2020-11-12",
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Yoon",
+   "윤"
+  ]
+ },
+ {
+  "qid": "Q106518625",
+  "label": "J",
+  "stage": "J",
+  "stage_src": "P742",
+  "birth": "2004-12-09",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "J (STAYC) 220430.jpg",
+  "enwiki": "J (singer, born 2004)",
+  "aliases": [
+   "Jang Yeeun",
+   "Jang Ye-eun",
+   "Yeeun Jang"
+  ],
+  "groups": [
+   {
+    "group": "STAYC",
+    "former": false,
+    "since": "2020-11-12",
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "J",
+   "재이"
+  ]
+ },
+ {
+  "qid": "Q101161002",
+  "label": "Karina",
+  "stage": "카리나",
+  "stage_src": "P742",
+  "birth": "2000-04-11",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "KARINA - AESPA - 2025.01.28.jpg",
+  "enwiki": "Karina (South Korean singer)",
+  "aliases": [
+   "Yoo Ji-min",
+   "Yu Ji-min"
+  ],
+  "groups": [
+   {
+    "group": "aespa",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "카리나",
+   "Karina"
+  ]
+ },
+ {
+  "qid": "Q101161168",
+  "label": "Giselle",
+  "stage": "Giselle",
+  "stage_src": "P742",
+  "birth": "2000-10-30",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "250111 aespa Giselle 02 (cropped).jpg",
+  "enwiki": "Giselle (singer)",
+  "aliases": [
+   "Aeri Uchinaga",
+   "Aeri Kim",
+   "Uchinaga Aeri",
+   "Kim Ae-ri"
+  ],
+  "groups": [
+   {
+    "group": "aespa",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Giselle"
+  ]
+ },
+ {
+  "qid": "Q101161289",
+  "label": "Winter",
+  "stage": "Winter",
+  "stage_src": "label",
+  "birth": "2001-01-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "250315-16 aespa Winter 06.jpg",
+  "enwiki": "Winter (singer)",
+  "aliases": [
+   "Kim Min-jeong"
+  ],
+  "groups": [
+   {
+    "group": "aespa",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q101161499",
+  "label": "Ningning",
+  "stage": "Ningning",
+  "stage_src": "label",
+  "birth": "2002-10-23",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "Ningning at Seoul Discovery Expedition event on March 11, 2026 02.jpg",
+  "enwiki": "Ningning",
+  "aliases": [
+   "Ning Yizhuo",
+   "Vivian Ning",
+   "Chinese singer"
+  ],
+  "groups": [
+   {
+    "group": "aespa",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q93969535",
+  "label": "Lee Soo-jin",
+  "stage": "Soojin",
+  "stage_src": "surname-strip",
+  "birth": "2001-12-12",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "위클리 이수진.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Soojin",
+   "Soojin"
+  ],
+  "groups": [
+   {
+    "group": "Weeekly",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q93969529",
+  "label": "Monday",
+  "stage": "Monday",
+  "stage_src": "P742",
+  "birth": "2002-05-10",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "위클리 먼데이.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Ji-min"
+  ],
+  "groups": [
+   {
+    "group": "Weeekly",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Monday"
+  ]
+ },
+ {
+  "qid": "Q93969537",
+  "label": "Jihan",
+  "stage": "Jihan",
+  "stage_src": "label",
+  "birth": "2004-07-12",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "위클리 지한.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Han Ji-hyo"
+  ],
+  "groups": [
+   {
+    "group": "Weeekly",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q93969540",
+  "label": "Yonnie",
+  "stage": "Yonnie",
+  "stage_src": "label",
+  "birth": "2002-03-02",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "신지윤 가수.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Shin Jiyoon",
+   "Jiyoon"
+  ],
+  "groups": [
+   {
+    "group": "Weeekly",
+    "former": true,
+    "since": null,
+    "until": "2022-06-01"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q93969530",
+  "label": "Park So-eun",
+  "stage": "Soeun",
+  "stage_src": "surname-strip",
+  "birth": "2002-10-26",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "위클리 박소은.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Park Soeun",
+   "Soeun"
+  ],
+  "groups": [
+   {
+    "group": "Weeekly",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q93969533",
+  "label": "Cho Hye-won",
+  "stage": "조아",
+  "stage_src": "P742",
+  "birth": "2005-05-31",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "위클리 조아.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Jo Hye-won",
+   "Zoa",
+   "Cho Hyewon",
+   "Cho Hye Won"
+  ],
+  "groups": [
+   {
+    "group": "Weeekly",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "조아"
+  ]
+ },
+ {
+  "qid": "Q93970112",
+  "label": "Lee Jae-hee",
+  "stage": "Jaehee",
+  "stage_src": "surname-strip",
+  "birth": "2004-03-18",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "위클리 이재희.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Lee Jaehee",
+   "Jaehee"
+  ],
+  "groups": [
+   {
+    "group": "Weeekly",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q107253228",
+  "label": "Na Go-eun",
+  "stage": "Na Go-eun",
+  "stage_src": "label",
+  "birth": "1999-09-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20231028 Na Go-eun (PURPLE KISS).jpg",
+  "enwiki": null,
+  "aliases": [
+   "Go-eun",
+   "Go eun"
+  ],
+  "groups": [
+   {
+    "group": "PURPLE KISS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q107559919",
+  "label": "Dosie",
+  "stage": "Dosie",
+  "stage_src": "label",
+  "birth": "2000-02-11",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Jang Eun-seong"
+  ],
+  "groups": [
+   {
+    "group": "PURPLE KISS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q107559918",
+  "label": "Park Ji-eun",
+  "stage": "Jieun",
+  "stage_src": "surname-strip",
+  "birth": "1997-09-04",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Park Ji Eun"
+  ],
+  "groups": [
+   {
+    "group": "PURPLE KISS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q107559920",
+  "label": "Ireh",
+  "stage": "Ireh",
+  "stage_src": "label",
+  "birth": "2002-04-30",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Cho Seo-young"
+  ],
+  "groups": [
+   {
+    "group": "PURPLE KISS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q107559921",
+  "label": "Chaein",
+  "stage": "Chaein",
+  "stage_src": "label",
+  "birth": "2002-12-05",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Lee Chae-young"
+  ],
+  "groups": [
+   {
+    "group": "PURPLE KISS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q107559923",
+  "label": "Yuki",
+  "stage": "Yuki",
+  "stage_src": "label",
+  "birth": "2002-11-06",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Mōri Koyuki"
+  ],
+  "groups": [
+   {
+    "group": "PURPLE KISS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q107559922",
+  "label": "Swan",
+  "stage": "Swan",
+  "stage_src": "label",
+  "birth": "2003-07-11",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20231028 SWAN (PURPLE KISS).jpg",
+  "enwiki": "Swan (singer)",
+  "aliases": [
+   "Park Su-jin",
+   "SWAN"
+  ],
+  "groups": [
+   {
+    "group": "PURPLE KISS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q22773742",
+  "label": "Moon Sua",
+  "stage": "Sua",
+  "stage_src": "surname-strip",
+  "birth": "1999-09-09",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Moon SuA Fancam 220902.png",
+  "enwiki": null,
+  "aliases": [
+   "Moon Soo-ah",
+   "Moon Su-a",
+   "Moonsua"
+  ],
+  "groups": [
+   {
+    "group": "Billlie",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q59594164",
+  "label": "Kim Suhyeon",
+  "stage": "Suhyeon",
+  "stage_src": "surname-strip",
+  "birth": "2000-01-15",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Suhyeon",
+   "Kim Soo-hyun",
+   "Kim Su-hyeon",
+   "Kim Su-hyun",
+   "Kim Suhyun",
+   "Kim Su Hyun"
+  ],
+  "groups": [
+   {
+    "group": "Billlie",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q117805493",
+  "label": "Haram",
+  "stage": "Haram",
+  "stage_src": "label",
+  "birth": "2001-01-13",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Kim Haram",
+   "Kim Ha-ram"
+  ],
+  "groups": [
+   {
+    "group": "Billlie",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q111113517",
+  "label": "Tsuki",
+  "stage": "Tsuki",
+  "stage_src": "label",
+  "birth": "2002-09-21",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "Billlie",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q117747301",
+  "label": "Sheon",
+  "stage": "Sheon",
+  "stage_src": "label",
+  "birth": "2003-01-28",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Kim Su-yeon"
+  ],
+  "groups": [
+   {
+    "group": "Billlie",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q117805511",
+  "label": "Siyoon",
+  "stage": "Siyoon",
+  "stage_src": "label",
+  "birth": "2005-02-16",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Kim Siyoon",
+   "Kim Si-yoon",
+   "Kim Si-yun",
+   "Kim Shi-yoon"
+  ],
+  "groups": [
+   {
+    "group": "Billlie",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q117805516",
+  "label": "Haruna",
+  "stage": "Haruna",
+  "stage_src": "label",
+  "birth": "2006-01-30",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "Billlie",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q55694622",
+  "label": "An Yu-jin",
+  "stage": "Yujin",
+  "stage_src": "surname-strip",
+  "birth": "2003-09-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "181029 IZ*ONE Yujin 02.png",
+  "enwiki": "An Yu-jin",
+  "aliases": [
+   "Yujin"
+  ],
+  "groups": [
+   {
+    "group": "IVE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109420011",
+  "label": "Gaeul",
+  "stage": "Gaeul",
+  "stage_src": "label",
+  "birth": "2002-09-24",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Ive Gaeul at Seoul Fashion Week, 1 September 2025 03 (cropped).png",
+  "enwiki": "Gaeul (singer)",
+  "aliases": [
+   "Kim Gaeul",
+   "Kim Ga-eul"
+  ],
+  "groups": [
+   {
+    "group": "IVE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109571132",
+  "label": "Rei",
+  "stage": "Rei",
+  "stage_src": "label",
+  "birth": "2004-02-03",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "Ive's Rei @ OPENING PROJECTxSATUR PhotoCall, 12 June 2025 03.png",
+  "enwiki": "Rei (singer)",
+  "aliases": [
+   "Naoi Rei",
+   "Rei Naoi"
+  ],
+  "groups": [
+   {
+    "group": "IVE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56476186",
+  "label": "Jang Won-young",
+  "stage": "Wonyoung",
+  "stage_src": "surname-strip",
+  "birth": "2004-08-31",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "051226 Jang Won-young airport departure (2).jpg",
+  "enwiki": "Jang Won-young",
+  "aliases": [
+   "Wonyoung",
+   "Jang Wonyoung",
+   "JANGWONYOUNG"
+  ],
+  "groups": [
+   {
+    "group": "IVE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109420139",
+  "label": "Liz",
+  "stage": "Liz",
+  "stage_src": "label",
+  "birth": "2004-11-21",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "260719 LIZ (Kim Jiwon).png",
+  "enwiki": "Liz (South Korean singer)",
+  "aliases": [
+   "Kim Ji-won",
+   "Ive Liz"
+  ],
+  "groups": [
+   {
+    "group": "IVE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109572155",
+  "label": "Leeseo",
+  "stage": "Leeseo",
+  "stage_src": "label",
+  "birth": "2007-02-21",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Leeseo of Ive, March 19, 2026 (3).png",
+  "enwiki": "Leeseo",
+  "aliases": [
+   "Lee Hyun Seo",
+   "Lee Hyeon-seo",
+   "Lee Hyun-seo"
+  ],
+  "groups": [
+   {
+    "group": "IVE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q28698283",
+  "label": "Choi Yu-jin",
+  "stage": "Yujin",
+  "stage_src": "surname-strip",
+  "birth": "1996-08-12",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "160903 CLC Choi Yujin Asia Music Stage.jpg",
+  "enwiki": "Choi Yu-jin",
+  "aliases": [
+   "Yujin"
+  ],
+  "groups": [
+   {
+    "group": "Kep1er",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109109100",
+  "label": "Huening Bahiyyih",
+  "stage": "Huening Bahiyyih",
+  "stage_src": "label",
+  "birth": "2004-07-27",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Huening Bahiyyih 230208.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Bahiyyih Jaleh Huening",
+   "Hiyyih"
+  ],
+  "groups": [
+   {
+    "group": "Kep1er",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109108495",
+  "label": "Shen Xiaoting",
+  "stage": "Shen Xiaoting",
+  "stage_src": "label",
+  "birth": "1999-11-12",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "Xiaoting 220703.jpg",
+  "enwiki": "Shen Xiaoting",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "Kep1er",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109108909",
+  "label": "Hikaru Ezaki",
+  "stage": "Hikaru Ezaki",
+  "stage_src": "label",
+  "birth": "2004-03-12",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "에자키 히카루 Ezaki Hikaru Doublast showcase.png",
+  "enwiki": "Hikaru Ezaki",
+  "aliases": [
+   "Ezaki Hikaru"
+  ],
+  "groups": [
+   {
+    "group": "Kep1er",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109120276",
+  "label": "Kim Dayeon",
+  "stage": "Dayeon",
+  "stage_src": "surname-strip",
+  "birth": "2003-03-02",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "김다연 Kim Da Yeon Doublast showcase.png",
+  "enwiki": "Kim Da-yeon",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "Kep1er",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109108660",
+  "label": "Kim Chae-hyun",
+  "stage": "Chaehyun",
+  "stage_src": "surname-strip",
+  "birth": "2002-04-26",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "김채현 Kim Chae Hyun Doublast showcase.png",
+  "enwiki": "Kim Chae-hyun",
+  "aliases": [
+   "Chaehyun"
+  ],
+  "groups": [
+   {
+    "group": "Kep1er",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109141485",
+  "label": "Seo Young-eun",
+  "stage": "Youngeun",
+  "stage_src": "surname-strip",
+  "birth": "2004-12-27",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "서영은 Seo Young Eun Doublast showcase.png",
+  "enwiki": "Seo Young-eun",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "Kep1er",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q26196972",
+  "label": "Lily",
+  "stage": "Lily",
+  "stage_src": "label",
+  "birth": "2002-10-17",
+  "nationality": "Australian",
+  "citizenships": [
+   "Q408",
+   "Q884"
+  ],
+  "image": "NMIXX's Lily 2023.png",
+  "enwiki": "Lily (singer, born 2002)",
+  "aliases": [
+   "Lily Morrow",
+   "Lily Jin Morrow"
+  ],
+  "groups": [
+   {
+    "group": "NMIXX",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109567033",
+  "label": "Haewon",
+  "stage": "Haewon",
+  "stage_src": "label",
+  "birth": "2003-02-25",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "221013 Haewon (NMIXX) Airport Departure.jpg",
+  "enwiki": "Haewon (singer)",
+  "aliases": [
+   "Oh Hae-won",
+   "Oh Haewon",
+   "O Haewon"
+  ],
+  "groups": [
+   {
+    "group": "NMIXX",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109307956",
+  "label": "Sullyoon",
+  "stage": "설윤",
+  "stage_src": "P742",
+  "birth": "2004-01-26",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Sullyoon (설윤) 2024 06.jpg",
+  "enwiki": "Sullyoon",
+  "aliases": [
+   "Seol Yun-a",
+   "Sull Yoon-a"
+  ],
+  "groups": [
+   {
+    "group": "NMIXX",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "설윤",
+   "Sullyoon"
+  ]
+ },
+ {
+  "qid": "Q109308055",
+  "label": "Bae",
+  "stage": "배이",
+  "stage_src": "P742",
+  "birth": "2004-12-28",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "221013 Bae (NMIXX) Airport Departure.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Bae Jin-sol",
+   "Bae Jinsol"
+  ],
+  "groups": [
+   {
+    "group": "NMIXX",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "배이",
+   "Bae"
+  ]
+ },
+ {
+  "qid": "Q109308189",
+  "label": "Jiwoo",
+  "stage": "Jiwoo",
+  "stage_src": "label",
+  "birth": "2005-04-13",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Nmixx's Jiwoo in April 2023.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Ji-woo",
+   "Kim Jiwoo"
+  ],
+  "groups": [
+   {
+    "group": "NMIXX",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109308262",
+  "label": "Kyujin",
+  "stage": "Kyujin",
+  "stage_src": "label",
+  "birth": "2006-05-26",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "221013 Kyujin (NMIXX) Airport Departure.jpg",
+  "enwiki": "Kyujin (singer)",
+  "aliases": [
+   "Jang Kyu-jin"
+  ],
+  "groups": [
+   {
+    "group": "NMIXX",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q109307988",
+  "label": "Jini",
+  "stage": "Jini",
+  "stage_src": "label",
+  "birth": "2004-04-16",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Jini at the Seoul Fashion Week 2024 02.jpg",
+  "enwiki": "Jini (singer)",
+  "aliases": [
+   "Choi Yun-jin",
+   "Choi Yunjin",
+   "Yunjin Choi",
+   "Jinni",
+   "JINI"
+  ],
+  "groups": [
+   {
+    "group": "NMIXX",
+    "former": true,
+    "since": "2022-02-22",
+    "until": "2022-12-09"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q869966",
+  "label": "Sakura Miyawaki",
+  "stage": "Sakura",
+  "stage_src": "P742",
+  "birth": "1998-03-19",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "20241018 Le Sserafim's Sakura Miyawaki 03.jpg",
+  "enwiki": "Sakura Miyawaki",
+  "aliases": [
+   "Miyawaki Sakura",
+   "Sakura"
+  ],
+  "groups": [
+   {
+    "group": "LE SSERAFIM",
+    "former": false,
+    "since": "2022-05-02",
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "Sakura"
+  ]
+ },
+ {
+  "qid": "Q56660174",
+  "label": "Kim Chaewon",
+  "stage": "Chaewon",
+  "stage_src": "surname-strip",
+  "birth": "2000-08-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Easy Crazy Hot Tour in Seattle - le sserafim (54797154470).jpg",
+  "enwiki": "Kim Chaewon",
+  "aliases": [
+   "Chaewon",
+   "Kim Chae Won",
+   "Kim Chae-won"
+  ],
+  "groups": [
+   {
+    "group": "LE SSERAFIM",
+    "former": false,
+    "since": "2022-05-02",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q111537648",
+  "label": "Huh Yun-jin",
+  "stage": "Huh Yun-jin",
+  "stage_src": "label",
+  "birth": "2001-10-08",
+  "nationality": "American",
+  "citizenships": [
+   "Q30"
+  ],
+  "image": "Easy Crazy Hot Tour in Seattle - le sserafim (54849516999).jpg",
+  "enwiki": "Huh Yunjin",
+  "aliases": [
+   "Jennifer Huh",
+   "Yunjin Huh",
+   "Huh Yunjin"
+  ],
+  "groups": [
+   {
+    "group": "LE SSERAFIM",
+    "former": false,
+    "since": "2022-05-02",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q111544444",
+  "label": "Hong Eun-chae",
+  "stage": "Eunchae",
+  "stage_src": "surname-strip",
+  "birth": "2006-11-10",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "221013 Hong Eun Chae (LE SSERAFIM) Airport Departure.jpg",
+  "enwiki": "Hong Eunchae",
+  "aliases": [
+   "Eun-chae Hong"
+  ],
+  "groups": [
+   {
+    "group": "LE SSERAFIM",
+    "former": false,
+    "since": "2022-05-02",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q111544446",
+  "label": "Kazuha Nakamura",
+  "stage": "Kazuha Nakamura",
+  "stage_src": "label",
+  "birth": "2003-08-09",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "Easy Crazy Hot Tour in Seattle - le sserafim (54797069863).jpg",
+  "enwiki": "Kazuha (singer)",
+  "aliases": [
+   "Nakamura Kazuha"
+  ],
+  "groups": [
+   {
+    "group": "LE SSERAFIM",
+    "former": false,
+    "since": "2022-05-02",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q111544443",
+  "label": "Kim Ga-ram",
+  "stage": "Garam",
+  "stage_src": "surname-strip",
+  "birth": "2005-11-16",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": "Kim Garam",
+  "aliases": [
+   "Garam Kim"
+  ],
+  "groups": [
+   {
+    "group": "LE SSERAFIM",
+    "former": true,
+    "since": "2022-05-02",
+    "until": "2022-07-20"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q113561403",
+  "label": "Minji",
+  "stage": "Minji",
+  "stage_src": "label",
+  "birth": "2004-05-07",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Minji Olens 2024 FW 2.jpg",
+  "enwiki": "Minji (singer)",
+  "aliases": [
+   "Kim Min-ji",
+   "Kim Minji"
+  ],
+  "groups": [
+   {
+    "group": "NewJeans",
+    "former": false,
+    "since": "2022-07-22",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q113455973",
+  "label": "Hanni Pham",
+  "stage": "Hanni Pham",
+  "stage_src": "label",
+  "birth": "2004-10-06",
+  "nationality": "Australian",
+  "citizenships": [
+   "Q408",
+   "Q881"
+  ],
+  "image": "Hanni 241022.png",
+  "enwiki": "Hanni (singer)",
+  "aliases": [
+   "Phạm Ngọc Hân",
+   "Hanni",
+   "Pham Hanni"
+  ],
+  "groups": [
+   {
+    "group": "NewJeans",
+    "former": false,
+    "since": "2022-07-22",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q113508917",
+  "label": "Haerin",
+  "stage": "Haerin",
+  "stage_src": "label",
+  "birth": "2006-05-15",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20230905 Haerin (NewJeans).jpg",
+  "enwiki": "Haerin",
+  "aliases": [
+   "Kang Hae Rin",
+   "Kang Hae-rin",
+   "Kang Haerin"
+  ],
+  "groups": [
+   {
+    "group": "NewJeans",
+    "former": false,
+    "since": "2022-07-22",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q113561413",
+  "label": "Hyein",
+  "stage": "Hyein",
+  "stage_src": "label",
+  "birth": "2008-04-21",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Hyein (NewJeans) 220819.jpg",
+  "enwiki": "Hyein",
+  "aliases": [
+   "Lee Hye-in",
+   "Grace Lee",
+   "Hye-in",
+   "Lee Hyein"
+  ],
+  "groups": [
+   {
+    "group": "NewJeans",
+    "former": false,
+    "since": "2022-07-22",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q113455624",
+  "label": "Danielle Marsh la más diva de todo new jeans perras",
+  "stage": "Danielle",
+  "stage_src": "P742",
+  "birth": "2005-04-11",
+  "nationality": "Australian",
+  "citizenships": [
+   "Q408",
+   "Q884"
+  ],
+  "image": "Danielle Marsh for Marie Claire Korea April 2024 F.png",
+  "enwiki": "Danielle (singer)",
+  "aliases": [
+   "La diva de todas"
+  ],
+  "groups": [
+   {
+    "group": "NewJeans",
+    "former": true,
+    "since": "2022-07-22",
+    "until": "2025-12-29"
+   }
+  ],
+  "pseudonyms": [
+   "Danielle"
+  ]
+ },
+ {
+  "qid": "Q126684254",
+  "label": "SeoYeon",
+  "stage": "SeoYeon",
+  "stage_src": "label",
+  "birth": "2003-08-06",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "241130 Seoyeon MMA.jpg",
+  "enwiki": "Yoon Seo-yeon",
+  "aliases": [
+   "Seoyeon",
+   "Yoon SeoYeon",
+   "Yoon Seo-Yeon",
+   "Yoon Seoyeon",
+   "Yoon Seo-yeon",
+   "Yun Seo-yeon",
+   "Yun Seoyeon"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q125894490",
+  "label": "JiWoo",
+  "stage": "JiWoo",
+  "stage_src": "label",
+  "birth": "2005-10-24",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S3 知禹.jpg",
+  "enwiki": "Lee Ji-woo",
+  "aliases": [
+   "Jiwoo",
+   "Lee JiWoo",
+   "Lee Ji-Woo",
+   "Lee Jiwoo",
+   "Lee Ji-woo",
+   "I Ji-u"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q69696796",
+  "label": "Kim Chae-yeon",
+  "stage": "Chaeyeon",
+  "stage_src": "surname-strip",
+  "birth": "2004-12-04",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S4 采嬿.jpg",
+  "enwiki": "Kim Chae-yeon (singer)",
+  "aliases": [
+   "ChaeYeon",
+   "Chaeyeon",
+   "Kim ChaeYeon",
+   "Kim Chae-Yeon",
+   "Kim Chaeyeon"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127042388",
+  "label": "YooYeon",
+  "stage": "YooYeon",
+  "stage_src": "label",
+  "birth": "2001-02-09",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S5 琉然.jpg",
+  "enwiki": "Kim Yoo-yeon (singer)",
+  "aliases": [
+   "Yooyeon",
+   "Kim YooYeon",
+   "Kim Yooyeon",
+   "Kim Yoo-yeon",
+   "Kim Yu-yeon"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127042391",
+  "label": "HyeRin",
+  "stage": "HyeRin",
+  "stage_src": "label",
+  "birth": "2007-04-12",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S2 慧潾.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Hyerin",
+   "Jeong HyeRin",
+   "Jeong Hyerin",
+   "Jeong Hye-rin",
+   "Jeong Hye-Rin"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127042398",
+  "label": "SooMin",
+  "stage": "SooMin",
+  "stage_src": "label",
+  "birth": "2007-10-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S6 秀珉.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Soomin",
+   "Kim SooMin",
+   "Kim Soo-Min",
+   "Kim Soomin",
+   "Kim Soo-min",
+   "Kim Su-min",
+   "Kim Sumin"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q124961755",
+  "label": "NaKyoung",
+  "stage": "NaKyoung",
+  "stage_src": "label",
+  "birth": "2002-10-13",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S7 拏炅.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Nakyoung",
+   "Kim NaKyoung",
+   "Na-kyoung",
+   "Kim Nakyoung",
+   "Kim Na-kyoung",
+   "Kim Na-gyeong"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123156640",
+  "label": "YuBin",
+  "stage": "YuBin",
+  "stage_src": "label",
+  "birth": "2005-02-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S8 裕彬.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Yubin",
+   "Gong YuBin",
+   "Gong Yubin",
+   "Gong Yu-Bin",
+   "Gong Yu-bin"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127042408",
+  "label": "Kaede",
+  "stage": "Kaede",
+  "stage_src": "label",
+  "birth": "2005-12-20",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "TripleS S9 楓.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Yamada Kaede",
+   "Kaede Yamada"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123156639",
+  "label": "Seo Da-hyun",
+  "stage": "Dahyun",
+  "stage_src": "surname-strip",
+  "birth": "2003-01-08",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S10 多賢.jpg",
+  "enwiki": "Seo Da-hyun",
+  "aliases": [
+   "Seo DaHyun",
+   "Seo Da-Hyun",
+   "Seo Dahyun",
+   "Dahyun",
+   "Seo Da.hyun",
+   "Seo Dahyeon"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123156641",
+  "label": "YeonJi",
+  "stage": "YeonJi",
+  "stage_src": "label",
+  "birth": "2008-01-08",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S12 妍知.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kwak YeonJi",
+   "Yeonji",
+   "Kwak Yeonji",
+   "Kwak Yeon-ji",
+   "Gwak Yeonji",
+   "Kwak Yeon-Ji"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q117391286",
+  "label": "Hsu Nien Tzu",
+  "stage": "Hsu Nien Tzu",
+  "stage_src": "label",
+  "birth": "2003-06-02",
+  "nationality": "Taiwanese",
+  "citizenships": [
+   "Q865",
+   "Q881"
+  ],
+  "image": "許念慈.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Nien"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127038396",
+  "label": "Chaewon",
+  "stage": "Chaewon",
+  "stage_src": "label",
+  "birth": "2007-05-02",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S21 采湲.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Chae-won",
+   "Kim Chaewon",
+   "Kim ChaeWon"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q126006327",
+  "label": "Park So-hyun",
+  "stage": "Sohyun",
+  "stage_src": "surname-strip",
+  "birth": "2002-10-13",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "180823 Park So-hyun.png",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110705",
+  "label": "Xinyu",
+  "stage": "Xinyu",
+  "stage_src": "label",
+  "birth": "2002-05-25",
+  "nationality": "Chinese",
+  "citizenships": [
+   "Q148"
+  ],
+  "image": "TripleS S15心語.jpg",
+  "enwiki": "Xinyu (singer)",
+  "aliases": [
+   "Zhōu Xīnyǔ",
+   "Zhou Xinyu",
+   "Xīnyǔ"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110729",
+  "label": "Mayu",
+  "stage": "Mayu",
+  "stage_src": "label",
+  "birth": "2002-05-12",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "TripleS S16 真友.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Koma Mayu",
+   "Mayu Koma"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110763",
+  "label": "JooBin",
+  "stage": "JooBin",
+  "stage_src": "label",
+  "birth": null,
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S18 周彬.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110800",
+  "label": "HaYeon",
+  "stage": "HaYeon",
+  "stage_src": "label",
+  "birth": "2007-08-01",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S19 夏妍.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110827",
+  "label": "ShiOn",
+  "stage": "ShiOn",
+  "stage_src": "label",
+  "birth": null,
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S20 示溫.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110848",
+  "label": "Sullin",
+  "stage": "Sullin",
+  "stage_src": "label",
+  "birth": null,
+  "nationality": "Thai",
+  "citizenships": [
+   "Q869"
+  ],
+  "image": "TripleS S22 Sullin.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110908",
+  "label": "Lynn",
+  "stage": "Lynn",
+  "stage_src": "label",
+  "birth": null,
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "TripleS S17 凜.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kawakami Rin"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110943",
+  "label": "JiYeon",
+  "stage": "JiYeon",
+  "stage_src": "label",
+  "birth": null,
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S24 諝娫.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127499816",
+  "label": "Kotone",
+  "stage": "Kotone",
+  "stage_src": "label",
+  "birth": "2004-03-10",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "TripleS S11 琴音.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kotone Kamimoto"
+  ],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127110875",
+  "label": "SeoAh",
+  "stage": "SeoAh",
+  "stage_src": "label",
+  "birth": "2010-06-11",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "TripleS S23 楷潾.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "tripleS",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q120960066",
+  "label": "Julie",
+  "stage": "Julie",
+  "stage_src": "label",
+  "birth": "2000-03-29",
+  "nationality": "American",
+  "citizenships": [
+   "Q30",
+   "Q884"
+  ],
+  "image": "May 2024 Julie Han (KIOF) H&M 1.jpg",
+  "enwiki": "Julie (rapper)",
+  "aliases": [
+   "Julie Han"
+  ],
+  "groups": [
+   {
+    "group": "KISS OF LIFE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q93481484",
+  "label": "Natty",
+  "stage": "Natty",
+  "stage_src": "label",
+  "birth": "2002-05-30",
+  "nationality": "Thai",
+  "citizenships": [
+   "Q869"
+  ],
+  "image": null,
+  "enwiki": "Natty (Thai singer)",
+  "aliases": [
+   "Ahnatchaya Suputhipong"
+  ],
+  "groups": [
+   {
+    "group": "KISS OF LIFE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q120960067",
+  "label": "Belle",
+  "stage": "Belle",
+  "stage_src": "label",
+  "birth": "2004-03-20",
+  "nationality": "American",
+  "citizenships": [
+   "Q30",
+   "Q884"
+  ],
+  "image": "Belle kiof.png",
+  "enwiki": "Belle (singer)",
+  "aliases": [
+   "Shim Hye-won",
+   "Annabelle Shim"
+  ],
+  "groups": [
+   {
+    "group": "KISS OF LIFE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q120960068",
+  "label": "Haneul",
+  "stage": "Haneul",
+  "stage_src": "label",
+  "birth": "2005-05-25",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "20250224 KISS OF LIFE Utrecht concert 05 Haneul.jpg",
+  "enwiki": "Haneul (singer)",
+  "aliases": [
+   "Won Ha-neul"
+  ],
+  "groups": [
+   {
+    "group": "KISS OF LIFE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123554435",
+  "label": "Ruka",
+  "stage": "Ruka",
+  "stage_src": "label",
+  "birth": "2002-03-20",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "Ruka at KLIA 20-06-2025.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Ruruka",
+   "Kawai Ruruka",
+   "Kawai Ruka"
+  ],
+  "groups": [
+   {
+    "group": "BABYMONSTER",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123554436",
+  "label": "Pharita",
+  "stage": "Pharita",
+  "stage_src": "label",
+  "birth": "2005-08-26",
+  "nationality": "Thai",
+  "citizenships": [
+   "Q869"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Pear",
+   "Prita"
+  ],
+  "groups": [
+   {
+    "group": "BABYMONSTER",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123554438",
+  "label": "Asa",
+  "stage": "Asa",
+  "stage_src": "label",
+  "birth": "2006-04-17",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "GIMPO DEPARTURE 20250312 ASA cropped.jpg",
+  "enwiki": "Asa (Japanese singer)",
+  "aliases": [
+   "Enami Asa",
+   "Asa Enami",
+   "Asa",
+   "Kim Asa"
+  ],
+  "groups": [
+   {
+    "group": "BABYMONSTER",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123554439",
+  "label": "Rami",
+  "stage": "Rami",
+  "stage_src": "label",
+  "birth": "2007-10-17",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": "Rami (BabyMonster)",
+  "aliases": [
+   "Haram",
+   "Shin Ha-ram",
+   "Shin Haram",
+   "Rami"
+  ],
+  "groups": [
+   {
+    "group": "BABYMONSTER",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123554440",
+  "label": "Rora",
+  "stage": "Rora",
+  "stage_src": "label",
+  "birth": "2008-08-14",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Lee Da-in",
+   "Dain"
+  ],
+  "groups": [
+   {
+    "group": "BABYMONSTER",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123554441",
+  "label": "Chiquita",
+  "stage": "Chiquita",
+  "stage_src": "label",
+  "birth": "2009-02-17",
+  "nationality": "Thai",
+  "citizenships": [
+   "Q869"
+  ],
+  "image": "Chiquita at KLIA 20-06-2025.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Canny"
+  ],
+  "groups": [
+   {
+    "group": "BABYMONSTER",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q123560890",
+  "label": "Ahyeon",
+  "stage": "Ahyeon",
+  "stage_src": "label",
+  "birth": "2007-04-11",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Jeong A-yeon",
+   "Jeong Ayeon",
+   "Jung Ah-yeon"
+  ],
+  "groups": [
+   {
+    "group": "BABYMONSTER",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q126923756",
+  "label": "Yunah",
+  "stage": "Yunah",
+  "stage_src": "label",
+  "birth": "2004-01-15",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "ILLIT Yunah February 2024.png",
+  "enwiki": "Yunah",
+  "aliases": [
+   "No Yun-a",
+   "No Yuna",
+   "Noh Yunah",
+   "Noh Yun-ah"
+  ],
+  "groups": [
+   {
+    "group": "ILLIT",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q126923757",
+  "label": "Minju",
+  "stage": "Minju",
+  "stage_src": "label",
+  "birth": "2004-05-11",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "ILLIT Minju at Canada Goose Photo Call.png",
+  "enwiki": "Minju (Illit member)",
+  "aliases": [
+   "Park Min-ju",
+   "Park Minju",
+   "Park Min-Ju",
+   "Park Min Ju"
+  ],
+  "groups": [
+   {
+    "group": "ILLIT",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q126923758",
+  "label": "Moka",
+  "stage": "Moka",
+  "stage_src": "label",
+  "birth": "2004-10-08",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "ILLIT Moka at Canada Goose Photo Call.png",
+  "enwiki": "Moka (singer)",
+  "aliases": [
+   "Sakai Moka",
+   "Moka Sakai"
+  ],
+  "groups": [
+   {
+    "group": "ILLIT",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q126923760",
+  "label": "Wonhee",
+  "stage": "Wonhee",
+  "stage_src": "label",
+  "birth": "2007-06-26",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "ILLIT WONHEE CHANEL Photo Call (cropped).png",
+  "enwiki": "Wonhee",
+  "aliases": [
+   "Lee Wonhee",
+   "Lee Won-hee",
+   "Lee Won-hui"
+  ],
+  "groups": [
+   {
+    "group": "ILLIT",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q126923761",
+  "label": "Iroha",
+  "stage": "Iroha",
+  "stage_src": "label",
+  "birth": "2008-02-04",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "ILLIT Iroha at Canada Goose Photo Call.png",
+  "enwiki": null,
+  "aliases": [
+   "Hokazono Iroha",
+   "Iroha Hokazono"
+  ],
+  "groups": [
+   {
+    "group": "ILLIT",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q124692753",
+  "label": "Sophia Laforteza",
+  "stage": "Sophia Laforteza",
+  "stage_src": "label",
+  "birth": "2002-12-31",
+  "nationality": "American",
+  "citizenships": [
+   "Q30",
+   "Q928"
+  ],
+  "image": "Sophia Katseye.jpg",
+  "enwiki": "Sophia Laforteza",
+  "aliases": [
+   "Sophia Elizabeth G. Laforteza",
+   "Sophia Elizabeth Guevara Laforteza"
+  ],
+  "groups": [
+   {
+    "group": "KATSEYE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q124692767",
+  "label": "Daniela Avanzini",
+  "stage": "Daniela Avanzini",
+  "stage_src": "label",
+  "birth": "2004-07-01",
+  "nationality": "American",
+  "citizenships": [
+   "Q30"
+  ],
+  "image": "Daniela (Katseye) Music Bank 2024 4.jpg",
+  "enwiki": "Daniela Avanzini",
+  "aliases": [
+   "Daniela Avanzini Llorente",
+   "Daniela"
+  ],
+  "groups": [
+   {
+    "group": "KATSEYE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q124692773",
+  "label": "Lara Raj",
+  "stage": "Lara Raj",
+  "stage_src": "label",
+  "birth": "2005-11-03",
+  "nationality": "American",
+  "citizenships": [
+   "Q30"
+  ],
+  "image": "Lara Raj 240913 1.jpg",
+  "enwiki": "Lara Raj",
+  "aliases": [
+   "Lara Rajagopalan"
+  ],
+  "groups": [
+   {
+    "group": "KATSEYE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q124692787",
+  "label": "Megan Skiendiel",
+  "stage": "Megan Skiendiel",
+  "stage_src": "label",
+  "birth": "2006-02-10",
+  "nationality": "American",
+  "citizenships": [
+   "Q30"
+  ],
+  "image": "Megan (Katseye) Music Bank 2024 2.jpg",
+  "enwiki": "Megan Skiendiel",
+  "aliases": [
+   "Megan Meiyok Skiendiel"
+  ],
+  "groups": [
+   {
+    "group": "KATSEYE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q124692741",
+  "label": "Manon Bannerman",
+  "stage": "Manon Bannerman",
+  "stage_src": "label",
+  "birth": "2002-06-26",
+  "nationality": "Swiss",
+  "citizenships": [
+   "Q39"
+  ],
+  "image": "Manon 240913.jpg",
+  "enwiki": "Manon Bannerman",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "KATSEYE",
+    "former": false,
+    "since": "2024-00-00",
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q124692801",
+  "label": "Yoonchae Jeung",
+  "stage": "Yoonchae Jeung",
+  "stage_src": "label",
+  "birth": "2007-12-06",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Yoonchae 240913.jpg",
+  "enwiki": null,
+  "aliases": [
+   "윤채",
+   "Jeung Yoonchae",
+   "Yoonchae"
+  ],
+  "groups": [
+   {
+    "group": "KATSEYE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q132147275",
+  "label": "Sooin",
+  "stage": "Sooin",
+  "stage_src": "label",
+  "birth": "2005-04-12",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Kim Soo-in",
+   "Kim Sooin",
+   "kim Su-in"
+  ],
+  "groups": [
+   {
+    "group": "MEOVV",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q132147276",
+  "label": "Gawon",
+  "stage": "Gawon",
+  "stage_src": "label",
+  "birth": "2005-04-27",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884",
+   "Q30"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Lee Gawon",
+   "Lee Ga-won",
+   "Chloe Lee"
+  ],
+  "groups": [
+   {
+    "group": "MEOVV",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q65963088",
+  "label": "Anna Tanaka",
+  "stage": "Anna Tanaka",
+  "stage_src": "label",
+  "birth": "2005-11-17",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "Anna 250512.jpg",
+  "enwiki": "Anna Tanaka",
+  "aliases": [
+   "Anna"
+  ],
+  "groups": [
+   {
+    "group": "MEOVV",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q132147277",
+  "label": "Narin",
+  "stage": "Narin",
+  "stage_src": "label",
+  "birth": "2007-08-15",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Na Rin"
+  ],
+  "groups": [
+   {
+    "group": "MEOVV",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q126015441",
+  "label": "Ella Gross",
+  "stage": "Ella Gross",
+  "stage_src": "label",
+  "birth": "2008-12-01",
+  "nationality": "American",
+  "citizenships": [
+   "Q30",
+   "Q884"
+  ],
+  "image": "MEOVV Ella December 2024.jpg",
+  "enwiki": "Ella Gross",
+  "aliases": [
+   "Ella",
+   "Ella McKenzie Gross",
+   "Nabi"
+  ],
+  "groups": [
+   {
+    "group": "MEOVV",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127162744",
+  "label": "Mai",
+  "stage": "Mai",
+  "stage_src": "label",
+  "birth": "2004-10-28",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "Izna Mai 251004.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Tomioka Mai",
+   "Mai Tomioka"
+  ],
+  "groups": [
+   {
+    "group": "izna",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127162745",
+  "label": "Bang Jeemin",
+  "stage": "Bang Jeemin",
+  "stage_src": "label",
+  "birth": "2005-05-08",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Izna Bang Jeemin 251004.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Bang Jee-min",
+   "Jeemin",
+   "Bang Ji-min",
+   "Bang Jimin"
+  ],
+  "groups": [
+   {
+    "group": "izna",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127162746",
+  "label": "Yoon Jiyoon",
+  "stage": "Jiyoon",
+  "stage_src": "surname-strip",
+  "birth": "2005-07-14",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": null,
+  "enwiki": null,
+  "aliases": [
+   "Yoon Ji-yoon",
+   "Jiyoon",
+   "Yun Ji-yun"
+  ],
+  "groups": [
+   {
+    "group": "izna",
+    "former": true,
+    "since": "2024-00-00",
+    "until": "2025-08-19"
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127162747",
+  "label": "Koko",
+  "stage": "Koko",
+  "stage_src": "label",
+  "birth": "2006-11-14",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "Izna Koko 251004.jpg",
+  "enwiki": null,
+  "aliases": [],
+  "groups": [
+   {
+    "group": "izna",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127162743",
+  "label": "Ryu Sarang",
+  "stage": "Sarang",
+  "stage_src": "surname-strip",
+  "birth": "2007-04-18",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Izna Ryu Sarang 251004.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Ryu Sa-rang",
+   "Sarang",
+   "Yu Sa-rang",
+   "Yu Sarang"
+  ],
+  "groups": [
+   {
+    "group": "izna",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127162749",
+  "label": "Choi Jungeun",
+  "stage": "Jungeun",
+  "stage_src": "surname-strip",
+  "birth": "2007-08-04",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Izna Choi Jungeun 251004.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Choi Jung-eun",
+   "Jungeun",
+   "Choe Jeong-eun",
+   "Choe Jeongeun"
+  ],
+  "groups": [
+   {
+    "group": "izna",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q127162748",
+  "label": "Jeong Saebi",
+  "stage": "Saebi",
+  "stage_src": "surname-strip",
+  "birth": "2008-01-22",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Izna Jeong Saebi 251004.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Jeong Sae-bi",
+   "Saebi",
+   "Jeong Se-bi",
+   "Jeong Sebi"
+  ],
+  "groups": [
+   {
+    "group": "izna",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q131932320",
+  "label": "Jiwoo",
+  "stage": "Jiwoo",
+  "stage_src": "label",
+  "birth": "2006-09-07",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Jiwoo di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+  "enwiki": "Choi Ji-woo (singer)",
+  "aliases": [
+   "Choi Ji-woo"
+  ],
+  "groups": [
+   {
+    "group": "Hearts2Hearts",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q131932321",
+  "label": "Carmen",
+  "stage": "Carmen",
+  "stage_src": "label",
+  "birth": "2006-03-28",
+  "nationality": "Indonesian",
+  "citizenships": [
+   "Q252"
+  ],
+  "image": "Carmen di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+  "enwiki": "Carmen (singer)",
+  "aliases": [
+   "Nyoman Ayu Carmenita"
+  ],
+  "groups": [
+   {
+    "group": "Hearts2Hearts",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q131932322",
+  "label": "Yuha",
+  "stage": "Yuha",
+  "stage_src": "label",
+  "birth": "2007-04-12",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Yuha di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+  "enwiki": "Yuha",
+  "aliases": [
+   "Yu Haram",
+   "Yu Ha-ram"
+  ],
+  "groups": [
+   {
+    "group": "Hearts2Hearts",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q131932323",
+  "label": "Stella",
+  "stage": "Stella",
+  "stage_src": "label",
+  "birth": "2007-06-18",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884",
+   "Q16"
+  ],
+  "image": "Stella di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Stella Dahyun Kim"
+  ],
+  "groups": [
+   {
+    "group": "Hearts2Hearts",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q131932324",
+  "label": "Juun",
+  "stage": "Juun",
+  "stage_src": "label",
+  "birth": "2008-12-03",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Juun di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Juun",
+   "Kim Ju-un",
+   "Kim Ju-eun",
+   "Kim Jueun"
+  ],
+  "groups": [
+   {
+    "group": "Hearts2Hearts",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q131932325",
+  "label": "A-na",
+  "stage": "에이나",
+  "stage_src": "P742",
+  "birth": "2008-12-20",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "A-na di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Yuna",
+   "No Yuna",
+   "Roh Yu-na",
+   "A-na"
+  ],
+  "groups": [
+   {
+    "group": "Hearts2Hearts",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "에이나"
+  ]
+ },
+ {
+  "qid": "Q131932326",
+  "label": "Ian",
+  "stage": "Ian",
+  "stage_src": "label",
+  "birth": "2009-10-09",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Ian di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+  "enwiki": "Ian (South Korean singer)",
+  "aliases": [
+   "Jeong Ian",
+   "Jeong I-an",
+   "Ian (singer)",
+   "Jeong Lee-an"
+  ],
+  "groups": [
+   {
+    "group": "Hearts2Hearts",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q131932327",
+  "label": "Ye-on",
+  "stage": "예온",
+  "stage_src": "P742",
+  "birth": "2010-04-19",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Ye-on di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+  "enwiki": null,
+  "aliases": [
+   "Kim Na-yeon",
+   "Kim Nayeon",
+   "Ye-On",
+   "Yeon"
+  ],
+  "groups": [
+   {
+    "group": "Hearts2Hearts",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": [
+   "예온"
+  ]
+ }
+]
