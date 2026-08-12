@@ -432,9 +432,62 @@ ok(typeof G.loadVolume === "function", "volume is persisted");
 eq(G.loadVolume(), 0.8, "defaults to 80% with nothing stored");
 
 /* ====================================================================== */
+section("stage photos");
+const {photoOf, commons} = G;
+const withImgs = DATA.members.filter(m => m.imgs);
+const groupsWithImgs = DATA.groups.filter(g => g.imgs);
+ok(withImgs.length > 80,
+   `stage photos reached the payload (${withImgs.length} members, ` +
+   `${groupsWithImgs.length} groups)`);
+
+const badList = DATA.members.concat(DATA.groups).filter(
+  x => x.imgs && (!Array.isArray(x.imgs) || !x.imgs.length ||
+                  x.imgs.some(f => typeof f !== "string" || !f.trim())));
+eq(badList.map(x => x.name), [], "every imgs entry is a non-empty filename");
+
+const overCap = withImgs.concat(groupsWithImgs).filter(x => x.imgs.length > 12);
+eq(overCap.map(x => x.name), [], "no subject carries more than 12 photos");
+
+/* The P18 fallback is what saves the page when Commons renames a file, so
+   nothing may ship stage photos without one. */
+/* A member showing a stage photo must have something to fall back to: the P18
+   portrait, or failing that a second stage photo. */
+const noFallback = DATA.members.filter(
+  m => m.imgs && !m.img && m.imgs.length < 2);
+eq(noFallback.map(m => m.name), [],
+   "every member with stage photos has a fallback image");
+const noPortrait = DATA.members.filter(m => m.imgs && !m.img).map(m => m.name);
+console.log(`   (${noPortrait.length} members have stage photos but no P18 ` +
+            `portrait: ${noPortrait.join(", ") || "none"})`);
+
+/* photoOf must be total: it has to answer for the 91 members who have none. */
+const noPhotos = DATA.members.find(m => !m.imgs);
+ok(noPhotos, "some members have no stage photo (expected — Commons gap)");
+if (noPhotos) eq(photoOf(noPhotos, 5), noPhotos.img,
+                 "a member with no stage photo falls back to her portrait");
+
+const one = withImgs[0];
+eq(photoOf(one, 3), photoOf(one, 3), "same seed picks the same photo");
+eq(photoOf(one, one.imgs.length), photoOf(one, 0), "the seed wraps around");
+eq(photoOf(one, -1), one.imgs[one.imgs.length - 1], "a negative seed still lands in range");
+ok(new Set(Array.from({length: one.imgs.length}, (_, i) => photoOf(one, i))).size
+   === one.imgs.length, "walking the seed visits every photo");
+
+/* URLs have to survive encoding: these filenames are Korean and full of spaces,
+   commas and parentheses. */
+const sample = withImgs.slice(0, 30).map(m => commons(m.imgs[0], 400));
+ok(sample.every(u => /^https:\/\/commons\.wikimedia\.org\/wiki\/Special:FilePath\//.test(u)),
+   "photo urls point at Commons FilePath");
+ok(sample.every(u => !/[ ]/.test(u)), "no raw spaces survive into the url");
+
+/* ====================================================================== */
+/* KEEP THIS LAST. Appending a section after the summary means it runs after
+   the exit code is decided, so a failure in it is reported and then ignored.
+   This has now been fixed twice. */
 console.log(`\n${pass} passed, ${fail} failed`);
 if (fail) {
   console.log("\nFAILURES:");
   failures.forEach(f => console.log("  ✗ " + f));
   process.exit(1);
 }
+

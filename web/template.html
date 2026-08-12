@@ -151,7 +151,7 @@ const MODES = {
   group: {pool:()=>DATA.groups,  cols:GROUP_COLS,  kind:"grid",
           ph:"Type a group name…", max:MAX_GUESSES,
           help:"Guess the group. Six columns of feedback per guess."},
-  image: {pool:()=>DATA.members.filter(m=>m.img), kind:"image",
+  image: {pool:()=>DATA.members.filter(m=>m.img||(m.imgs&&m.imgs.length)), kind:"image",
           ph:"Who is she?", max:MAX_REVEAL,
           help:"A photocard sits in a frosted sleeve. Each wrong guess slides it further out, revealing another band from the bottom up."},
   song:  {pool:()=>DATA.songs,   kind:"song",
@@ -174,10 +174,38 @@ function commons(file, width){
   return "https://commons.wikimedia.org/wiki/Special:FilePath/"
        + encodeURIComponent(file.replace(/ /g,"_")) + "?width=" + (width||400);
 }
+/* Stage photos (Commons, via build/fetch_photos.py) with the P18 portrait as
+   the floor. Two reasons the fallback is not optional: 91 members have no stage
+   photo at all, and Commons filenames rot — files get renamed and deleted,
+   while P18 is maintained by editors. */
+function photoOf(item, n){
+  const list = item && item.imgs;
+  if(!list || !list.length) return item ? item.img : null;
+  return list[(((n|0) % list.length) + list.length) % list.length];
+}
+/* Daily must look the same for everyone, so it indexes by the day. Endless
+   varies, so a member you have seen before turns up in a different photo. */
+function photoSeed(){
+  return S.play === "daily" ? S.day : S.photoPick;
+}
+function imgTag(item, cls, width, alt){
+  const pick = photoOf(item, photoSeed());
+  if(!pick) return "";
+  // Prefer the P18 portrait as the fallback — editors maintain it. A couple of
+  // members have stage photos but no portrait at all, so for them the next
+  // stage photo stands in rather than leaving a broken image with no recovery.
+  const alt2 = (item.imgs || []).find(f => f !== pick);
+  const fbFile = (item.img && item.img !== pick) ? item.img : alt2;
+  const fb = fbFile ? commons(fbFile, width) : "";
+  return `<img class="${cls}" src="${esc(commons(pick,width))}" alt="${esc(alt||"")}"`
+    + (fb ? ` data-fb="${esc(fb)}" onerror="this.onerror=null;this.src=this.dataset.fb"` : "")
+    + ` loading="lazy">`;
+}
+
 function thumbFor(item){
   if(MODE()==="song") return item.art||"";
-  if(item.img) return commons(item.img,80);
-  return "";
+  const pick = photoOf(item, photoSeed());
+  return pick ? commons(pick,90) : "";
 }
 
 function toast(msg){
@@ -193,6 +221,7 @@ const S = {
   answer:null, guesses:[], done:false, won:false, skipped:0,
   audio:null, playing:false, endlessSeed:{},
   volume:0.8,
+  photoPick:0,            // which stage photo this endless round shows
   filters:null            // endless-only pool narrowing, filled by init()
 };
 const MODE = () => S.mode;
@@ -411,6 +440,7 @@ function pickEndless(){
 function startRound(restore){
   stopAudio();
   S.guesses=[]; S.done=false; S.won=false; S.skipped=0;
+  S.photoPick = Math.floor(Math.random()*1000);
   S.day = dayIndex();
 
   if(S.play==="daily"){
@@ -688,7 +718,7 @@ function gridHTML(){
   const cols = CFG().cols;
   const rows = S.guesses.slice().reverse().filter(Boolean).map(g=>{
     const name = g.display || g.name;
-    const face = g.img ? `<img class="face" src="${esc(commons(g.img,64))}" alt="" loading="lazy">` : "";
+    const face = imgTag(g, "face", 80, "");
     const head = `<td><div class="tile name"><div class="who">${face}
         <span>${esc(name)}</span></div></div></td>`;
     return "<tr>"+head+cols.map(c=>tileHTML(g,c,grade(g,S.answer,c))).join("")+"</tr>";
@@ -717,8 +747,7 @@ function imageHTML(){
   const frost = `--frost:${SLEEVE_FROST[i]}px;--sat:${SLEEVE_SAT[i]}`;
   return `<div class="artstage"><div class="sleeve-wrap">
       <div class="pc">
-        <img class="pc-photo" src="${esc(commons(a.img,600))}"
-             alt="Photocard of the idol to identify">
+        ${imgTag(a, "pc-photo", 600, "Photocard of the idol to identify")}
       </div>
       <div class="sleeve${S.done?" gone":""}"
            style="--cover:${cover}%;${frost}"></div>
@@ -819,7 +848,7 @@ function photocardHTML(a){
   // the group she is in.
   const line2 = isGroup ? shortLabel(a.company||"") : (a.group||"");
   return `<div class="pc holo${isGroup?" wide":""}">
-    <img class="pc-photo" src="${esc(commons(a.img, isGroup?700:500))}" alt="">
+    ${imgTag(a, "pc-photo", isGroup?800:500, "")}
     <div class="pc-plate">${kr}
       <div class="pc-name">${esc(isGroup ? a.name : (a.name||a.display))}</div>
       <div class="pc-group">${esc(line2)}</div>
@@ -1140,7 +1169,8 @@ if(typeof module!=="undefined" && module.exports){
                     gCompany,gExact,norm,candidates,dailyAnswer,unlockedSeconds,
                     STEPS,shareText,startRound,submitGuess,
                     THEMES,defaultFilters,passes,endlessPool,groupByName,
-                    PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume};
+                    PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume,
+                    photoOf,commons};
 } else {
   document.addEventListener("DOMContentLoaded",init);
 }

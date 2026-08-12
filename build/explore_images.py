@@ -84,6 +84,8 @@ def api(endpoint, params, cname="api", retries=5):
             return d
         except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
             _last[0] = time.time()
+            if getattr(e, "code", None) in (414, 400):
+                raise           # deterministic; retrying just wastes a minute
             if attempt == retries - 1:
                 raise
             print(f"    [net] {e} -> retry in {delay:.0f}s")
@@ -239,30 +241,42 @@ def cmd_crawl():
 
 STAGE = [
     r"music bank", r"m ?countdown", r"엠카운트다운", r"뮤직뱅크", r"inkigayo", r"인기가요",
-    r"show ?champion", r"쇼챔피언", r"music core", r"쇼!? ?음악중심", r"음악중심",
-    r"the show", r"더쇼", r"simply k-?pop",
-    r"concert", r"콘서트", r"tour", r"투어", r"stage", r"무대",
-    r"showcase", r"쇼케이스", r"performance", r"performing", r"perform",
-    r"festival", r"페스티벌", r"축제", r"live", r"라이브", r"gig",
-    r"kcon", r"dream concert", r"드림콘서트", r"gayo daejun", r"가요대전",
-    r"gayo daejeon", r"song festival", r"encore", r"앵콜", r"rehearsal",
-    r"soundcheck", r"summer sonic", r"lollapalooza", r"coachella",
+    r"show ?champion", r"쇼챔피언", r"music core", r"음악중심", r"\bthe show\b", r"더쇼",
+    r"simply k-?pop", r"\bconcert", r"콘서트", r"\btour\b", r"투어", r"\bstage\b", r"무대",
+    r"showcase", r"쇼케이스", r"perform", r"festival", r"페스티벌", r"축제",
+    r"\blive\b", r"라이브", r"\bgig\b", r"kcon\b", r"dream concert", r"드림콘서트",
+    r"gayo daejun", r"가요대전", r"gayo daejeon", r"song festival", r"encore", r"앵콜",
+    r"rehearsal", r"soundcheck", r"summer sonic", r"lollapalooza", r"coachella",
     r"waterbomb", r"워터밤", r"guerrilla", r"게릴라", r"busking", r"버스킹",
-    r"fan ?meeting", r"팬미팅", r"world tour", r"comeback show",
+    r"fan ?meeting", r"팬미팅", r"world tour", r"comeback show", r"\bsinging\b",
 ]
+# Every Latin token here is \b-anchored. Learned the hard way: an unanchored
+# r"elle\b" (the magazine) matches "Gis-elle" and silently vetoed every aespa
+# Giselle photo in the corpus.
 NOT_STAGE = [
-    r"airport", r"공항", r"red ?carpet", r"레드카펫", r"press", r"기자",
-    r"photo ?call", r"포토콜", r"interview", r"인터뷰", r"fan ?sign", r"팬사인",
-    r"signing", r"사인회", r"poster", r"포스터", r"logo", r"banner", r"billboard",
-    r"advertis", r"광고", r"cf\b", r"wax", r"figure", r"statue", r"album cover",
-    r"cd\b", r"lightstick", r"응원봉", r"cafe", r"카페", r"birthday", r"생일",
-    r"subway", r"지하철", r"bus ?stop", r"screenshot", r"logo", r"wordmark",
-    r"map\b", r"chart", r"graph", r"timeline", r"discography", r"signature",
-    r"autograph", r"awards? red", r"arrival", r"departure", r"entering",
-    r"leaving", r"going to", r"heading", r"on the way", r"출국", r"입국",
-    r"conference", r"showroom", r"store", r"pop-?up", r"팝업", r"venue",
-    r"crowd", r"관객", r"audience", r"empty", r"stadium exterior", r"stage set",
-    r"placard", r"slogan", r"merch",
+    r"\bairport\b", r"공항", r"red ?carpet", r"레드카펫", r"\bpress\b", r"기자",
+    r"photo ?call", r"포토콜", r"\binterview", r"인터뷰", r"fan ?sign", r"팬사인",
+    r"\bsigning\b", r"사인회", r"\bposter\b", r"포스터", r"\blogo", r"\bbanner\b",
+    r"\bbillboard\b", r"advertis", r"광고", r"\bcf\b", r"\bwax\b", r"\bstatue\b",
+    r"album cover", r"lightstick", r"응원봉", r"\bcafe\b", r"카페", r"birthday", r"생일",
+    r"\bsubway\b", r"지하철", r"bus ?stop", r"screenshot", r"wordmark",
+    r"\bmap\b", r"\bchart\b", r"\bgraph\b", r"timeline", r"discography",
+    r"signature", r"autograph", r"\barrival\b", r"\bdeparture\b", r"\bentering\b",
+    r"\bleaving\b", r"going to", r"heading to", r"on the way", r"출국", r"입국",
+    # 출근(길) = "on the way to work" -- the walk into the Music Bank building,
+    # which is the airport-photo of music shows. 퇴근 is the walk out.
+    r"출근", r"퇴근", r"등교",
+    r"press conference", r"\bshowroom\b", r"pop-?up", r"팝업", r"\bplacard\b",
+    r"\bslogan\b", r"\bmerch\b",
+    # event name != stage: a "Dream Concert" file is as likely to be the photo
+    # wall outside it as the performance.
+    r"photo ?wall", r"포토월", r"포토타임", r"photo ?time", r"화보", r"매거진",
+    r"\bmagazine\b", r"\bvogue\b", r"\belle\b", r"marie ?claire", r"harper's",
+    r"cosmopolitan", r"\bdazed\b", r"\ballure\b", r"\besquire\b", r"\bw korea\b",
+    r"photoshoot", r"photo shoot", r"\bambassador\b", r"\bendorse",
+    r"fashion week", r"\bdior\b", r"\bchanel\b", r"\bgucci\b", r"\bprada\b",
+    r"\bbulgari\b", r"\bcartier\b", r"\btiffany\b", r"\bolens\b",
+    r"idols in advertising",
 ]
 BAD_EXT = (".svg", ".ogg", ".ogv", ".webm", ".pdf", ".mid", ".wav", ".mp3",
            ".oga", ".flac", ".tif", ".tiff", ".gif", ".xcf", ".djvu")
@@ -359,22 +373,75 @@ def cmd_info():
           Counter(v["restrict"] for v in out.values() if v["restrict"]).most_common())
 
 
+# ------------------------------------------------------------ 2b. deepcat
+# Commons CirrusSearch supports deepcat:"X", which expands the whole category
+# tree server-side. One paginated search replaces the recursive crawl and
+# reaches levels the crawl missed (Blackpink > by year > in 2019 > at Coachella).
+
+def cmd_deep():
+    subjects = json.load(open(os.path.join(CACHE_DIR, "subjects.json"), encoding="utf-8"))
+    # NB: the api-cache name must never equal the results filename -- they both
+    # live in CACHE_DIR and will silently clobber each other.
+    out_path = os.path.join(CACHE_DIR, "deepfiles.json")
+    out = json.load(open(out_path, encoding="utf-8")) if os.path.exists(out_path) else {}
+    todo = [s for s in subjects if s.get("cat") and s["id"] not in out]
+    print(f"{len(todo)} subjects")
+    for i, s in enumerate(todo):
+        hits, off = [], 0
+        for _ in range(6):                      # <= 3000 files per subject
+            d = api(COMMONS, {"action": "query", "list": "search",
+                              "srsearch": f'deepcat:"{s["cat"]}"',
+                              "srnamespace": "6", "srlimit": "500",
+                              "sroffset": str(off), "srinfo": "totalhits"},
+                    "deepapi")
+            q = d.get("query", {})
+            hits += [h["title"][5:] for h in q.get("search", [])]
+            if "continue" not in d:
+                break
+            off = d["continue"]["sroffset"]
+        out[s["id"]] = sorted(set(hits))
+        print(f"[{i+1}/{len(todo)}] {s['kind']:6} {s['name'][:24]:24} "
+              f"{s['cat'][:34]:34} {len(out[s['id']]):4}", flush=True)
+        if i % 10 == 0:
+            json.dump(out, open(out_path, "w", encoding="utf-8"), ensure_ascii=False)
+            save("deepapi")
+    json.dump(out, open(out_path, "w", encoding="utf-8"), ensure_ascii=False)
+    save("deepapi")
+    print("total distinct:", len({f for v in out.values() for f in v}))
+
+
 # ------------------------------------------------- 4b. metadata for ALL files
 # Most Korean-uploaded Commons photos are named "190518 마마무 (1).jpg" -- the
 # filename carries no keyword at all. The event lives in the file's CATEGORIES
 # and description instead, so classification has to read those.
 
 def cmd_meta():
-    files = json.load(open(os.path.join(CACHE_DIR, "files.json"), encoding="utf-8"))
+    src = "deepfiles.json" if os.path.exists(os.path.join(CACHE_DIR, "deepfiles.json")) \
+        else "files.json"
+    files = json.load(open(os.path.join(CACHE_DIR, src), encoding="utf-8"))
     want = sorted({f for v in files.values() for f in v
                    if not f.lower().endswith(BAD_EXT)})
     print(len(want), "distinct files")
-    out_path = os.path.join(CACHE_DIR, "meta.json")
+    out_path = os.path.join(CACHE_DIR, "metafiles.json")
     out = json.load(open(out_path, encoding="utf-8")) if os.path.exists(out_path) else {}
     todo = [f for f in want if f not in out]
     print(len(todo), "to fetch")
-    for i in range(0, len(todo), 50):
-        chunk = todo[i:i + 50]
+    # Korean filenames percent-encode to ~9 bytes a character, so 50 titles can
+    # blow past the URL length limit and earn a 414. Batch by encoded length.
+    batches, cur, curlen = [], [], 0
+    for f in todo:
+        n = len(urllib.parse.quote("File:" + f)) + 3
+        if cur and (curlen + n > 4500 or len(cur) >= 50):
+            batches.append(cur)
+            cur, curlen = [], 0
+        cur.append(f)
+        curlen += n
+    if cur:
+        batches.append(cur)
+    print(len(batches), "batches")
+    done = 0
+    for i, chunk in enumerate(batches):
+        done += len(chunk)
         d = api(COMMONS, {"action": "query",
                           "titles": "|".join("File:" + c for c in chunk),
                           "prop": "imageinfo|categories",
@@ -383,7 +450,7 @@ def cmd_meta():
                           "iiextmetadatafilter":
                               "LicenseShortName|UsageTerms|Restrictions|"
                               "ImageDescription|DateTimeOriginal|Categories"},
-                 "meta")
+                 "metaapi")
         for p in d.get("query", {}).get("pages", []):
             ii = (p.get("imageinfo") or [{}])[0]
             em = ii.get("extmetadata", {})
@@ -396,41 +463,52 @@ def cmd_meta():
                                (em.get("ImageDescription") or {}).get("value", ""))[:400],
                 "cats": [c["title"][9:] for c in p.get("categories", [])],
             }
-        if (i // 50) % 10 == 0:
-            print(f"  {min(i+50, len(todo))}/{len(todo)}")
+        if i % 10 == 0:
+            print(f"  {done}/{len(todo)}")
             json.dump(out, open(out_path, "w", encoding="utf-8"), ensure_ascii=False)
-            save("meta")
+            save("metaapi")
     json.dump(out, open(out_path, "w", encoding="utf-8"), ensure_ascii=False)
-    save("meta")
+    save("metaapi")
     print("meta rows:", len(out))
 
 
+# Learned by eyeballing downloads: a filename keyword tells you it is a stage
+# EVENT, not that the picture is usable. The discriminator that actually works
+# is orientation -- portrait crops are fansite close-ups of one person; wide
+# landscape frames are whole-stage shots where the face is 12 pixels tall.
+PORTRAIT_MIN = 1.15
+
+
 def classify2(fn, meta):
-    """Classify using filename + categories + description."""
+    """-> (bucket, portrait?) using filename + categories + description."""
     if fn.lower().endswith(BAD_EXT):
-        return "nonphoto"
+        return "nonphoto", False
     m = meta.get(fn) or {}
-    if m.get("mime") and not m["mime"].startswith("image/"):
-        return "nonphoto"
-    if m.get("mime") in ("image/svg+xml",):
-        return "nonphoto"
+    mime = m.get("mime") or ""
+    if mime and not mime.startswith("image/") or mime == "image/svg+xml":
+        return "nonphoto", False
     w, h = m.get("w") or 0, m.get("h") or 0
-    if w and h and (w < 500 or h < 500):
-        return "small"
-    blob = " ".join([fn] + m.get("cats", []) + [m.get("desc", "")])
+    portrait = bool(w and h and h / w >= PORTRAIT_MIN and h >= 700)
+    if w and h and (w < 400 or h < 400):
+        return "small", portrait
+    # Veto on filename + categories only. Descriptions are long, free-text and
+    # frequently mention the photographer's other work, so a NOT hit there is
+    # not evidence about this picture.
+    veto = " ".join([fn] + m.get("cats", []))
+    blob = veto + " " + (m.get("desc") or "")
+    if NOT_RE.search(veto):
+        return "no", portrait
     if STAGE_RE.search(blob):
-        if NOT_RE.search(fn.lower()):
-            return "no"
-        return "stage"
-    if NOT_RE.search(blob):
-        return "no"
-    return "unknown"
+        return "stage", portrait
+    return "unknown", portrait
 
 
 def cmd_score2():
     subjects = json.load(open(os.path.join(CACHE_DIR, "subjects.json"), encoding="utf-8"))
-    files = json.load(open(os.path.join(CACHE_DIR, "files.json"), encoding="utf-8"))
-    meta = json.load(open(os.path.join(CACHE_DIR, "meta.json"), encoding="utf-8"))
+    src = "deepfiles.json" if os.path.exists(os.path.join(CACHE_DIR, "deepfiles.json")) \
+        else "files.json"
+    files = json.load(open(os.path.join(CACHE_DIR, src), encoding="utf-8"))
+    meta = json.load(open(os.path.join(CACHE_DIR, "metafiles.json"), encoding="utf-8"))
     from collections import Counter
     tally = Counter()
     rows = []
@@ -438,22 +516,30 @@ def cmd_score2():
         fs = files.get(s["id"], [])
         buckets = {}
         for f in fs:
-            c = classify2(f, meta)
+            c, p = classify2(f, meta)
             tally[c] += 1
             buckets.setdefault(c, []).append(f)
-        rows.append(dict(s, n_all=len(fs), n_stage=len(buckets.get("stage", [])),
+            if c == "stage" and p:
+                buckets.setdefault("stage_portrait", []).append(f)
+        rows.append(dict(s, n_all=len(fs),
+                         n_stage=len(buckets.get("stage", [])),
+                         n_pstage=len(buckets.get("stage_portrait", [])),
                          stage=buckets.get("stage", []),
+                         pstage=buckets.get("stage_portrait", []),
                          unknown=buckets.get("unknown", [])))
     json.dump(rows, open(os.path.join(CACHE_DIR, "scored.json"), "w",
                          encoding="utf-8"), ensure_ascii=False, indent=1)
     print("file classes:", tally.most_common())
-    for kind, total in (("group", 31), ("member", 217)):
+    for kind, total, key in (("group", 31, "n_stage"),
+                             ("member", 217, "n_stage"),
+                             ("member", 217, "n_pstage")):
         sub = [r for r in rows if r["kind"] == kind]
-        for thr in (1, 2, 3, 5, 10):
-            n = sum(1 for r in sub if r["n_stage"] >= thr)
-            print(f"{kind:6} >= {thr:2} stage: {n:3}/{total} ({100*n/total:3.0f}%)")
-        zero = [r["name"] + "/" + r.get("group", "") for r in sub if r["n_stage"] == 0]
-        print(f"{kind:6} zero ({len(zero)}): {zero[:60]}")
+        print(f"--- {kind} / {key}")
+        for thr in (1, 2, 3, 5, 10, 20):
+            n = sum(1 for r in sub if r[key] >= thr)
+            print(f"  >= {thr:2}: {n:3}/{total} ({100*n/total:3.0f}%)")
+        zero = [r["name"] + "/" + r.get("group", "") for r in sub if r[key] == 0]
+        print(f"  zero ({len(zero)}): {zero[:70]}")
         print()
 
 
@@ -485,6 +571,54 @@ def cmd_search():
             save("srch")
     json.dump(out, open(out_path, "w", encoding="utf-8"), ensure_ascii=False)
     save("srch")
+
+
+# -------------------------------------------------- 6. what we would ship
+
+def cmd_pick():
+    """The actual candidate set, ranked, plus a downloadable eyeball sample."""
+    rows = json.load(open(os.path.join(CACHE_DIR, "scored.json"), encoding="utf-8"))
+    meta = json.load(open(os.path.join(CACHE_DIR, "metafiles.json"), encoding="utf-8"))
+
+    def rank(f):
+        m = meta.get(f, {})
+        w, h = m.get("w") or 1, m.get("h") or 1
+        return (-(h / w), -(m.get("h") or 0))
+
+    out = {}
+    for r in rows:
+        key = "pstage" if r["kind"] == "member" else "stage"
+        cand = sorted(r.get(key) or r.get("stage") or [], key=rank)
+        out[r["id"]] = cand[:12]
+    json.dump(out, open(os.path.join(CACHE_DIR, "picked.json"), "w",
+                        encoding="utf-8"), ensure_ascii=False, indent=1)
+    from collections import Counter
+    c = Counter(len(v) for v in out.values())
+    print("picked-per-subject histogram:", sorted(c.items()))
+    return out
+
+
+def cmd_dl():
+    """Download a deterministic sample of picks so they can be looked at."""
+    import random
+    picked = json.load(open(os.path.join(CACHE_DIR, "picked.json"), encoding="utf-8"))
+    subj = {s["id"]: s for s in json.load(
+        open(os.path.join(CACHE_DIR, "subjects.json"), encoding="utf-8"))}
+    random.seed(int(sys.argv[2]) if len(sys.argv) > 2 else 11)
+    pool = [(k, v) for k, v in picked.items() if v]
+    outdir = os.path.join(CACHE_DIR, "dl")
+    os.makedirs(outdir, exist_ok=True)
+    for i, (k, v) in enumerate(random.sample(pool, min(12, len(pool)))):
+        f = random.choice(v)
+        u = ("https://commons.wikimedia.org/wiki/Special:FilePath/"
+             + urllib.parse.quote(f.replace(" ", "_")) + "?width=420")
+        req = urllib.request.Request(u, headers={"User-Agent": UA})
+        try:
+            data = urllib.request.urlopen(req, timeout=60).read()
+            open(os.path.join(outdir, f"{i:02d}.jpg"), "wb").write(data)
+            print(f"{i:02d} {subj[k]['kind']:6} {subj[k]['name'][:20]:20} {f}")
+        except Exception as e:
+            print(f"{i:02d} ERR {e} {f}")
 
 
 if __name__ == "__main__":

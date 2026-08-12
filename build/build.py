@@ -38,6 +38,21 @@ def load(name):
         return json.load(f)
 
 
+def load_photos():
+    """Stage photos from build/fetch_photos.py, keyed subject -> [filename].
+
+    Optional on purpose: the build must not depend on a 20-minute Commons
+    crawl having been run. Without it everyone simply keeps their P18 portrait.
+    """
+    path = os.path.join(DATA, "photos.json")
+    if not os.path.exists(path):
+        print("(no data/photos.json — run build/fetch_photos.py for stage "
+              "photos; falling back to P18 portraits)")
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
 def is_latin(s):
     """True for names a player can type on an English keyboard.
 
@@ -175,6 +190,12 @@ def build_members(groups_by_name, raw):
         x["id"] = slug(f"{x['name']}-{x['group']}")
         x["search"] = searchable(x["name"], x["display"], x["group"],
                                  f"{x['group']} {x['name']}", *x["aliases"])
+
+    photos = load_photos()
+    for x in members:
+        got = photos.get("member:" + x["id"])
+        if got:
+            x["imgs"] = got
     return members, dropped
 
 
@@ -182,6 +203,7 @@ def build_members(groups_by_name, raw):
 # groups
 # --------------------------------------------------------------------------
 def build_groups(groups, members):
+    photos = load_photos()
     by = {}
     for m in members:
         by.setdefault(m["group"], []).append(m)
@@ -198,6 +220,7 @@ def build_groups(groups, members):
             debut=int(g["debut"][:4]), debut_full=g["debut"],
             size=len(mem), foreign=foreign, kr=hangul_of(g),
             tier=g.get("tier", 3), img=g.get("image"),
+            imgs=photos.get("group:" + g["name"]) or None,
             status={"active": "Active", "disbanded": "Disbanded",
                     "inactive": "Inactive"}[g["status"]],
             search=searchable(g["name"], *(g.get("aka") or [])),
@@ -390,7 +413,9 @@ def main():
         schedules=dict(
             member=schedule(members, "member/v1"),
             group=schedule(groups, "group/v1", normalize_by_group=False),
-            image=schedule([m for m in members if m["img"]], "image/v1"),
+            # anyone with a picture at all, portrait or stage photo
+            image=schedule([m for m in members if m.get("img") or m.get("imgs")],
+                           "image/v1"),
             song=schedule(songs, "song/v1", normalize_by_group=False),
         ),
     )

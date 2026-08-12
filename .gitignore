@@ -3,6 +3,7 @@
 data/wd_cache.json
 data/itunes_cache.json
 data/deezer_cache.json
+data/photo_cache.json
 data/*.log
 
 __pycache__/
