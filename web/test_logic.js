@@ -639,6 +639,38 @@ function findsIt2(q, title) {
 }
 S.mode = "member"; S.play = "daily";
 
+section("archive");
+const { shownDay, archiveDays, dayLabel } = G;
+S.play = "daily"; S.mode = "member"; S.viewDay = null;
+eq(shownDay(), S.day, "with no day picked the board shows today");
+S.viewDay = S.day - 3;
+eq(shownDay(), S.day - 3, "picking a past day changes what the board shows");
+
+/* A replayed day must save under its own key, or finishing an old puzzle would
+   overwrite today's progress. */
+const keyFn = new Function("S", "shownDay",
+  "return S.mode + ':' + (S.play==='daily' ? 'd'+shownDay() : 'e')");
+ok(keyFn(S, shownDay) !== keyFn(Object.assign({}, S, {viewDay: null}),
+                                () => S.day),
+   "an archive round is stored separately from today's");
+
+/* Only days that have happened, newest first, never before the epoch. */
+S.viewDay = null;
+const days = archiveDays();
+ok(days.every(d => d >= 0 && d < S.day), "the archive offers only past days");
+ok(days.length === 0 || days[0] === S.day - 1, "newest first");
+ok(new Set(days).size === days.length, "no day is offered twice");
+ok(typeof dayLabel(0) === "string" && dayLabel(0).length > 0,
+   `days carry a readable date (day 0 = ${dayLabel(0)})`);
+
+/* Every offered day has to resolve to a real answer in every mode. */
+["member", "group", "image", "song"].forEach(mode => {
+  const sample = days.slice(0, 5).concat(days.slice(-3));
+  const broken = sample.filter(d => !dailyAnswer(mode, d));
+  eq(broken, [], `${mode}: every archived day resolves to an answer`);
+});
+S.viewDay = null;
+
 /* ====================================================================== */
 /* KEEP THIS LAST. Appending a section after the summary means it runs after
    the exit code is decided, so a failure in it is reported and then ignored.
@@ -649,3 +681,5 @@ if (fail) {
   failures.forEach(f => console.log("  ✗ " + f));
   process.exit(1);
 }
+
+/* ====================================================================== */

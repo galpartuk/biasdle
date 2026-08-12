@@ -49,6 +49,7 @@
     <button class="ghost" id="btn-give">Give up</button>
   </div>
 
+  <div id="archive"></div>
   <div id="filters"></div>
 
   <div class="guessbar">
@@ -186,7 +187,7 @@ function photoOf(item, n){
 /* Daily must look the same for everyone, so it indexes by the day. Endless
    varies, so a member you have seen before turns up in a different photo. */
 function photoSeed(){
-  return S.play === "daily" ? S.day : S.photoPick;
+  return S.play === "daily" ? shownDay() : S.photoPick;
 }
 function imgTag(item, cls, width, alt){
   const pick = photoOf(item, photoSeed());
@@ -218,6 +219,7 @@ function toast(msg){
    ================================================================== */
 const S = {
   mode:"member", play:"daily", day:0,
+  viewDay:null,           // archive: a past day being replayed, else null
   answer:null, guesses:[], done:false, won:false, skipped:0,
   audio:null, playing:false, endlessSeed:{},
   volume:0.8,
@@ -352,7 +354,15 @@ const loadStore = () => { try{ return JSON.parse(localStorage.getItem(SAVE))||{}
                           catch(e){ return {}; } };
 const saveStore = o => { try{ localStorage.setItem(SAVE, JSON.stringify(o)); }catch(e){} };
 
-function stateKey(){ return S.mode + ":" + (S.play==="daily" ? "d"+S.day : "e"); }
+/* The day the board is showing. Normally today; in the archive, whichever past
+   day the player picked. Everything that keys off a day reads this, so a
+   replayed day saves and scores under its own key instead of overwriting
+   today's round. */
+function shownDay(){ return S.viewDay == null ? S.day : S.viewDay; }
+
+function stateKey(){
+  return S.mode + ":" + (S.play==="daily" ? "d"+shownDay() : "e");
+}
 
 function persist(){
   const st = loadStore();
@@ -377,7 +387,9 @@ function statsFor(mode){
   return Object.assign(blankStats(), (st.stats||{})[mode]);
 }
 function recordResult(won, tries){
-  if(S.play!=="daily") return;
+  // Archive rounds are practice. Counting them would let anyone manufacture a
+  // 365-day streak in an afternoon.
+  if(S.play!=="daily" || S.viewDay != null) return;
   const st = loadStore();
   st.stats = st.stats || {};
   const s = Object.assign(blankStats(), st.stats[S.mode]);
@@ -452,7 +464,7 @@ function startRound(restore){
   S.day = dayIndex();
 
   if(S.play==="daily"){
-    S.answer = dailyAnswer(S.mode, S.day);
+    S.answer = dailyAnswer(S.mode, shownDay());
   } else {
     S.answer = pickEndless();
   }
@@ -935,6 +947,7 @@ function render(){
   $("#stage").innerHTML = body + resultHTML();
 
   renderGauge();
+  renderArchive();
   renderFilters();
   wire();
 }
@@ -1017,6 +1030,47 @@ function applyFilters(){
 }
 
 let groupListOpen = false;
+/* ==================================================================
+   archive — replay any past daily
+   ================================================================== */
+function archiveDays(){
+  // Only days that have actually happened, newest first, and only as far back
+  // as the schedule goes.
+  const len = (DATA.schedules[S.mode] || []).length;
+  const n = Math.max(0, Math.min(S.day, len ? len - 1 : 0));
+  return Array.from({length: n}, (_, i) => S.day - 1 - i);
+}
+function dayLabel(d){
+  const [y,m,dd] = DATA.epoch.split("-").map(Number);
+  const dt = new Date(y, m-1, dd + d);
+  return dt.toLocaleDateString(undefined, {day:"numeric", month:"short"});
+}
+function renderArchive(){
+  const host = $("#archive");
+  if(S.play !== "daily"){ host.innerHTML = ""; return; }
+  const days = archiveDays();
+  if(!days.length){ host.innerHTML = ""; return; }
+  const store = loadStore().rounds || {};
+  const done = d => {
+    const r = store[S.mode + ":d" + d];
+    return r && r.d ? (r.w ? "won" : "lost") : "";
+  };
+  const cur = shownDay();
+  host.innerHTML = `<div class="archive">
+    <button class="chip ${S.viewDay==null?"":""}" id="a-today"
+            aria-pressed="${S.viewDay==null}">Today</button>
+    <div class="days">${days.slice(0,60).map(d =>
+      `<button class="chip day ${done(d)}" data-day="${d}"
+               aria-pressed="${cur===d}">#${d} · ${esc(dayLabel(d))}</button>`
+      ).join("")}</div>
+  </div>`;
+  $("#a-today").onclick = () => { S.viewDay = null; startRound(true); };
+  host.querySelectorAll("[data-day]").forEach(b => b.onclick = () => {
+    S.viewDay = +b.dataset.day;
+    startRound(true);
+  });
+}
+
 function renderFilters(){
   const host = $("#filters");
   if(S.play !== "endless" || !S.filters){ host.innerHTML = ""; return; }
@@ -1136,6 +1190,7 @@ function setMode(m){
 }
 function setPlay(p){
   stopAudio();
+  if(p !== "daily") S.viewDay = null;
   S.play=p;
   ["daily","endless"].forEach(x=>
     $("#p-"+x).setAttribute("aria-pressed", String(x===p)));
@@ -1213,7 +1268,7 @@ if(typeof module!=="undefined" && module.exports){
                     STEPS,shareText,startRound,submitGuess,
                     THEMES,defaultFilters,passes,endlessPool,groupByName,
                     PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume,
-                    photoOf,commons};
+                    photoOf,commons,shownDay,archiveDays,dayLabel};
 } else {
   document.addEventListener("DOMContentLoaded",init);
 }

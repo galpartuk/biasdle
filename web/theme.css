@@ -662,3 +662,21 @@ dialog .close{position:absolute;top:13px;right:14px}
   .result .sleeve-art{width:180px}
   .result .pc.wide{width:250px}
 }
+
+/* ---------- archive ---------- */
+.archive{
+  display:flex;align-items:center;gap:8px;margin:12px 0 2px;
+  background:var(--riser);border:1px solid var(--edge);
+  border-radius:var(--r-lg);padding:10px 12px;
+}
+.archive .days{
+  display:flex;gap:6px;overflow-x:auto;padding:2px;flex:1;
+  -webkit-overflow-scrolling:touch;
+}
+.archive .chip{white-space:nowrap}
+.archive .chip.won{border-color:var(--mint);color:var(--mint)}
+.archive .chip.lost{border-color:#FF6B8A;color:#FF6B8A}
+.archive .chip[aria-pressed="true"]{
+  background:linear-gradient(150deg,var(--coral),var(--iris));
+  color:#fff;border-color:transparent;
+}
