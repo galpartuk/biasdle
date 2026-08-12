@@ -9,7 +9,82 @@
  *   holo          prism foil, reserved for the answer card and nothing else
  *   hangul        micro-type; real content (the group's Korean name), not decor
  */
-:root{
+/* ================= THEMES =================
+ * Everything that changes between themes is a variable; nothing below the theme
+ * blocks hard-codes a colour, a radius or a blend mode. Three themes ship:
+ *
+ *   bubblegum  soft pink daylight — the default
+ *   soda       mint and sky, cooler but still light
+ *   arena      the blackout before the lights come up
+ *
+ * Light themes need more than inverted colours. Prism foil set to color-dodge
+ * blows out to white on a pale card, so it drops to overlay; the sleeve frost
+ * has to brighten instead of darken; and the corner radii open up, because
+ * "cute" is carried by roundness at least as much as by hue.
+ */
+:root, [data-theme="bubblegum"]{
+  --stage:#FFF1F7;
+  --riser:#FFFFFF;
+  --riser2:#FFF8FB;
+  --edge:#F6D8E7;
+  --ink:#40243A;          /* warm plum, never pure black */
+  --dim:#9A7789;
+  --dimmer:#C0A2B2;
+
+  --coral:#FF5B95;
+  --iris:#A57BFF;
+  --mint:#2FBF95;
+  --amber:#F2A93A;
+  --grey:#F0E2EC;         /* "no match" tile — pale, so it takes dark type */
+  --ivory:#FFFFFF;        /* card stock */
+
+  --glow1:rgba(255,120,175,.30);
+  --glow2:rgba(170,130,255,.24);
+  --shadow:0 10px 30px rgba(196,104,153,.18);
+  --backdrop:rgba(70,30,55,.42);
+
+  --holo-blend:overlay;
+  --holo-op:.42;
+  --sleeve-tint:rgba(255,250,253,.30);
+  --sleeve-bright:1.05;
+  --sleeve-edge:rgba(255,255,255,.85);
+
+  --r-sm:14px; --r-md:17px; --r-lg:24px;
+  color-scheme:light;
+}
+
+[data-theme="soda"]{
+  --stage:#ECF8FB;
+  --riser:#FFFFFF;
+  --riser2:#F5FCFD;
+  --edge:#CFEAF1;
+  --ink:#1E3A44;
+  --dim:#6C8F9A;
+  --dimmer:#9BB9C2;
+
+  --coral:#FF6FA8;
+  --iris:#4FA8E8;
+  --mint:#22BC93;
+  --amber:#EFA22F;
+  --grey:#DFEEF2;
+  --ivory:#FFFFFF;
+
+  --glow1:rgba(120,220,235,.34);
+  --glow2:rgba(255,140,190,.22);
+  --shadow:0 10px 30px rgba(80,150,175,.18);
+  --backdrop:rgba(20,60,72,.42);
+
+  --holo-blend:overlay;
+  --holo-op:.44;
+  --sleeve-tint:rgba(248,254,255,.30);
+  --sleeve-bright:1.05;
+  --sleeve-edge:rgba(255,255,255,.85);
+
+  --r-sm:14px; --r-md:17px; --r-lg:24px;
+  color-scheme:light;
+}
+
+[data-theme="arena"]{
   --stage:#0B0711;        /* arena blackout, warm-black with a violet cast */
   --riser:#16101F;        /* raised surfaces */
   --riser2:#1E1729;
@@ -18,15 +93,25 @@
   --dim:#9E90BA;
   --dimmer:#6B6084;
 
-  --coral:#FF3D71;        /* primary */
-  --iris:#7B61FF;         /* secondary */
-  --mint:#3BE0A8;         /* exact match */
-  --amber:#FFB63D;        /* close */
-  --grey:#332A44;         /* no match */
-  --ivory:#F2ECE3;        /* card stock */
+  --coral:#FF3D71;
+  --iris:#7B61FF;
+  --mint:#3BE0A8;
+  --amber:#FFB63D;
+  --grey:#332A44;
+  --ivory:#F2ECE3;
 
+  --glow1:rgba(255,61,113,.16);
+  --glow2:rgba(123,97,255,.14);
   --shadow:0 10px 34px rgba(0,0,0,.5);
-  --lift:0 2px 0 rgba(255,255,255,.05) inset;
+  --backdrop:rgba(4,2,8,.76);
+
+  --holo-blend:color-dodge;
+  --holo-op:.55;
+  --sleeve-tint:rgba(226,220,236,.12);
+  --sleeve-bright:.86;
+  --sleeve-edge:rgba(255,255,255,.55);
+
+  --r-sm:10px; --r-md:13px; --r-lg:18px;
   color-scheme:dark;
 }
 
@@ -35,8 +120,8 @@ html,body{margin:0;padding:0}
 body{
   background:
     /* one spotlight, centred, like a stage wash — not a field of blobs */
-    radial-gradient(120% 60% at 50% -18%, rgba(255,61,113,.16), transparent 62%),
-    radial-gradient(90% 50% at 50% -10%, rgba(123,97,255,.14), transparent 70%),
+    radial-gradient(120% 60% at 50% -18%, var(--glow1), transparent 62%),
+    radial-gradient(90% 50% at 50% -10%, var(--glow2), transparent 70%),
     var(--stage);
   background-attachment:fixed;
   color:var(--ink);
@@ -44,6 +129,7 @@ body{
        Roboto,"Helvetica Neue",Arial,sans-serif;
   min-height:100vh;
   -webkit-text-size-adjust:100%;
+  transition:background-color .25s ease, color .25s ease;
 }
 .kr{
   font-family:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",
@@ -95,11 +181,11 @@ h1 .dle{
 .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
 .seg{
   display:flex;background:var(--riser);border:1px solid var(--edge);
-  border-radius:13px;padding:3px;gap:2px;
+  border-radius:var(--r-md);padding:3px;gap:2px;
 }
 .seg button{
   background:transparent;border:0;color:var(--dim);cursor:pointer;
-  padding:6px 13px 7px;border-radius:10px;font:inherit;font-size:13.5px;
+  padding:6px 13px 7px;border-radius:calc(var(--r-md) - 4px);font:inherit;font-size:13.5px;
   font-weight:650;white-space:nowrap;line-height:1.15;transition:.15s;
   display:flex;flex-direction:column;align-items:center;gap:1px;
 }
@@ -112,7 +198,7 @@ h1 .dle{
 .seg button:hover:not([aria-pressed="true"]){color:var(--ink)}
 .ghost{
   background:var(--riser);border:1px solid var(--edge);color:var(--dim);
-  padding:9px 14px;border-radius:11px;cursor:pointer;font:inherit;
+  padding:9px 14px;border-radius:var(--r-md);cursor:pointer;font:inherit;
   font-size:13px;font-weight:650;transition:.15s;
 }
 .ghost:hover{color:var(--ink);border-color:var(--iris)}
@@ -123,7 +209,7 @@ h1 .dle{
 .field{flex:1;position:relative;min-width:0}
 #q{
   width:100%;background:var(--riser);border:1px solid var(--edge);
-  color:var(--ink);border-radius:13px;padding:14px 16px;font:inherit;
+  color:var(--ink);border-radius:var(--r-md);padding:14px 16px;font:inherit;
   font-size:15px;outline:none;transition:.15s;
 }
 #q:focus{border-color:var(--coral);box-shadow:0 0 0 3px rgba(255,61,113,.15)}
@@ -131,13 +217,13 @@ h1 .dle{
 #q:disabled{opacity:.45}
 .go{
   background:linear-gradient(150deg,var(--coral),var(--iris));
-  border:0;color:#fff;padding:0 22px;border-radius:13px;cursor:pointer;
+  border:0;color:#fff;padding:0 22px;border-radius:var(--r-md);cursor:pointer;
   font:inherit;font-size:15px;font-weight:750;letter-spacing:-.01em;
 }
 .go:disabled{opacity:.4;cursor:default}
 .ac{
   position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:40;
-  background:var(--riser2);border:1px solid var(--edge);border-radius:13px;
+  background:var(--riser2);border:1px solid var(--edge);border-radius:var(--r-md);
   box-shadow:var(--shadow);max-height:340px;overflow:auto;padding:5px;
 }
 .ac[hidden]{display:none}
@@ -176,7 +262,7 @@ table.grid th{
 }
 table.grid td{padding:0}
 .tile{
-  width:92px;height:64px;border-radius:10px;display:grid;place-items:center;
+  width:92px;height:64px;border-radius:var(--r-sm);display:grid;place-items:center;
   text-align:center;font-size:12.5px;font-weight:650;line-height:1.22;
   padding:5px;background:var(--grey);position:relative;overflow:hidden;
   animation:flip .4s cubic-bezier(.2,.7,.3,1) both;
@@ -248,7 +334,7 @@ table.grid td{padding:0}
 /* prism foil — only ever on the answer card */
 .holo::after{
   content:"";position:absolute;inset:0;border-radius:inherit;z-index:3;
-  pointer-events:none;mix-blend-mode:color-dodge;opacity:.55;
+  pointer-events:none;mix-blend-mode:var(--holo-blend);opacity:var(--holo-op);
   background:
     linear-gradient(115deg,
       transparent 28%, rgba(0,255,238,.42) 38%, rgba(255,0,196,.42) 46%,
@@ -282,17 +368,21 @@ table.grid td{padding:0}
   position:absolute;left:-6px;right:-6px;top:-6px;
   height:calc(var(--cover,90%) + 6px);
   border-radius:11px 11px 5px 5px;pointer-events:none;z-index:3;
-  background:linear-gradient(rgba(226,220,236,.14),rgba(226,220,236,.09));
-  backdrop-filter:blur(13px) saturate(.35) brightness(.86);
-  -webkit-backdrop-filter:blur(13px) saturate(.35) brightness(.86);
-  border:1px solid rgba(242,236,227,.16);
+  background:linear-gradient(var(--sleeve-tint),var(--sleeve-tint));
+  /* Blur is set per guess from JS via --frost, so the card sharpens a little
+     on every miss as well as sliding further out. */
+  backdrop-filter:blur(var(--frost,8px)) saturate(var(--sat,.55))
+                  brightness(var(--sleeve-bright));
+  -webkit-backdrop-filter:blur(var(--frost,8px)) saturate(var(--sat,.55))
+                  brightness(var(--sleeve-bright));
+  border:1px solid var(--sleeve-edge);
   box-shadow:0 6px 18px rgba(0,0,0,.35);
   transition:height .5s cubic-bezier(.3,.8,.35,1);
 }
 /* the sleeve lip catches the light */
 .sleeve::after{
   content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),
+  background:linear-gradient(90deg,transparent,var(--sleeve-edge),
              transparent);
 }
 .sleeve.gone{opacity:0;transition:opacity .45s ease,height .5s ease}
@@ -302,7 +392,7 @@ table.grid td{padding:0}
 
 /* ---------- Song mode ---------- */
 .player{
-  background:var(--riser);border:1px solid var(--edge);border-radius:16px;
+  background:var(--riser);border:1px solid var(--edge);border-radius:var(--r-lg);
   padding:18px;margin:18px 0 6px;box-shadow:var(--shadow);
 }
 .track{height:34px;border-radius:8px;background:#241C31;position:relative;
@@ -358,7 +448,7 @@ table.grid td{padding:0}
 .wrongs{display:flex;flex-direction:column;gap:6px;margin-top:16px}
 .wrong{
   display:flex;align-items:center;gap:11px;background:var(--riser);
-  border:1px solid var(--edge);border-radius:11px;padding:7px 12px;
+  border:1px solid var(--edge);border-radius:var(--r-md);padding:7px 12px;
   font-size:13.5px;animation:slide .28s ease both;
 }
 .wrong.skipped{opacity:.5;font-style:italic}
@@ -371,7 +461,7 @@ table.grid td{padding:0}
 /* ---------- result ---------- */
 .result{
   background:linear-gradient(160deg,var(--riser2),var(--riser));
-  border:1px solid var(--edge);border-radius:18px;padding:22px;margin-top:20px;
+  border:1px solid var(--edge);border-radius:var(--r-lg);padding:22px;margin-top:20px;
   box-shadow:var(--shadow);animation:pop .35s cubic-bezier(.2,.8,.3,1) both;
 }
 @keyframes pop{from{transform:scale(.97);opacity:0}}
@@ -402,10 +492,10 @@ table.grid td{padding:0}
 /* ---------- dialogs ---------- */
 dialog{
   border:1px solid var(--edge);background:var(--riser);color:var(--ink);
-  border-radius:18px;padding:0;max-width:530px;width:calc(100vw - 28px);
+  border-radius:var(--r-lg);padding:0;max-width:530px;width:calc(100vw - 28px);
   box-shadow:var(--shadow);
 }
-dialog::backdrop{background:rgba(4,2,8,.76)}
+dialog::backdrop{background:var(--backdrop)}
 dialog .body{padding:22px}
 dialog h2{margin:0 0 4px;font-size:20px;letter-spacing:-.03em}
 dialog h2 + .kr{color:var(--dimmer);font-size:11px;letter-spacing:.14em;
@@ -420,7 +510,7 @@ dialog .close{position:absolute;top:13px;right:14px}
 .sw.near{background:linear-gradient(155deg,#FFC964,#D68A12)}
 .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
   margin:14px 0}
-.stat{background:var(--riser2);border:1px solid var(--edge);border-radius:11px;
+.stat{background:var(--riser2);border:1px solid var(--edge);border-radius:var(--r-md);
   padding:11px;text-align:center}
 .stat b{display:block;font-size:21px;font-variant-numeric:tabular-nums;
   letter-spacing:-.03em}
@@ -430,7 +520,7 @@ dialog .close{position:absolute;top:13px;right:14px}
 .toast{
   position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
   background:var(--riser2);border:1px solid var(--edge);color:var(--ink);
-  padding:11px 18px;border-radius:12px;box-shadow:var(--shadow);
+  padding:11px 18px;border-radius:var(--r-md);box-shadow:var(--shadow);
   opacity:0;pointer-events:none;transition:.22s;z-index:99;font-size:13.5px;
 }
 .toast.on{opacity:1;transform:translate(-50%,0)}
@@ -457,3 +547,88 @@ dialog .close{position:absolute;top:13px;right:14px}
     transition-duration:.001ms !important;
   }
 }
+
+/* ================= theme switcher =================
+   Three swatches showing the actual colours rather than a sun/moon icon —
+   there are more than two themes, so a binary toggle would be a lie. */
+.themes{display:flex;gap:5px;align-items:center}
+.swatch{
+  width:22px;height:22px;border-radius:50%;cursor:pointer;padding:0;
+  border:2px solid transparent;box-shadow:0 1px 5px rgba(0,0,0,.18);
+  transition:transform .15s ease, border-color .15s ease;
+}
+.swatch:hover{transform:scale(1.14)}
+.swatch[aria-pressed="true"]{border-color:var(--coral);transform:scale(1.14)}
+.swatch.t-bubblegum{background:linear-gradient(140deg,#FFD9E8,#FF5B95)}
+.swatch.t-soda{background:linear-gradient(140deg,#CFF3FA,#4FA8E8)}
+.swatch.t-arena{background:linear-gradient(140deg,#3B2E52,#0B0711)}
+
+/* ================= endless filters ================= */
+.filters{
+  background:var(--riser);border:1px solid var(--edge);
+  border-radius:var(--r-lg);padding:13px 15px;margin:12px 0 2px;
+}
+.frow{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;
+}
+.frow:last-of-type{margin-bottom:0}
+.flab{
+  color:var(--dimmer);font-size:9.5px;font-weight:750;letter-spacing:.14em;
+  text-transform:uppercase;min-width:74px;
+}
+.chip{
+  background:var(--riser2);border:1px solid var(--edge);color:var(--dim);
+  padding:5px 11px;border-radius:999px;cursor:pointer;font:inherit;
+  font-size:12px;font-weight:650;transition:.13s;line-height:1.3;
+}
+.chip:hover{color:var(--ink);border-color:var(--iris)}
+.chip[aria-pressed="true"]{
+  background:linear-gradient(150deg,var(--coral),var(--iris));
+  color:#fff;border-color:transparent;
+}
+/* the two the user asked for by name sit apart from the long group list */
+.chip.pin[aria-pressed="true"]{box-shadow:0 2px 10px rgba(255,91,149,.35)}
+.grouplist{
+  display:flex;flex-wrap:wrap;gap:5px;margin-top:2px;
+  max-height:132px;overflow-y:auto;padding:2px;
+}
+.grouplist[hidden]{display:none}
+.count-line{
+  color:var(--dim);font-size:11.5px;margin-top:10px;
+  border-top:1px solid var(--edge);padding-top:9px;
+}
+.count-line b{color:var(--ink);font-variant-numeric:tabular-nums}
+.count-line.empty{color:var(--amber)}
+
+/* ================= volume ================= */
+.vol{display:flex;align-items:center;gap:7px;flex:none}
+.vol svg{width:17px;height:17px;color:var(--dim);flex:none}
+.vol input[type=range]{
+  -webkit-appearance:none;appearance:none;width:82px;height:5px;
+  border-radius:3px;background:var(--grey);outline:none;cursor:pointer;
+}
+.vol input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:15px;height:15px;
+  border-radius:50%;cursor:pointer;border:2px solid var(--riser);
+  background:linear-gradient(140deg,var(--coral),var(--iris));
+  box-shadow:0 1px 5px rgba(0,0,0,.25);
+}
+.vol input[type=range]::-moz-range-thumb{
+  width:13px;height:13px;border-radius:50%;cursor:pointer;
+  border:2px solid var(--riser);
+  background:linear-gradient(140deg,var(--coral),var(--iris));
+}
+@media (max-width:620px){
+  .vol input[type=range]{width:60px}
+  .flab{min-width:100%;margin-bottom:2px}
+}
+
+/* A group photocard is landscape — cropping five to nine people into a 55x85
+   portrait cuts half of them out of frame. Album inserts are shaped this way
+   for the same reason. */
+.pc.wide{aspect-ratio:85/55}
+.pc.wide .pc-photo{object-position:50% 32%}
+.pc.wide::before{height:56%}
+.pc.wide .pc-plate .pc-name{font-size:20px}
+.result .pc.wide{width:250px}
+@media (max-width:620px){ .result .pc.wide{width:200px} }

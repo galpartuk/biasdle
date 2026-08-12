@@ -312,6 +312,126 @@ if (DATA.songs.length) {
 }
 
 /* ====================================================================== */
+section("themes");
+const {THEMES, defaultFilters, passes, endlessPool, groupByName, PINNED,
+       SLEEVE_COVER, SLEEVE_FROST, SLEEVE_SAT} = G;
+eq(THEMES, ["bubblegum", "soda", "arena"], "three themes, light one first");
+
+/* Every theme must define every variable the stylesheet reads, or a switch
+   silently falls back to whatever the previous theme left behind. */
+const CSS = /<style>([\s\S]*?)<\/style>/.exec(HTML)[1];
+const used = [...new Set([...CSS.matchAll(/var\((--[a-z0-9-]+)/g)].map(m => m[1]))];
+/* Read a rule body by scanning to its braces rather than by building a regex
+   from a selector string. Escaping [ ] { } through a template literal is a
+   trap: `\[data-theme="soda"\]` in a template literal loses its backslashes and
+   becomes a character CLASS, which happily matches somewhere else entirely and
+   reported all three themes as broken. */
+function ruleBody(selectorFragment) {
+  const at = CSS.indexOf(selectorFragment);
+  if (at < 0) return null;
+  const open = CSS.indexOf("{", at);
+  const close = CSS.indexOf("}", open);
+  return (open < 0 || close < 0) ? null : CSS.slice(open + 1, close);
+}
+// --cover, --frost, --sat, --hx, --hy are set per element from JS, not per theme
+const PER_ELEMENT = new Set(["--cover", "--frost", "--sat", "--hx", "--hy"]);
+THEMES.forEach(t => {
+  const body = ruleBody(`[data-theme="${t}"]`);
+  ok(body, `theme "${t}" has a variable block`);
+  if (!body) return;
+  const defined = new Set([...body.matchAll(/(--[a-z0-9-]+)\s*:/g)].map(m => m[1]));
+  const missing = used.filter(v => !defined.has(v) && !PER_ELEMENT.has(v));
+  eq(missing, [], `theme "${t}" defines every variable the CSS reads`);
+});
+
+/* A light theme with color-dodge foil turns the photocard into a white slab. */
+const bubble = ruleBody('[data-theme="bubblegum"]');
+const arena = ruleBody('[data-theme="arena"]');
+ok(/--holo-blend:\s*overlay/.test(bubble), "light theme blends foil with overlay");
+ok(/--holo-blend:\s*color-dodge/.test(arena), "dark theme keeps color-dodge");
+ok(/--sleeve-bright:\s*1\./.test(bubble), "light theme brightens the sleeve frost");
+ok(/--sleeve-bright:\s*\./.test(arena), "dark theme darkens it");
+
+/* ====================================================================== */
+section("face reveal is gentler than it was");
+eq(SLEEVE_COVER.length, 6, "one sleeve position per guess");
+eq(SLEEVE_FROST.length, 6, "one frost level per guess");
+eq(SLEEVE_SAT.length, 6, "one saturation level per guess");
+ok(SLEEVE_FROST[0] <= 10,
+   `opening blur is gentle (${SLEEVE_FROST[0]}px, was 13px flat)`);
+ok(SLEEVE_FROST.every((v, i, a) => i === 0 || v < a[i - 1]),
+   "frost eases off monotonically");
+ok(SLEEVE_FROST[0] - SLEEVE_FROST[5] <= 6,
+   "and only eases off a little — the sleeve sliding out is still the main reveal");
+ok(SLEEVE_COVER.every((v, i, a) => i === 0 || v < a[i - 1]),
+   "the sleeve only ever retracts");
+ok(SLEEVE_SAT.every((v, i, a) => i === 0 || v > a[i - 1]),
+   "colour comes back as it retracts");
+
+/* ====================================================================== */
+section("endless filters");
+DATA.groups.forEach(g => { groupByName[g.name] = g; });
+S.mode = "song"; S.play = "endless";
+const f = defaultFilters();
+S.filters = f;
+const wholePool = MODES.song.pool().length;
+eq(endlessPool().length, wholePool, "defaults exclude nothing");
+
+const groupsIn = () => [...new Set(endlessPool().map(x => x.group))].sort();
+
+/* The two the user asked for by name, and the additive behaviour. */
+eq(PINNED, ["TWICE", "LE SSERAFIM"], "TWICE and LE SSERAFIM are the quick picks");
+PINNED.forEach(n => ok(DATA.groups.some(g => g.name === n),
+                       `quick pick "${n}" is a real group`));
+
+S.filters = Object.assign(defaultFilters(), {groups: ["TWICE"]});
+eq(groupsIn(), ["TWICE"], "one group selected -> only that group");
+const twiceOnly = endlessPool().length;
+ok(twiceOnly > 0 && twiceOnly < wholePool, `TWICE alone narrows the pool (${twiceOnly})`);
+
+S.filters = Object.assign(defaultFilters(), {groups: ["TWICE", "LE SSERAFIM"]});
+eq(groupsIn(), ["LE SSERAFIM", "TWICE"], "both selected -> both, not neither");
+ok(endlessPool().length > twiceOnly, "adding a group widens rather than narrows");
+
+S.filters = Object.assign(defaultFilters(), {tiers: [1]});
+const t1 = groupsIn();
+ok(t1.every(n => groupByName[n].tier === 1), "tier filter keeps only tier 1");
+ok(t1.length >= 5, `tier 1 still leaves a real pool (${t1.length} groups)`);
+
+S.filters = Object.assign(defaultFilters(), {gens: [5]});
+ok(groupsIn().every(n => groupByName[n].gen === 5), "generation filter holds");
+
+/* An impossible combination must fall back to everything rather than deal
+   undefined forever. */
+S.filters = Object.assign(defaultFilters(), {gens: []});
+eq(endlessPool().length, wholePool, "no generations selected -> falls back to all");
+S.filters = Object.assign(defaultFilters(), {groups: ["TWICE"], gens: [3], tiers: [3]});
+eq(endlessPool().length, wholePool, "contradictory filters -> falls back to all");
+
+/* Member-only switches */
+S.mode = "member";
+S.filters = Object.assign(defaultFilters(), {former: false});
+ok(!endlessPool().some(m => m.status === "Former member"),
+   "former members can be excluded");
+S.filters = Object.assign(defaultFilters(), {disbanded: false});
+ok(!endlessPool().some(m => groupByName[m.group].status !== "Active"),
+   "disbanded and inactive groups can be excluded");
+
+S.filters = defaultFilters();
+S.play = "daily"; S.mode = "member";
+
+/* Filters must never touch Daily — everyone has to get the same puzzle. */
+const before = dailyAnswer("member", 42).id;
+S.filters = Object.assign(defaultFilters(), {groups: ["TWICE"]});
+eq(dailyAnswer("member", 42).id, before, "filters do not affect the daily answer");
+S.filters = defaultFilters();
+
+/* ====================================================================== */
+section("volume");
+ok(typeof G.loadVolume === "function", "volume is persisted");
+eq(G.loadVolume(), 0.8, "defaults to 80% with nothing stored");
+
+/* ====================================================================== */
 console.log(`\n${pass} passed, ${fail} failed`);
 if (fail) {
   console.log("\nFAILURES:");

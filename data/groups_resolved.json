@@ -4,19 +4,22 @@
   "company": "RBW",
   "debut": "2014-06-18",
   "gen": 3,
+  "tier": 2,
   "status": "ok",
   "wd": "Q17278068",
   "aka": [
    "마마무"
   ],
   "wd_label": "Mamamoo",
-  "wd_members": 4
+  "wd_members": 4,
+  "image": "Mamamoo in 2023.png"
  },
  {
   "name": "Red Velvet",
   "company": "SM Entertainment",
   "debut": "2014-08-01",
   "gen": 3,
+  "tier": 2,
   "status": "ok",
   "wd": "Q17466114",
   "aka": [
@@ -24,13 +27,15 @@
    "RV"
   ],
   "wd_label": "Red Velvet",
-  "wd_members": 5
+  "wd_members": 5,
+  "image": "Red Velvet Music Bank Mini Fan Meeting June 2024.jpg"
  },
  {
   "name": "GFRIEND",
   "company": "Source Music",
   "debut": "2015-01-15",
   "gen": 3,
+  "tier": 2,
   "status": "ok",
   "wd": "Q18733030",
   "aka": [
@@ -39,13 +44,15 @@
    "Gfriend"
   ],
   "wd_label": "GFriend",
-  "wd_members": 6
+  "wd_members": 6,
+  "image": "GFriend at Incheon International Airport, January 2025.jpg"
  },
  {
   "name": "OH MY GIRL",
   "company": "WM Entertainment",
   "debut": "2015-04-21",
   "gen": 3,
+  "tier": 2,
   "status": "ok",
   "wd": "Q19794854",
   "aka": [
@@ -53,26 +60,30 @@
    "OMG"
   ],
   "wd_label": "Oh My Girl",
-  "wd_members": 8
+  "wd_members": 8,
+  "image": "Oh My Girl at Golden Hourglass showcase on 250723 (1).png"
  },
  {
   "name": "TWICE",
   "company": "JYP Entertainment",
   "debut": "2015-10-20",
   "gen": 3,
+  "tier": 1,
   "status": "ok",
   "wd": "Q20645861",
   "aka": [
    "트와이스"
   ],
   "wd_label": "Twice",
-  "wd_members": 9
+  "wd_members": 9,
+  "image": "260618 TWICE.png"
  },
  {
   "name": "WJSN",
   "company": "Starship Entertainment",
   "debut": "2016-02-25",
   "gen": 3,
+  "tier": 3,
   "status": "ok",
   "wd": "Q21964258",
   "aka": [
@@ -81,13 +92,15 @@
    "Cosmic Girl"
   ],
   "wd_label": "WJSN",
-  "wd_members": 13
+  "wd_members": 13,
+  "image": "170701 우주소녀 신촌 게릴라.jpg"
  },
  {
   "name": "BLACKPINK",
   "company": "YG Entertainment",
   "debut": "2016-08-08",
   "gen": 3,
+  "tier": 1,
   "status": "ok",
   "wd": "Q25056945",
   "aka": [
@@ -95,13 +108,15 @@
    "BP"
   ],
   "wd_label": "Blackpink",
-  "wd_members": 4
+  "wd_members": 4,
+  "image": "Blackpink Pink Carpet Event 4.jpg"
  },
  {
   "name": "Dreamcatcher",
   "company": "Dreamcatcher Company",
   "debut": "2017-01-13",
   "gen": 3,
+  "tier": 2,
   "status": "ok",
   "wd": "Q20684822",
   "aka": [
@@ -109,13 +124,15 @@
    "DC"
   ],
   "wd_label": "Dreamcatcher",
-  "wd_members": 7
+  "wd_members": 7,
+  "image": "190426 드림캐쳐 송도 불꽃축제.jpg"
  },
  {
   "name": "fromis_9",
   "company": "Pledis Entertainment",
   "debut": "2018-01-24",
   "gen": 3,
+  "tier": 2,
   "status": "ok",
   "wd": "Q41398331",
   "aka": [
@@ -124,13 +141,15 @@
    "fromis"
   ],
   "wd_label": "Fromis 9",
-  "wd_members": 9
+  "wd_members": 9,
+  "image": "181120 fromis 9 02.jpg"
  },
  {
   "name": "(G)I-DLE",
   "company": "Cube Entertainment",
   "debut": "2018-05-02",
   "gen": 3,
+  "tier": 1,
   "status": "ok",
   "wd": "Q51885404",
   "aka": [
@@ -141,13 +160,15 @@
    "idle"
   ],
   "wd_label": "I-dle",
-  "wd_members": 6
+  "wd_members": 6,
+  "image": "20241130 (G)I-dle MMA 2024 Red Carpet.jpg"
  },
  {
   "name": "LOONA",
   "company": "Blockberry Creative",
   "debut": "2018-08-20",
   "gen": 3,
+  "tier": 2,
   "status": "ok",
   "wd": "Q28025953",
   "aka": [
@@ -156,52 +177,60 @@
    "LOOΠΔ"
   ],
   "wd_label": "Loona",
-  "wd_members": 12
+  "wd_members": 12,
+  "image": "180820 Loona at their debut showcase (1).png"
  },
  {
   "name": "ITZY",
   "company": "JYP Entertainment",
   "debut": "2019-02-12",
   "gen": 4,
+  "tier": 1,
   "status": "ok",
   "wd": "Q60732823",
   "aka": [
    "있지"
   ],
   "wd_label": "Itzy",
-  "wd_members": 5
+  "wd_members": 5,
+  "image": "Itzy going to a Music Bank recording on August 8, 2019.png"
  },
  {
   "name": "EVERGLOW",
   "company": "Yuehua Entertainment",
   "debut": "2019-03-18",
   "gen": 4,
+  "tier": 3,
   "status": "ok",
   "wd": "Q62067345",
   "aka": [
    "에버글로우"
   ],
   "wd_label": "Everglow",
-  "wd_members": 6
+  "wd_members": 6,
+  "image": "Everglow at Music Bank on April 12, 2019.png"
  },
  {
   "name": "Rocket Punch",
   "company": "Woollim Entertainment",
   "debut": "2019-08-07",
   "gen": 4,
+  "tier": 3,
   "status": "ok",
   "wd": "Q65771078",
   "aka": [
    "로켓펀치"
   ],
   "wd_label": "Rocket Punch",
-  "wd_members": 6
+  "wd_members": 6,
+  "image": "Rocket Punch BRAND CUSTOMER LOYALTY AWARDS May 2024.jpg"
  },
  {
   "name": "STAYC",
   "company": "High Up Entertainment",
   "debut": "2020-11-12",
   "gen": 4,
+  "tier": 2,
   "status": "ok",
   "wd": "Q101541493",
   "aka": [
@@ -209,13 +238,15 @@
    "Stayc"
   ],
   "wd_label": "STAYC",
-  "wd_members": 6
+  "wd_members": 6,
+  "image": "STAYC in Seattle.jpg"
  },
  {
   "name": "aespa",
   "company": "SM Entertainment",
   "debut": "2020-11-17",
   "gen": 4,
+  "tier": 1,
   "status": "ok",
   "wd": "Q100877982",
   "aka": [
@@ -224,26 +255,30 @@
    "AESPA"
   ],
   "wd_label": "?",
-  "wd_members": 4
+  "wd_members": 4,
+  "image": "Aespa 01.jpg"
  },
  {
   "name": "Weeekly",
   "company": "IST Entertainment",
   "debut": "2020-06-30",
   "gen": 4,
+  "tier": 3,
   "status": "ok",
   "wd": "Q65046002",
   "aka": [
    "위클리"
   ],
   "wd_label": "Weeekly",
-  "wd_members": 7
+  "wd_members": 7,
+  "image": "위클리 단체.jpg"
  },
  {
   "name": "PURPLE KISS",
   "company": "RBW",
   "debut": "2021-03-15",
   "gen": 4,
+  "tier": 3,
   "status": "ok",
   "wd": "Q97780109",
   "aka": [
@@ -251,13 +286,15 @@
    "Purple Kiss"
   ],
   "wd_label": "Purple Kiss",
-  "wd_members": 7
+  "wd_members": 7,
+  "image": "PURPLE KISS 211001.jpg"
  },
  {
   "name": "Billlie",
   "company": "Mystic Story",
   "debut": "2021-11-10",
   "gen": 4,
+  "tier": 3,
   "status": "ok",
   "wd": "Q108888399",
   "aka": [
@@ -265,26 +302,30 @@
    "Billie"
   ],
   "wd_label": "Billlie‎",
-  "wd_members": 7
+  "wd_members": 7,
+  "image": "Billlie on March 8, 2022.jpg"
  },
  {
   "name": "IVE",
   "company": "Starship Entertainment",
   "debut": "2021-12-01",
   "gen": 4,
+  "tier": 1,
   "status": "ok",
   "wd": "Q109375061",
   "aka": [
    "아이브"
   ],
   "wd_label": "Ive",
-  "wd_members": 6
+  "wd_members": 6,
+  "image": "Ive at the 2026 Golden Disc Awards.png"
  },
  {
   "name": "Kep1er",
   "company": "WAKEONE",
   "debut": "2022-01-03",
   "gen": 4,
+  "tier": 2,
   "status": "ok",
   "wd": "Q109077000",
   "aka": [
@@ -293,13 +334,15 @@
    "Kep1er"
   ],
   "wd_label": "Kep1er",
-  "wd_members": 7
+  "wd_members": 7,
+  "image": "Kep1er at Brand Customer Loyalty Awards.jpg"
  },
  {
   "name": "NMIXX",
   "company": "JYP Entertainment",
   "debut": "2022-02-22",
   "gen": 4,
+  "tier": 2,
   "status": "ok",
   "wd": "Q109307762",
   "aka": [
@@ -307,13 +350,15 @@
    "Nmixx"
   ],
   "wd_label": "Nmixx",
-  "wd_members": 7
+  "wd_members": 7,
+  "image": "NMIXX in Oakland.jpg"
  },
  {
   "name": "LE SSERAFIM",
   "company": "Source Music",
   "debut": "2022-05-02",
   "gen": 4,
+  "tier": 1,
   "status": "ok",
   "wd": "Q111381707",
   "aka": [
@@ -322,13 +367,15 @@
    "Le Sserafim"
   ],
   "wd_label": "Le Sserafim",
-  "wd_members": 6
+  "wd_members": 6,
+  "image": "르세라핌(LE SSERAFIM) 뮤직뱅크 출근길, 비주얼 파라다이스 LE SSERAFIM Music Bank (4K) 03.png"
  },
  {
   "name": "NewJeans",
   "company": "ADOR",
   "debut": "2022-07-22",
   "gen": 4,
+  "tier": 1,
   "status": "ok",
   "wd": "Q113189277",
   "aka": [
@@ -337,13 +384,15 @@
    "NJZ"
   ],
   "wd_label": "New Jeans",
-  "wd_members": 5
+  "wd_members": 5,
+  "image": "260611 NewJeans.png"
  },
  {
   "name": "tripleS",
   "company": "MODHAUS",
   "debut": "2023-02-13",
   "gen": 5,
+  "tier": 2,
   "status": "ok",
   "wd": "Q115099831",
   "aka": [
@@ -352,13 +401,15 @@
    "SSS"
   ],
   "wd_label": "TripleS",
-  "wd_members": 24
+  "wd_members": 24,
+  "image": "TripleS 250512.jpg"
  },
  {
   "name": "KISS OF LIFE",
   "company": "S2 Entertainment",
   "debut": "2023-07-05",
   "gen": 5,
+  "tier": 2,
   "status": "ok",
   "wd": "Q118314702",
   "aka": [
@@ -366,13 +417,15 @@
    "KIOF"
   ],
   "wd_label": "Kiss of Life",
-  "wd_members": 4
+  "wd_members": 4,
+  "image": "KISS OF LIFE at Music Bank (4K) 20240705 01.png"
  },
  {
   "name": "BABYMONSTER",
   "company": "YG Entertainment",
   "debut": "2024-04-01",
   "gen": 5,
+  "tier": 2,
   "status": "ok",
   "wd": "Q115967938",
   "aka": [
@@ -381,13 +434,15 @@
    "BAMO"
   ],
   "wd_label": "Babymonster",
-  "wd_members": 7
+  "wd_members": 7,
+  "image": "BABYMONSTER in Seattle.jpg"
  },
  {
   "name": "ILLIT",
   "company": "BELIFT LAB",
   "debut": "2024-03-25",
   "gen": 5,
+  "tier": 2,
   "status": "ok",
   "wd": "Q122179261",
   "aka": [
@@ -395,27 +450,15 @@
    "Illit"
   ],
   "wd_label": "Illit",
-  "wd_members": 5
- },
- {
-  "name": "KATSEYE",
-  "company": "HYBE x Geffen",
-  "debut": "2024-06-28",
-  "gen": 5,
-  "status": "ok",
-  "wd": "Q123480242",
-  "aka": [
-   "캣아이",
-   "Kats Eye"
-  ],
-  "wd_label": "Katseye",
-  "wd_members": 6
+  "wd_members": 5,
+  "image": "아일릿 (ILLIT) 가요광장 출근길 (1).jpg"
  },
  {
   "name": "MEOVV",
   "company": "THEBLACKLABEL",
   "debut": "2024-09-06",
   "gen": 5,
+  "tier": 2,
   "status": "ok",
   "wd": "Q130084175",
   "aka": [
@@ -423,13 +466,15 @@
    "Meow"
   ],
   "wd_label": "Meovv",
-  "wd_members": 5
+  "wd_members": 5,
+  "image": "Meovv 250512.jpg"
  },
  {
   "name": "izna",
   "company": "WAKEONE",
   "debut": "2024-11-25",
   "gen": 5,
+  "tier": 2,
   "status": "ok",
   "wd": "Q127162707",
   "aka": [
@@ -437,13 +482,15 @@
    "IZNA"
   ],
   "wd_label": "Izna",
-  "wd_members": 7
+  "wd_members": 7,
+  "image": "Izna 250930.jpg"
  },
  {
   "name": "Hearts2Hearts",
   "company": "SM Entertainment",
   "debut": "2025-02-24",
   "gen": 5,
+  "tier": 2,
   "status": "ok",
   "wd": "Q131746784",
   "aka": [
@@ -452,6 +499,7 @@
    "H2H"
   ],
   "wd_label": "Hearts2Hearts",
-  "wd_members": 8
+  "wd_members": 8,
+  "image": "H2H HMA26.jpg"
  }
 ]

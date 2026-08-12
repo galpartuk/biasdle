@@ -100,9 +100,10 @@ def score(ent, g):
                if isinstance(v, dict) and "id" in v]
     reasons.append(f"P527={len(members)}")
 
-    # The K-pop/Korea signal is evidence, not a requirement: KATSEYE is a
-    # HYBE group typed as US/pop on Wikidata. An unambiguous "girl group"
-    # type plus an exact name match is enough on its own.
+    # The K-pop/Korea signal is evidence, not a requirement. Some girl groups
+    # are typed as US/pop on Wikidata rather than Korean — a HYBE x Geffen act
+    # is what first forced this — so an unambiguous "girl group" type plus an
+    # exact name match is enough on its own.
     strong_type = any(t in ("Q641066", "Q11446438", "Q7623897") for t in types)
     exact_name = norm(wdapi.label(ent)) == norm(g["name"]) or any(
         norm(wdapi.label(ent)) == norm(a) for a in g.get("aka", []))
@@ -153,9 +154,15 @@ for g in GROUPS:
             best = (qid, lbl, n_members, nm)
 
     if best:
-        print(f"  -> CHOSE {best[0]} ({best[1]}, {best[2]} members)")
+        # P18 while we have the entity in hand — the group grid and its result
+        # card want a picture too, and every group on the roster has one.
+        ent = ents.get(best[0], {})
+        img = next((v for v in wdapi.values(ent, "P18") if isinstance(v, str)),
+                   None)
+        print(f"  -> CHOSE {best[0]} ({best[1]}, {best[2]} members)"
+              f"{'' if img else '  [no P18 image]'}")
         results.append(dict(g, wd=best[0], wd_label=best[1],
-                            wd_members=best[2], status="ok"))
+                            wd_members=best[2], image=img, status="ok"))
     else:
         print("  -> UNRESOLVED")
         unresolved.append(name)

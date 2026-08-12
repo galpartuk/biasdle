@@ -197,7 +197,7 @@ def build_groups(groups, members):
             parent=PARENT.get(g["company"], g["company"]), gen=g["gen"],
             debut=int(g["debut"][:4]), debut_full=g["debut"],
             size=len(mem), foreign=foreign, kr=hangul_of(g),
-            tier=g.get("tier", 3),
+            tier=g.get("tier", 3), img=g.get("image"),
             status={"active": "Active", "disbanded": "Disbanded",
                     "inactive": "Inactive"}[g["status"]],
             search=searchable(g["name"], *(g.get("aka") or [])),
@@ -369,7 +369,8 @@ def main():
     from roster import GROUPS as HAND_GROUPS
     resolved = load("groups_resolved.json")
     hand_by = {g["name"]: g for g in HAND_GROUPS}
-    groups_meta = [dict(hand_by[g["name"]], **{k: g[k] for k in ("wd",)})
+    groups_meta = [dict(hand_by[g["name"]],
+                        **{k: g.get(k) for k in ("wd", "image")})
                    for g in resolved if g["name"] in hand_by]
     groups_by_name = {g["name"]: g for g in groups_meta}
 

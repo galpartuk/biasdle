@@ -122,7 +122,6 @@ SONGS = {
         "Magnetic", "Lucky Girl Syndrome", "Cherish (My Love)", "Tick-Tack",
         "Almond Chocolate", "Billyeoon Goyangi (Do the Dance)",
     ],
-    "KATSEYE": ["Debut", "Touch", "Gnarly", "Gabriela"],
     "MEOVV": ["MEOW", "TOXIC", "HANDS UP", "BURNING UP"],
     "izna": ["IZNA", "SIGN", "BEEP"],
     "Hearts2Hearts": ["The Chase", "Style", "FOCUS"],
