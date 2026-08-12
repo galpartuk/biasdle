@@ -1,5 +1,7 @@
 # BIASDLE
 
+**Play: https://galpartuk.github.io/biasdle/**
+
 A daily guessing game about K-pop girl groups, in the shape of
 [dragonballdle](https://github.com/galpartuk/dragonballdle) and
 [digimondle](https://github.com/galpartuk/digimondle). Named for the fandom
@@ -14,10 +16,15 @@ Four puzzles, each with a Daily and an Endless mode:
 | **Face** 얼굴 | who the photocard shows | the card slides out of its sleeve | 6 |
 | **Song** 노래 | the title track playing | 1s → 2 → 4 → 7 → 11 → 16 | 6 |
 
-Everything ships in one self-contained `index.html` (~346 KB). Portraits and
+Everything ships in one self-contained `index.html` (~361 KB). Portraits and
 audio are the only things fetched at runtime.
 
-**Content:** 223 members across 32 groups, 273 title tracks, 3rd–5th generation.
+**Content:** 217 members across 31 groups, 269 title tracks, 3rd–5th generation.
+
+Three colour themes (Bubblegum, Soda, Arena), a volume slider on Song mode, and
+filters that narrow Endless by generation, fame tier or group — with TWICE and
+LE SSERAFIM pinned as quick picks. Selections are additive: press both and you
+get both. Filters never touch Daily; everyone gets the same puzzle.
 
 ---
 
@@ -106,13 +113,13 @@ decide it. Over 365 days:
 
 | | groups | days | per group |
 |---|---|---|---|
-| tier 1 | 8 | 155 | ~19 |
-| tier 2 | 18 | 180 | ~10 |
-| tier 3 | 6 | 30 | 5 |
+| tier 1 | 8 | ~155 | ~19 |
+| tier 2 | 17 | ~180 | ~10 |
+| tier 3 | 6 | ~30 | ~5 |
 
 **Daily is the shop window; Endless plays the whole pool.** There is no
 guarantee that every member appears in a given year — reserving one slot each
-would eat 223 of the 365 days and there'd be nothing left to weight with.
+would eat 217 of the 365 days and there'd be nothing left to weight with.
 Repeats are always at least 14 days apart, and every group appears at some
 point.
 
@@ -182,6 +189,21 @@ set.
   amount of everything; a sleeve hands over a real band of the photo per guess.
 - Hangul appears as micro-type throughout — it is real content (the group's
   Korean name, from `roster.py`), not decoration.
+- A **group** card is landscape (85:55). Cropping nine people into a portrait
+  photocard cuts half of them out of frame; album inserts are shaped this way
+  for the same reason.
+
+### Themes
+
+Three, switchable from the swatches in the header and remembered per browser.
+Every value that differs between them is a CSS variable, and a test asserts each
+theme defines all of them — a theme missing one silently inherits whatever the
+previous theme left behind.
+
+Light themes need more than inverted colours. Prism foil on `color-dodge` blows
+a pale photocard out to flat white, so light themes blend with `overlay`; the
+sleeve frost has to brighten rather than darken; and the corner radii open up,
+because "cute" is carried by roundness as much as by hue.
 
 ---
 
@@ -192,7 +214,7 @@ python build/resolve_groups.py    # roster names -> verified Wikidata QIDs
 python build/fetch_members.py     # QIDs -> members + birth/nationality/portrait
 python build/fetch_previews.py    # songs.py -> Deezer track ids + preview urls
 python build/build.py             # merge + overrides + theme -> index.html
-node   web/test_logic.js          # 204 assertions against the built file
+node   web/test_logic.js          # 240 assertions against the built file
 ```
 
 Every fetch caches to `data/`, so re-running costs no network. Delete
@@ -223,6 +245,13 @@ character.
   Members column for the whole group.
 - **Two CSS rules cannot share one pseudo-element.** `.pc::after` and
   `.holo::after` are the same box; the later rule simply replaces the earlier.
+- **Don't build a CSS selector regex out of a template literal.** `` `\[data-theme="x"\]` ``
+  loses its backslashes and becomes a character *class*, which matches somewhere
+  else entirely. A test written that way reported all three themes as broken.
+  Scan to the braces instead.
+- **Group images had to be asked for separately.** `fetch_members.py` reads P18
+  for members only, so Group mode shipped with no art at all until
+  `resolve_groups.py` started capturing the group's own P18.
 
 ---
 
