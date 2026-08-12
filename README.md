@@ -193,6 +193,43 @@ set.
   photocard cuts half of them out of frame; album inserts are shaped this way
   for the same reason.
 
+### Photos
+
+Portraits come from Wikidata `P18`, which is whatever an editor picked for an
+infobox: press shots, airport departures, red carpets. `build/fetch_photos.py`
+adds **stage photography** on top, from Commons.
+
+`P373` gives each subject a Commons category and CirrusSearch's `deepcat:`
+expands the whole tree server-side — a `categorymembers` crawl misses a level,
+because Commons nests these as `X` / `X by year` / `X in 2019` / `X at
+Coachella 2019`. Classification reads filename, the file's own categories and
+its description; filenames alone say nothing when the convention is Korean and
+date-prefixed (`170923 마마무 04.jpg`). Ranking is by **aspect ratio**, which is
+the signal that actually matters: a stage keyword tells you the file is from a
+stage *event*, orientation tells you whether the face is big enough to
+recognise.
+
+| | with stage photos |
+|---|---|
+| groups | 29 / 31 |
+| members | 126 / 217 |
+
+Up to 12 per subject, so a repeat shows a different shot. Daily indexes by day
+so everyone sees the same photo; Endless varies.
+
+**The gap is not random.** It falls on the rookie and HYBE rosters — tripleS,
+Billlie, Weeekly, PURPLE KISS, NMIXX and Kep1er are almost entirely uncovered,
+and NewJeans has one usable group photo. Commons simply has no performance
+photos of them, and relaxing the filter to fill the gap just readmits fansigns
+and arrivals, which is the problem being solved.
+
+Everything falls back through `onerror`: stage photo → P18 portrait → the next
+stage photo. Filename lists rot as Commons renames and deletes files; P18 is
+maintained by editors.
+
+Licences are CC BY / CC BY-SA / CC0 / PD throughout — the same obligations the
+P18 images already carried.
+
 ### Themes
 
 Three, switchable from the swatches in the header and remembered per browser.
@@ -213,8 +250,9 @@ because "cute" is carried by roundness as much as by hue.
 python build/resolve_groups.py    # roster names -> verified Wikidata QIDs
 python build/fetch_members.py     # QIDs -> members + birth/nationality/portrait
 python build/fetch_previews.py    # songs.py -> Deezer track ids + preview urls
+python build/fetch_photos.py      # Commons stage photos (optional, ~20 min)
 python build/build.py             # merge + overrides + theme -> index.html
-node   web/test_logic.js          # 240 assertions against the built file
+node   web/test_logic.js          # 252 assertions against the built file
 ```
 
 Every fetch caches to `data/`, so re-running costs no network. Delete
@@ -249,6 +287,10 @@ character.
   loses its backslashes and becomes a character *class*, which matches somewhere
   else entirely. A test written that way reported all three themes as broken.
   Scan to the braces instead.
+- **A group card kept showing one member.** `deepcat` descends into member
+  categories, and filtering on categories alone let through
+  `...concert 03 Yeji.jpg` and `...승희 (10).jpg`, which name a member only in
+  the filename. Fold hyphens too, or our `Miyeon` misses `Cho Mi-yeon`.
 - **Group images had to be asked for separately.** `fetch_members.py` reads P18
   for members only, so Group mode shipped with no art at all until
   `resolve_groups.py` started capturing the group's own P18.
