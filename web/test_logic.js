@@ -312,8 +312,14 @@ eq((DATA.schedules.image || []).filter(id => !imgPool.has(id)), [],
   ok(perGroup(1) > perGroup(2) && perGroup(2) > perGroup(3),
      `${mode}: tier 1 outranks tier 2 outranks tier 3 per group ` +
      `(${perGroup(1).toFixed(1)} / ${perGroup(2).toFixed(1)} / ${perGroup(3).toFixed(1)} days)`);
-  ok(perGroup(1) >= perGroup(3) * 2.5,
-     `${mode}: a tier-1 group gets at least 2.5x a tier-3 group's days`);
+  /* Song mode cannot reach 2.5x. The daily song pool is the curated title
+     tracks, and the 21-day no-repeat rule caps any one artist at about 17
+     days a year — tier 1 is already at that ceiling, so the ratio is bounded
+     by the spacing rule rather than by the weights. */
+  const floor = mode === "song" ? 1.5 : 2.5;
+  ok(perGroup(1) >= perGroup(3) * floor,
+     `${mode}: a tier-1 group gets at least ${floor}x a tier-3 group's days ` +
+     `(${(perGroup(1) / perGroup(3)).toFixed(2)}x)`);
 });
 
 /* ====================================================================== */
@@ -402,6 +408,11 @@ ok(SLEEVE_SAT.every((v, i, a) => i === 0 || v > a[i - 1]),
 /* ====================================================================== */
 section("endless filters");
 DATA.groups.forEach(g => { groupByName[g.name] = g; });
+// Mirror init(): a soloist owns her own tracks, so she needs an entry too.
+DATA.members.filter(m => m.group === "Soloist").forEach(m => {
+  groupByName[m.name] = {name: m.name, gen: m.gen, tier: m.tier,
+                         status: "Active", kr: m.kr, soloist: true};
+});
 S.mode = "song"; S.play = "endless";
 const f = defaultFilters();
 S.filters = f;
@@ -606,9 +617,12 @@ ok(DATA.songs.length > 1000,
 eq(DATA.songs.filter(s => !s.track).map(s => s.group + " / " + s.title), [],
    "every track has a Deezer id to resolve at play time");
 
-/* Album art is rebuilt client-side from the cover hash. */
-const badArt = DATA.songs.filter(s => s.art && !/^https:\/\//.test(s.art));
-eq(badArt.map(s => s.title), [], "album art urls are absolute https");
+/* Album art is stored as Deezer's cover hash and the URL is rebuilt in the
+   page — 3,300 full URLs would be a third of a megabyte of duplication. */
+const badArt = DATA.songs.filter(s => s.art && !/^[0-9a-f]{32}$/.test(s.art));
+eq(badArt.slice(0, 6).map(s => s.title + ": " + s.art), [],
+   "album art is stored as a bare cover hash");
+ok(DATA.songs.filter(s => s.art).length > 500, "most tracks have cover art");
 
 /* Daily must stay on title tracks — a shared daily puzzle built on album cuts
    nobody has heard would be unfair. Endless is where the deep cuts live. */

@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#FFF1F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0711" media="(prefers-color-scheme: dark)">
 <title>BIASDLE — a daily K-pop girl group puzzle</title>
 <meta name="description" content="Four daily K-pop girl group puzzles: name the idol, the group, the face or the song.">
 <style>
@@ -169,6 +173,17 @@ const norm = s => String(s||"").toLowerCase()
   .normalize("NFKD").replace(/[̀-ͯ]/g,"")
   .replace(/[^a-z0-9가-힣]/g,"");
 
+/* Cover art is stored as Deezer's 32-character hash; the URL is 85 characters
+   and there are 3,300 of them. */
+const ART = h => h
+  ? "https://e-cdns-images.dzcdn.net/images/cover/" + h + "/500x500-000000-80-0-0.jpg"
+  : "";
+/* A song's Korean name, tier and generation belong to its artist, so they are
+   read from the group rather than copied onto every track. */
+function ownerOf(item){
+  return groupByName[item.group] || null;
+}
+
 function commons(file, width){
   if(!file) return "";
   return "https://commons.wikimedia.org/wiki/Special:FilePath/"
@@ -203,7 +218,7 @@ function imgTag(item, cls, width, alt){
 }
 
 function thumbFor(item){
-  if(MODE()==="song") return item.art||"";
+  if(MODE()==="song") return ART(item.art);
   const pick = photoOf(item, photoSeed());
   return pick ? commons(pick,90) : "";
 }
@@ -234,9 +249,14 @@ const MAXG = () => CFG().max;
 const THEMES = ["bubblegum", "soda", "arena"];
 const THEME_KEY = "biasdle.theme";
 
+const THEME_BG = {bubblegum:"#FFF1F7", soda:"#ECF8FB", arena:"#0B0711"};
 function applyTheme(name){
   const t = THEMES.includes(name) ? name : THEMES[0];
   document.documentElement.setAttribute("data-theme", t);
+  // Colours the phone's status bar to match, instead of leaving a white strip
+  // above a dark page.
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m =>
+    m.setAttribute("content", THEME_BG[t]));
   try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
   document.querySelectorAll(".swatch").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.theme === t)));
@@ -319,8 +339,9 @@ function passes(item, f){
   const g = groupByName[item.group || item.name];
   // Soloists carry their own generation and tier — there is no group to read
   // them from — so prefer the item's own fields and fall back to the group's.
-  const gen  = item.gen  != null ? item.gen  : (g ? g.gen  : null);
-  const tier = item.tier != null ? item.tier : (g ? g.tier : null);
+  const own  = g || groupByName[item.group];
+  const gen  = item.gen  != null ? item.gen  : (own ? own.gen  : null);
+  const tier = item.tier != null ? item.tier : (own ? own.tier : null);
   if(gen  != null && f.gens.indexOf(gen)   < 0) return false;
   if(tier != null && f.tiers.indexOf(tier) < 0) return false;
   if(!f.disbanded && g && g.status !== "Active") return false;
@@ -876,7 +897,7 @@ function factsFor(a){
 function photocardHTML(a){
   if(S.mode==="song")
     return a.art
-      ? `<img class="sleeve-art holo" src="${esc(a.art)}" alt="">` : "";
+      ? `<img class="sleeve-art holo" src="${esc(ART(a.art))}" alt="">` : "";
   if(!a.img) return "";
   const isGroup = S.mode==="group";
   const kr = a.kr ? `<div class="pc-kr kr">${esc(a.kr)}</div>` : "";
@@ -897,7 +918,8 @@ function resultHTML(){
   const title = S.mode==="song" ? a.title : (a.display||a.name);
   const sub   = S.mode==="song" ? a.group
               : S.mode==="group" ? a.company : a.group;
-  const krLine = a.kr ? ` <span class="kr">${esc(a.kr)}</span>` : "";
+  const kr = a.kr || (ownerOf(a) || {}).kr;
+  const krLine = kr ? ` <span class="kr">${esc(kr)}</span>` : "";
   const facts = factsFor(a).map(([k,v])=>
     `<span class="fact"><b>${esc(k)}</b>${esc(v)}</span>`).join("");
   return `<div class="result">
@@ -1108,8 +1130,20 @@ function wireHolo(){
   });
 }
 
+/* The right-hand fade means "there is more to scroll". Once there isn't, it
+   should stop lying. */
+function wireGridScroll(){
+  const w = document.querySelector(".gridwrap");
+  if(!w) return;
+  const sync = () => w.classList.toggle(
+    "at-end", w.scrollLeft + w.clientWidth >= w.scrollWidth - 2);
+  w.onscroll = sync;
+  sync();
+}
+
 function wire(){
   wireHolo();
+  wireGridScroll();
   const play=$("#btn-play");
   if(play){
     play.onclick=toggleAudio;
@@ -1147,6 +1181,12 @@ function init(){
   S.volume = loadVolume();
   S.filters = loadFilters();
   DATA.groups.forEach(g => { groupByName[g.name] = g; });
+  // Soloists are filed under their own name, so their tracks have no group to
+  // read a generation or tier from. Register them as their own owner.
+  DATA.members.filter(m => m.group === "Soloist").forEach(m => {
+    groupByName[m.name] = {name:m.name, gen:m.gen, tier:m.tier,
+                           status:"Active", kr:m.kr, soloist:true};
+  });
   ["member","group","image","song"].forEach(m=>
     $("#m-"+m).onclick=()=>setMode(m));
   ["daily","endless"].forEach(p=>

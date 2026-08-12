@@ -662,3 +662,93 @@ dialog .close{position:absolute;top:13px;right:14px}
   .result .sleeve-art{width:180px}
   .result .pc.wide{width:250px}
 }
+
+/* ================= MOBILE =================
+ * Fixes for things that are actually broken on a phone, not a blanket
+ * shrink-everything pass.
+ */
+
+/* iOS zooms the whole page when a focused input's font is under 16px, and the
+   layout never recovers. This is the single most disruptive mobile bug here. */
+#q{font-size:16px}
+
+/* Address-bar collapse makes 100vh taller than the visible viewport, so a
+   fixed 100vh leaves a dead strip you can scroll into. */
+@supports (height:100dvh){ body{min-height:100dvh} }
+
+/* Nothing may push the page sideways; the grid scrolls inside its own box. */
+html,body{overflow-x:hidden}
+.gridwrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  /* a soft edge, so it reads as "there is more" rather than as a cut-off */
+  -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 22px),transparent);
+  mask-image:linear-gradient(90deg,#000 calc(100% - 22px),transparent);
+}
+.gridwrap.at-end{-webkit-mask-image:none;mask-image:none}
+
+@media (max-width:760px){
+  /* The name column stays put while the eight fact columns scroll past it —
+     otherwise you lose track of whose row you are reading. */
+  table.grid td:first-child,
+  table.grid th:first-child{
+    position:sticky;left:0;z-index:2;
+    background:var(--stage);
+  }
+  table.grid td:first-child .tile{box-shadow:6px 0 10px -8px rgba(0,0,0,.5)}
+
+  .wrap{padding:14px 12px 84px}
+  .masthead{gap:10px;margin-bottom:16px}
+  .tag{display:none}          /* the strapline is the first thing to go */
+
+  /* Thumb-sized targets. 44px is the floor Apple and Google both use. */
+  .seg button{min-height:44px;padding:5px 12px}
+  .ghost,.skip{min-height:44px}
+  .chip{min-height:36px;padding:7px 13px}
+  .iconbtn{width:42px;height:42px}
+  .swatch{width:26px;height:26px}
+  .go{min-height:48px}
+  #q{padding:14px}
+
+  /* Suggestions get the full width and enough room to actually pick from. */
+  .ac{max-height:min(56vh,420px)}
+  .ac .opt{padding:10px}
+  .ac .thumb{width:36px;height:48px}
+
+  /* The player controls stack rather than squeezing to nothing. */
+  .playrow{flex-wrap:wrap;gap:10px}
+  .playinfo{order:3;flex-basis:100%;min-width:0}
+  .vol{order:2;margin-left:auto}
+  .skip{order:4;flex-basis:100%}
+  .track{height:42px}
+
+  .filters{padding:11px 12px}
+  .grouplist{max-height:150px}
+  .result{padding:16px}
+  .result-inner{gap:14px}
+  .factlist{gap:5px}
+}
+
+/* Very narrow phones: the grid switches to a tighter cell so more of it fits
+   before scrolling starts. */
+@media (max-width:400px){
+  .tile{width:66px;height:56px;font-size:11px;padding:4px}
+  .tile.name{width:84px}
+  .tile .arrow{font-size:13px}
+  table.grid{border-spacing:4px}
+  h1{font-size:24px}
+  .mark{width:32px;height:44px}
+}
+
+/* Coarse pointers get no hover states — they stick after a tap and look like
+   a selection that isn't there. */
+@media (hover:none){
+  .chip:hover,.ghost:hover,.iconbtn:hover,.skip:hover,
+  .seg button:hover:not([aria-pressed="true"]){
+    color:var(--dim);border-color:var(--edge);
+  }
+  .swatch:hover{transform:none}
+  .ac .opt:hover{background:transparent}
+  .ac .opt[aria-selected="true"]{background:rgba(255,91,149,.14)}
+}

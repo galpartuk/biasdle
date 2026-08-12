@@ -348,9 +348,13 @@ def build_songs(raw, groups_by_name):
             # A solo release is filed under the group but people look for it by
             # the member's name — "yuna ice cream" has to find it.
             keys += [by, f"{by} {title}"]
+        # Deliberately lean: 3,300 songs make every field expensive on a
+        # phone. `id` is derivable from `track`, `kr`/`tier`/`gen` are
+        # properties of the group and are looked up at runtime, and `art` is
+        # stored as the cover hash rather than an 85-character URL. Together
+        # that is roughly a third of the payload.
         rec = dict(
-            id=sid, group=group, title=title, kr=hangul_of(g),
-            tier=g.get("tier", 3), gen=g.get("gen"), track=track,
+            id=sid, group=group, title=title, track=track,
             art=art, album=album, year=year,
             search=searchable(*keys),
         )
@@ -358,16 +362,22 @@ def build_songs(raw, groups_by_name):
             rec["by"] = by
         if single:
             rec["single"] = 1
-        if preview:
-            rec["preview"] = preview
+        # No stored preview URL. Deezer signs them with an hour-long expiry, so
+        # a build-time URL is wrong by the time anyone loads the page, and it
+        # cannot serve as an offline fallback either — playing it needs the
+        # network anyway. Resolved from the track id at play time.
         out.append(rec)
 
     for s in raw:
         if not s.get("preview"):
             continue
+        # Curated rows carry a full artwork URL from the earlier pipeline;
+        # keep only the hash so both sources store the same shape.
+        art = s.get("artwork") or ""
+        m = re.search(r"/cover/([0-9a-f]{32})/", art)
         add(s["group"], s["title"], s.get("track_id"),
-            s.get("artwork"), s.get("album"), (s.get("released") or "")[:4],
-            s["preview"], True)
+            m.group(1) if m else None, s.get("album"),
+            (s.get("released") or "")[:4], None, True)
 
     path = os.path.join(DATA, "catalogue.json")
     if not os.path.exists(path):
@@ -378,8 +388,8 @@ def build_songs(raw, groups_by_name):
         cat = json.load(f)
     for group, tracks in cat.items():
         for t in tracks:
-            art = (ART_PREFIX + t["art_md5"] + ART_SUFFIX) if t.get("art_md5")                 else None
-            add(group, t["title"], t.get("track_id"), art, t.get("album"),
+            add(group, t["title"], t.get("track_id"), t.get("art_md5") or None,
+                t.get("album"),
                 (t.get("released") or "")[:4], None, False, t.get("by"))
     return out
 
