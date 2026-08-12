@@ -2467,162 +2467,6 @@
   "pseudonyms": []
  },
  {
-  "qid": "Q5358943",
-  "label": "Juri Takahashi",
-  "stage": "Juri Takahashi",
-  "stage_src": "label",
-  "birth": "1997-10-03",
-  "nationality": "Japanese",
-  "citizenships": [
-   "Q17"
-  ],
-  "image": "Juri at Rocket Punch Debut Showcase on August 7, 2019.png",
-  "enwiki": "Juri Takahashi",
-  "aliases": [
-   "Juri",
-   "Takahashi Juri"
-  ],
-  "groups": [
-   {
-    "group": "Rocket Punch",
-    "former": false,
-    "since": "2019-00-00",
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q65920400",
-  "label": "Kim Yeon-hee",
-  "stage": "Yeonhee",
-  "stage_src": "surname-strip",
-  "birth": "2000-12-06",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "2019 Pink Punch Showcase Yeon Hee.png",
-  "enwiki": null,
-  "aliases": [
-   "Kim Yeon Hee",
-   "Yeonhee"
-  ],
-  "groups": [
-   {
-    "group": "Rocket Punch",
-    "former": false,
-    "since": "2019-00-00",
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q65920408",
-  "label": "Kim Su-yun",
-  "stage": "Suyun",
-  "stage_src": "surname-strip",
-  "birth": "2001-03-17",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "2019 Pink Punch Showcase Su Yun.png",
-  "enwiki": null,
-  "aliases": [
-   "Kim Su Yun",
-   "Suyun"
-  ],
-  "groups": [
-   {
-    "group": "Rocket Punch",
-    "former": false,
-    "since": "2019-00-00",
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q65920433",
-  "label": "Seo Yun-kyoung",
-  "stage": "Yunkyoung",
-  "stage_src": "surname-strip",
-  "birth": "2001-11-01",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "2019 Pink Punch Showcase Yun Kyoung.png",
-  "enwiki": null,
-  "aliases": [
-   "Seo Yun Kyoung",
-   "Yunkyoung"
-  ],
-  "groups": [
-   {
-    "group": "Rocket Punch",
-    "former": false,
-    "since": "2019-00-00",
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q65920474",
-  "label": "Kim So-hee",
-  "stage": "Sohee",
-  "stage_src": "surname-strip",
-  "birth": "2003-08-14",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "2019 Pink Punch Showcase So Hee.png",
-  "enwiki": null,
-  "aliases": [
-   "Sohee",
-   "Kim So Hee"
-  ],
-  "groups": [
-   {
-    "group": "Rocket Punch",
-    "former": false,
-    "since": "2019-00-00",
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q65920506",
-  "label": "Jeong Da-hyun",
-  "stage": "Dahyun",
-  "stage_src": "surname-strip",
-  "birth": "2005-11-29",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "2019 Pink Punch Showcase Da Hyeon.png",
-  "enwiki": null,
-  "aliases": [
-   "Jeong Da Hyun",
-   "Dahyun"
-  ],
-  "groups": [
-   {
-    "group": "Rocket Punch",
-    "former": false,
-    "since": "2019-00-00",
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
   "qid": "Q106518333",
   "label": "Sumin",
   "stage": "Sumin",
@@ -2895,192 +2739,6 @@
   "groups": [
    {
     "group": "aespa",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q93969535",
-  "label": "Lee Soo-jin",
-  "stage": "Soojin",
-  "stage_src": "surname-strip",
-  "birth": "2001-12-12",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "위클리 이수진.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Lee Soojin",
-   "Soojin"
-  ],
-  "groups": [
-   {
-    "group": "Weeekly",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q93969529",
-  "label": "Monday",
-  "stage": "Monday",
-  "stage_src": "P742",
-  "birth": "2002-05-10",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "위클리 먼데이.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Kim Ji-min"
-  ],
-  "groups": [
-   {
-    "group": "Weeekly",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": [
-   "Monday"
-  ]
- },
- {
-  "qid": "Q93969537",
-  "label": "Jihan",
-  "stage": "Jihan",
-  "stage_src": "label",
-  "birth": "2004-07-12",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "위클리 지한.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Han Ji-hyo"
-  ],
-  "groups": [
-   {
-    "group": "Weeekly",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q93969540",
-  "label": "Yonnie",
-  "stage": "Yonnie",
-  "stage_src": "label",
-  "birth": "2002-03-02",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "신지윤 가수.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Shin Jiyoon",
-   "Jiyoon"
-  ],
-  "groups": [
-   {
-    "group": "Weeekly",
-    "former": true,
-    "since": null,
-    "until": "2022-06-01"
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q93969530",
-  "label": "Park So-eun",
-  "stage": "Soeun",
-  "stage_src": "surname-strip",
-  "birth": "2002-10-26",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "위클리 박소은.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Park Soeun",
-   "Soeun"
-  ],
-  "groups": [
-   {
-    "group": "Weeekly",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q93969533",
-  "label": "Cho Hye-won",
-  "stage": "조아",
-  "stage_src": "P742",
-  "birth": "2005-05-31",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "위클리 조아.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Jo Hye-won",
-   "Zoa",
-   "Cho Hyewon",
-   "Cho Hye Won"
-  ],
-  "groups": [
-   {
-    "group": "Weeekly",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": [
-   "조아"
-  ]
- },
- {
-  "qid": "Q93970112",
-  "label": "Lee Jae-hee",
-  "stage": "Jaehee",
-  "stage_src": "surname-strip",
-  "birth": "2004-03-18",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "위클리 이재희.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Lee Jaehee",
-   "Jaehee"
-  ],
-  "groups": [
-   {
-    "group": "Weeekly",
     "former": false,
     "since": null,
     "until": null
@@ -3468,6 +3126,12 @@
     "former": false,
     "since": null,
     "until": null
+   },
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
    }
   ],
   "pseudonyms": []
@@ -3544,6 +3208,12 @@
   "groups": [
    {
     "group": "IVE",
+    "former": false,
+    "since": null,
+    "until": null
+   },
+   {
+    "group": "IZ*ONE",
     "former": false,
     "since": null,
     "until": null
@@ -3984,6 +3654,12 @@
   ],
   "groups": [
    {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   },
+   {
     "group": "LE SSERAFIM",
     "former": false,
     "since": "2022-05-02",
@@ -3993,6 +3669,208 @@
   "pseudonyms": [
    "Sakura"
   ]
+ },
+ {
+  "qid": "Q18235331",
+  "label": "Nako Yabuki",
+  "stage": "Nako Yabuki",
+  "stage_src": "label",
+  "birth": "2001-06-18",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "20231202 Yabuki Nako at the MMA2023 05.png",
+  "enwiki": "Nako Yabuki",
+  "aliases": [
+   "Yabuki Nako"
+  ],
+  "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56479085",
+  "label": "Hitomi Honda",
+  "stage": "Hitomi Honda",
+  "stage_src": "label",
+  "birth": "2001-10-06",
+  "nationality": "Japanese",
+  "citizenships": [
+   "Q17"
+  ],
+  "image": "20241008 Hitomi Honda 本田 仁美 03.jpg",
+  "enwiki": "Hitomi Honda",
+  "aliases": [
+   "Honda Hitomi"
+  ],
+  "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56505060",
+  "label": "Kwon Eun-bi",
+  "stage": "Eunbi",
+  "stage_src": "surname-strip",
+  "birth": "1995-09-27",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Kwon Eun-bi in May 2026.png",
+  "enwiki": "Kwon Eun-bi",
+  "aliases": [
+   "Eunbi"
+  ],
+  "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56506824",
+  "label": "Kang Hye-won",
+  "stage": "Hyewon",
+  "stage_src": "surname-strip",
+  "birth": "1999-07-05",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "BCLA 2024 Hyewon (2).jpg",
+  "enwiki": "Kang Hye-won",
+  "aliases": [
+   "Hyewon"
+  ],
+  "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q55694544",
+  "label": "Choi Ye-na",
+  "stage": "Yena",
+  "stage_src": "surname-strip",
+  "birth": "1999-09-29",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "CHOI YENA (최예나) – 2024.09.30 – P1.jpg",
+  "enwiki": "Choi Ye-na",
+  "aliases": [
+   "Yena",
+   "Choi Yena",
+   "YENA"
+  ],
+  "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56441288",
+  "label": "Chaeyeon",
+  "stage": "Chaeyeon",
+  "stage_src": "label",
+  "birth": "2000-01-11",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "260326 Lee Chaeyeon.png",
+  "enwiki": "Lee Chae-yeon",
+  "aliases": [
+   "Lee Chae-yeon"
+  ],
+  "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56660171",
+  "label": "Kim Min-ju",
+  "stage": "Minju",
+  "stage_src": "surname-strip",
+  "birth": "2001-02-05",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "Kim Min-ju at Undercover High School promotions 03.png",
+  "enwiki": "Kim Min-ju",
+  "aliases": [],
+  "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
+ },
+ {
+  "qid": "Q56678033",
+  "label": "Jo Yu-ri",
+  "stage": "Yuri",
+  "stage_src": "surname-strip",
+  "birth": "2001-10-22",
+  "nationality": "South Korean",
+  "citizenships": [
+   "Q884"
+  ],
+  "image": "082125 Jo Yuri for Maradi Mercredi photo call 01.png",
+  "enwiki": "Jo Yuri",
+  "aliases": [
+   "Jo Yuri",
+   "Jo Yu Ri",
+   "Yuri"
+  ],
+  "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   }
+  ],
+  "pseudonyms": []
  },
  {
   "qid": "Q56660174",
@@ -4012,6 +3890,12 @@
    "Kim Chae-won"
   ],
   "groups": [
+   {
+    "group": "IZ*ONE",
+    "former": false,
+    "since": null,
+    "until": null
+   },
    {
     "group": "LE SSERAFIM",
     "former": false,
@@ -5327,159 +5211,6 @@
   "pseudonyms": []
  },
  {
-  "qid": "Q124692753",
-  "label": "Sophia Laforteza",
-  "stage": "Sophia Laforteza",
-  "stage_src": "label",
-  "birth": "2002-12-31",
-  "nationality": "American",
-  "citizenships": [
-   "Q30",
-   "Q928"
-  ],
-  "image": "Sophia Katseye.jpg",
-  "enwiki": "Sophia Laforteza",
-  "aliases": [
-   "Sophia Elizabeth G. Laforteza",
-   "Sophia Elizabeth Guevara Laforteza"
-  ],
-  "groups": [
-   {
-    "group": "KATSEYE",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q124692767",
-  "label": "Daniela Avanzini",
-  "stage": "Daniela Avanzini",
-  "stage_src": "label",
-  "birth": "2004-07-01",
-  "nationality": "American",
-  "citizenships": [
-   "Q30"
-  ],
-  "image": "Daniela (Katseye) Music Bank 2024 4.jpg",
-  "enwiki": "Daniela Avanzini",
-  "aliases": [
-   "Daniela Avanzini Llorente",
-   "Daniela"
-  ],
-  "groups": [
-   {
-    "group": "KATSEYE",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q124692773",
-  "label": "Lara Raj",
-  "stage": "Lara Raj",
-  "stage_src": "label",
-  "birth": "2005-11-03",
-  "nationality": "American",
-  "citizenships": [
-   "Q30"
-  ],
-  "image": "Lara Raj 240913 1.jpg",
-  "enwiki": "Lara Raj",
-  "aliases": [
-   "Lara Rajagopalan"
-  ],
-  "groups": [
-   {
-    "group": "KATSEYE",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q124692787",
-  "label": "Megan Skiendiel",
-  "stage": "Megan Skiendiel",
-  "stage_src": "label",
-  "birth": "2006-02-10",
-  "nationality": "American",
-  "citizenships": [
-   "Q30"
-  ],
-  "image": "Megan (Katseye) Music Bank 2024 2.jpg",
-  "enwiki": "Megan Skiendiel",
-  "aliases": [
-   "Megan Meiyok Skiendiel"
-  ],
-  "groups": [
-   {
-    "group": "KATSEYE",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q124692741",
-  "label": "Manon Bannerman",
-  "stage": "Manon Bannerman",
-  "stage_src": "label",
-  "birth": "2002-06-26",
-  "nationality": "Swiss",
-  "citizenships": [
-   "Q39"
-  ],
-  "image": "Manon 240913.jpg",
-  "enwiki": "Manon Bannerman",
-  "aliases": [],
-  "groups": [
-   {
-    "group": "KATSEYE",
-    "former": false,
-    "since": "2024-00-00",
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q124692801",
-  "label": "Yoonchae Jeung",
-  "stage": "Yoonchae Jeung",
-  "stage_src": "label",
-  "birth": "2007-12-06",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "Yoonchae 240913.jpg",
-  "enwiki": null,
-  "aliases": [
-   "윤채",
-   "Jeung Yoonchae",
-   "Yoonchae"
-  ],
-  "groups": [
-   {
-    "group": "KATSEYE",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
   "qid": "Q132147275",
   "label": "Sooin",
   "stage": "Sooin",
@@ -5605,194 +5336,6 @@
   "groups": [
    {
     "group": "MEOVV",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q127162744",
-  "label": "Mai",
-  "stage": "Mai",
-  "stage_src": "label",
-  "birth": "2004-10-28",
-  "nationality": "Japanese",
-  "citizenships": [
-   "Q17"
-  ],
-  "image": "Izna Mai 251004.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Tomioka Mai",
-   "Mai Tomioka"
-  ],
-  "groups": [
-   {
-    "group": "izna",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q127162745",
-  "label": "Bang Jeemin",
-  "stage": "Bang Jeemin",
-  "stage_src": "label",
-  "birth": "2005-05-08",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "Izna Bang Jeemin 251004.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Bang Jee-min",
-   "Jeemin",
-   "Bang Ji-min",
-   "Bang Jimin"
-  ],
-  "groups": [
-   {
-    "group": "izna",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q127162746",
-  "label": "Yoon Jiyoon",
-  "stage": "Jiyoon",
-  "stage_src": "surname-strip",
-  "birth": "2005-07-14",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": null,
-  "enwiki": null,
-  "aliases": [
-   "Yoon Ji-yoon",
-   "Jiyoon",
-   "Yun Ji-yun"
-  ],
-  "groups": [
-   {
-    "group": "izna",
-    "former": true,
-    "since": "2024-00-00",
-    "until": "2025-08-19"
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q127162747",
-  "label": "Koko",
-  "stage": "Koko",
-  "stage_src": "label",
-  "birth": "2006-11-14",
-  "nationality": "Japanese",
-  "citizenships": [
-   "Q17"
-  ],
-  "image": "Izna Koko 251004.jpg",
-  "enwiki": null,
-  "aliases": [],
-  "groups": [
-   {
-    "group": "izna",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q127162743",
-  "label": "Ryu Sarang",
-  "stage": "Sarang",
-  "stage_src": "surname-strip",
-  "birth": "2007-04-18",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "Izna Ryu Sarang 251004.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Ryu Sa-rang",
-   "Sarang",
-   "Yu Sa-rang",
-   "Yu Sarang"
-  ],
-  "groups": [
-   {
-    "group": "izna",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q127162749",
-  "label": "Choi Jungeun",
-  "stage": "Jungeun",
-  "stage_src": "surname-strip",
-  "birth": "2007-08-04",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "Izna Choi Jungeun 251004.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Choi Jung-eun",
-   "Jungeun",
-   "Choe Jeong-eun",
-   "Choe Jeongeun"
-  ],
-  "groups": [
-   {
-    "group": "izna",
-    "former": false,
-    "since": null,
-    "until": null
-   }
-  ],
-  "pseudonyms": []
- },
- {
-  "qid": "Q127162748",
-  "label": "Jeong Saebi",
-  "stage": "Saebi",
-  "stage_src": "surname-strip",
-  "birth": "2008-01-22",
-  "nationality": "South Korean",
-  "citizenships": [
-   "Q884"
-  ],
-  "image": "Izna Jeong Saebi 251004.jpg",
-  "enwiki": null,
-  "aliases": [
-   "Jeong Sae-bi",
-   "Saebi",
-   "Jeong Se-bi",
-   "Jeong Sebi"
-  ],
-  "groups": [
-   {
-    "group": "izna",
     "former": false,
     "since": null,
     "until": null

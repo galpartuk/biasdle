@@ -109,15 +109,36 @@ const counted = {};
 DATA.members.forEach(m => { counted[m.group] = (counted[m.group] || 0) + 1; });
 /* "Soloist" is a label, not a group: its size is 1 per person by definition,
    not a headcount of everyone who happens to be solo. */
-const sizeMismatch = DATA.members
-  .filter(m => m.group !== "Soloist" && m.size !== counted[m.group])
-  .map(m => `${m.group}: column says ${m.size}, pool has ${counted[m.group]}`);
-eq([...new Set(sizeMismatch)], [], "group size column matches the shipped roster");
+const pins = DATA.original_size || {};
+const sizeWrong = DATA.members
+  .filter(m => m.group !== "Soloist")
+  .filter(m => m.size !== (pins[m.group] != null ? pins[m.group]
+                                                 : counted[m.group]))
+  .map(m => `${m.group}: column ${m.size}, expected ` +
+            `${pins[m.group] != null ? pins[m.group] : counted[m.group]}`);
+eq([...new Set(sizeWrong)], [], "member size column matches the debut line-up");
 
-const gSizeMismatch = DATA.groups
-  .filter(g => g.size !== (counted[g.name] || 0))
-  .map(g => `${g.name}: ${g.size} vs ${counted[g.name]}`);
-eq(gSizeMismatch, [], "group-mode size matches member pool");
+/* Members is the DEBUT line-up, which is not always the number of rows we
+   ship: Wikidata's Kep1er list is short, WJSN gained a member after debut, and
+   IZ*ONE's overlapping members count under the groups they are in now. Those
+   are pinned in overrides.ORIGINAL_SIZE, so the column may legitimately exceed
+   the pool — it must never be SMALLER, which would mean a missing pin. */
+const LINEUP = DATA.original_size || {};
+const gSizeWrong = DATA.groups
+  .filter(g => g.size !== (LINEUP[g.name] != null ? LINEUP[g.name]
+                                                  : (counted[g.name] || 0)))
+  .map(g => `${g.name}: column ${g.size}, pinned ${LINEUP[g.name]}, ` +
+            `pool ${counted[g.name]}`);
+eq(gSizeWrong, [],
+   "Members is the pinned debut line-up where pinned, else the roster count");
+ok(Object.keys(LINEUP).length >= 3,
+   `line-up pins are shipped (${Object.keys(LINEUP).join(", ")})`);
+const memberSizeDisagrees = DATA.members
+  .filter(m => m.group !== "Soloist")
+  .filter(m => m.size !== (DATA.groups.find(g => g.name === m.group) || {}).size)
+  .map(m => `${m.name} (${m.group})`);
+eq([...new Set(memberSizeDisagrees)], [],
+   "a member's Members column matches her group's");
 
 /* ====================================================================== */
 section("known facts (spot-check against the real world)");
@@ -141,8 +162,7 @@ spot.forEach(([n, g, c, y, nat]) => {
 
 /* Stage names the override table had to fix — regression guard. */
 [["Sana", "TWICE"], ["Mina", "TWICE"], ["Binnie", "OH MY GIRL"],
- ["Seunghee", "OH MY GIRL"], ["Olivia Hye", "LOONA"], ["Zoa", "Weeekly"],
- ["Onda", "EVERGLOW"], ["Aisha", "EVERGLOW"], ["Yunjin", "LE SSERAFIM"],
+ ["Seunghee", "OH MY GIRL"], ["Olivia Hye", "LOONA"], ["Onda", "EVERGLOW"], ["Aisha", "EVERGLOW"], ["Yunjin", "LE SSERAFIM"],
  ["Kazuha", "LE SSERAFIM"], ["Danielle", "NewJeans"], ["Wendy", "Red Velvet"],
  ["Rose", "BLACKPINK"], ["Moon Sua", "Billlie"], ["Kim Lip", "LOONA"],
 ].forEach(([n, g]) => {
@@ -437,7 +457,7 @@ eq(endlessPool().length, wholePool, "contradictory filters -> falls back to all"
 /* Member-only switches */
 S.mode = "member";
 S.filters = Object.assign(defaultFilters(), {former: false});
-ok(!endlessPool().some(m => m.status === "Former member"),
+ok(!endlessPool().some(m => m.status === "Left"),
    "former members can be excluded");
 S.filters = Object.assign(defaultFilters(), {disbanded: false});
 ok(!endlessPool().some(m => groupByName[m.group] &&
@@ -525,7 +545,7 @@ eq(solo.filter(m => SOLO_REQ.some(k => m[k] === undefined || m[k] === null ||
    [], "every soloist has all scored columns");
 eq(solo.filter(m => m.size !== 1).map(m => m.name), [], "a soloist is a group of one");
 eq(solo.filter(m => m.status !== "Soloist").map(m => m.name), [],
-   "soloists are marked Soloist, not Current/Former member");
+   "soloists are marked Soloist, not Active/Left");
 
 /* Nobody appears twice. Matching on name would have been wrong — Wonder Girls'
    Yubin and tripleS's YuBin are different people. */

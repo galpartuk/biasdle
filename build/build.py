@@ -106,6 +106,29 @@ def searchable(*parts):
 # --------------------------------------------------------------------------
 # members
 # --------------------------------------------------------------------------
+def pick_membership(memberships, groups_by_name):
+    """Which group a member belongs to, when she belongs to more than one.
+
+    IZ*ONE's line-up overlaps heavily with IVE, LE SSERAFIM and Kep1er, and
+    taking the first membership Wikidata happens to list put Sakura in IZ*ONE
+    and gave her Off The Record as a label. The group she is *currently* in
+    wins; a member who only ever had the disbanded one keeps it.
+    """
+    known = [x for x in memberships if x["group"] in groups_by_name]
+    if not known:
+        return None
+
+    def rank(x):
+        g = groups_by_name[x["group"]]
+        return (
+            0 if not x.get("former") else 1,          # still in it
+            0 if g["status"] == "active" else 1,      # group still going
+            -int(g["debut"][:4]),                     # the more recent one
+        )
+    return sorted(known, key=rank)[0]
+
+
+
 def build_members(groups_by_name, raw):
     stage_fix, unmatched = overrides.build_stage_map(raw)
     if unmatched:
@@ -118,11 +141,11 @@ def build_members(groups_by_name, raw):
         if not m["groups"]:
             dropped.append((m.get("label"), "no group membership"))
             continue
-        mem = m["groups"][0]
-        g = groups_by_name.get(mem["group"])
-        if not g:
-            dropped.append((m.get("label"), f"unknown group {mem['group']}"))
+        mem = pick_membership(m["groups"], groups_by_name)
+        if not mem:
+            dropped.append((m.get("label"), "no known group"))
             continue
+        g = groups_by_name[mem["group"]]
 
         # Stage name: explicit override > ASCII pseudonym > label-derived.
         # The ASCII rule matters because P742 is often Hangul ("웬디"), which no
@@ -154,12 +177,17 @@ def build_members(groups_by_name, raw):
         if (g["name"], name) in overrides.FORCE_FORMER:
             former = True
 
-        if g["status"] == "disbanded":
-            status = "Disbanded group"
-        elif former:
-            status = "Former member"
+        # Leaving comes first. Checking the group's fate first told a member
+        # who quit in 2019 that she was "Disbanded" because the group folded in
+        # 2021 — two different facts, and the wrong one was winning.
+        if former:
+            status = "Left"
+        elif g["status"] == "disbanded":
+            status = "Disbanded"
+        elif g["status"] == "inactive":
+            status = "Inactive"
         else:
-            status = "Current member"
+            status = "Active"
 
         members.append(dict(
             qid=m["qid"], name=name, group=g["name"],
@@ -178,7 +206,10 @@ def build_members(groups_by_name, raw):
     for x in members:
         sizes[x["group"]] = sizes.get(x["group"], 0) + 1
     for x in members:
-        x["size"] = sizes[x["group"]]
+        # The debut line-up, not the current one: members leave, they are
+        # almost never added, so everyone we ship IS the original line-up —
+        # except where overrides.ORIGINAL_SIZE says otherwise.
+        x["size"] = overrides.ORIGINAL_SIZE.get(x["group"], sizes[x["group"]])
 
     # Disambiguate players who share a stage name across groups.
     counts = {}
@@ -272,11 +303,12 @@ def build_groups(groups, members):
             id=slug(g["name"]), name=g["name"], company=g["company"],
             parent=PARENT.get(g["company"], g["company"]), gen=g["gen"],
             debut=int(g["debut"][:4]), debut_full=g["debut"],
-            size=len(mem), foreign=foreign, kr=hangul_of(g),
+            size=overrides.ORIGINAL_SIZE.get(g["name"], len(mem)),
+            foreign=foreign, kr=hangul_of(g),
             tier=g.get("tier", 3), img=g.get("image"),
             imgs=photos.get("group:" + g["name"]) or None,
             status={"active": "Active", "disbanded": "Disbanded",
-                    "inactive": "Inactive"}[g["status"]],
+                    "inactive": "Inactive"}[g["status"]],  # noqa: E501
             search=searchable(g["name"], *(g.get("aka") or [])),
         ))
     return out
@@ -502,6 +534,10 @@ def main():
 
     payload = dict(
         members=members, groups=groups, songs=songs,
+        # Shipped so the test suite can assert the Members column exactly:
+        # where a line-up is pinned the column follows the pin, everywhere else
+        # it follows the roster.
+        original_size=overrides.ORIGINAL_SIZE,
         epoch=EPOCH,
         schedules=dict(
             member=schedule(members, "member/v1"),

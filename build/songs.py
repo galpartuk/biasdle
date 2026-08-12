@@ -17,11 +17,13 @@ SONGS = {
         "Rookie", "Red Flavor", "Peek-A-Boo", "Bad Boy", "Power Up",
         "Zimzalabim", "Umpah Umpah", "Psycho", "Queendom", "Feel My Rhythm",
         "Birthday", "Chill Kill", "Cosmic",
+        "SAPPY", "#Cookie Jar",
     ],
     "GFRIEND": [
         "Glass Bead", "Me Gustas Tu", "Rough", "Navillera", "Fingertip",
         "Love Whisper", "Time for the Moon Night", "Sunrise", "Fever",
         "Apple", "MAGO",
+        "Summer Rain", "Sunny Summer", "Crossroads", "Labyrinth",
     ],
     "OH MY GIRL": [
         "Cupid", "Closer", "Liar Liar", "Windy Day", "Coloring Book",
@@ -34,10 +36,12 @@ SONGS = {
         "FANCY", "Feel Special", "MORE & MORE", "I Can't Stop Me",
         "Alcohol-Free", "The Feels", "Talk that Talk", "SET ME FREE",
         "ONE SPARK", "Strategy",
+        "One More Time", "BDZ", "Candy Pop", "Wake Me Up", "HAPPY HAPPY", "Breakthrough", "Fanfare", "BETTER", "Kura Kura", "Doughnut", "Perfect World",
     ],
     "WJSN": [
         "Secret", "I Wish", "Dreams Come True", "Save Me, Save You",
         "La La Love", "As You Wish", "UNNATURAL", "Last Sequence",
+        "Boogie Up", "Butterfly", "Pantomime", "Sequence",
     ],
     "BLACKPINK": [
         "BOOMBAYAH", "Whistle", "Playing with Fire", "As If It's Your Last",
@@ -59,18 +63,18 @@ SONGS = {
     "LOONA": [
         "Hi High", "Butterfly", "So What", "Why Not?", "PTT (Paint The Town)",
         "Flip That",
+        "Star", "Voice", "Not Friends",
     ],
     "ITZY": [
         "DALLA DALLA", "ICY", "WANNABE", "Not Shy", "마.피.아. In the morning",
         "LOCO", "SNEAKERS", "Cheshire", "CAKE", "BORN TO BE", "UNTOUCHABLE",
         "Girls Will Be Girls",
+        "Voltage",
     ],
     "EVERGLOW": [
         "Bon Bon Chocolat", "Adios", "DUN DUN", "LA DI DA", "FIRST",
         "Pirate", "SLAY",
-    ],
-    "Rocket Punch": [
-        "BIM BAM BUM", "BOUNCY", "JUICY", "Ring Ring", "CHIQUITA", "FLASH",
+        "Untouchable",
     ],
     "STAYC": [
         "SO BAD", "ASAP", "STEREOTYPE", "RUN2U", "BEAUTIFUL MONSTER",
@@ -79,30 +83,38 @@ SONGS = {
     "aespa": [
         "Black Mamba", "Next Level", "Savage", "Girls", "Spicy", "Drama",
         "Supernova", "Armageddon", "Whiplash", "Dirty Work",
+        "Hot Mess",
     ],
-    "Weeekly": ["Tag Me", "After School", "Holiday Party", "Ven Para"],
     "PURPLE KISS": [
         "Ponzona", "Zombie", "memeM", "Nerdy", "Sweet Juice", "BBB",
+        "My My",
     ],
     "Billlie": [
         "RING X RING", "GingaMingaYo", "RING ma Bell", "snowy night", "EUNOIA",
+        "DANG! (Hocus Pocus)", "Sunny Day",
     ],
     "IVE": [
         "ELEVEN", "LOVE DIVE", "After LIKE", "Kitsch", "I AM", "Baddie",
         "Either Way", "HEYA", "Accendio", "REBEL HEART", "ATTITUDE",
+        "WAVE", "Alien",
     ],
     "Kep1er": [
         "WA DA DA", "Up!", "We Fresh", "Back to the City", "Giddy",
         "Galileo", "Shooting Star", "Grand Prix", "TIPI-TAP",
+        "Villain", "Magic Hour", "FLY-BY",
     ],
     "NMIXX": [
         "O.O", "DICE", "Love Me Like This", "Roller Coaster", "DASH",
         "Party O'Clock", "KNOW ABOUT ME", "See that?",
     ],
+    "IZ*ONE": [
+        "La Vie en Rose", "Violeta", "FIESTA", "Panorama", "Secret Story of the Swan", "Vampire", "Buenos Aires", "Suki to Iwasetai",
+    ],
     "LE SSERAFIM": [
         "FEARLESS", "ANTIFRAGILE", "UNFORGIVEN",
         "Eve, Psyche & the Bluebeard's wife", "Perfect Night", "EASY",
         "Smart", "CRAZY", "HOT",
+        "Pearlies", "CHOICES", "Crazier",
     ],
     "NewJeans": [
         "Attention", "Hype Boy", "Cookie", "Ditto", "OMG", "Super Shy",
@@ -123,7 +135,6 @@ SONGS = {
         "Almond Chocolate", "Billyeoon Goyangi (Do the Dance)",
     ],
     "MEOVV": ["MEOW", "TOXIC", "HANDS UP", "BURNING UP"],
-    "izna": ["IZNA", "SIGN", "BEEP"],
     "Hearts2Hearts": ["The Chase", "Style", "FOCUS"],
 }
 
@@ -133,10 +144,8 @@ ITUNES_ARTIST = {
     "(G)I-DLE": ["i-dle", "(G)I-DLE", "GIDLE"],
     "WJSN": ["WJSN", "Cosmic Girls"],
     "fromis_9": ["fromis_9", "fromis 9"],
-    "Rocket Punch": ["Rocket Punch"],
     "LOONA": ["LOONA", "이달의 소녀"],
     "tripleS": ["tripleS", "triple S"],
-    "izna": ["izna", "IZNA"],
 }
 
 

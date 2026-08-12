@@ -34,8 +34,6 @@ _FIXES = [
     ("EVERGLOW",     "Heo Yoo-rim",       "Aisha",       "legal name used as label"),
     ("EVERGLOW",     "Han Eun-ji (Mia)",  "Mia",         "label carried both names"),
     ("EVERGLOW",     "Wang Yiren",        "Yiren",       "full Chinese name used as label"),
-    ("Rocket Punch", "Juri Takahashi",    "Juri",        "full Japanese name used as label"),
-    ("Weeekly",      "Cho Hye-won",       "Zoa",         "legal name Cho Hyewon; stage name is Zoa"),
     ("PURPLE KISS",  "Na Go-eun",         "Goeun",       "legal name used as label"),
     ("Billlie",      "Moon Sua",          "Moon Sua",    "surname-strip wrongly cut this to 'Sua'"),
     ("LE SSERAFIM",  "Huh Yun-jin",       "Yunjin",      "legal name used as label"),
@@ -49,7 +47,6 @@ _FIXES = [
     ("tripleS",      "Hsu Nien Tzu",      "Nien",        "full Taiwanese name used as label"),
     ("MEOVV",        "Anna Tanaka",       "Anna",        "full name used as label"),
     ("MEOVV",        "Ella Gross",        "Ella",        "full name used as label"),
-    ("izna",         "Bang Jeemin",       "Jeemin",      "legal name used as label"),
 ]
 
 # ---------------------------------------------------------------------------
@@ -74,6 +71,20 @@ FORCE_FORMER = {
 # are patched here.
 NATIONALITY = {
     ("Red Velvet", "Wendy"): ["South Korean", "Canadian"],  # P27 empty upstream
+}
+
+# ---------------------------------------------------------------------------
+# ORIGINAL LINE-UP SIZE
+# The Members column counts everyone we ship for a group, current and former,
+# which for K-pop is the debut line-up: members leave, they are almost never
+# added. Three groups break that, so the true number is pinned here — a player
+# who knows Kep1er had nine should not be told seven.
+ORIGINAL_SIZE = {
+    "Kep1er": 9,      # Wikidata's P527 list is missing Mashiro and Yeseo
+    "WJSN": 12,       # Yeonjung joined in 2016, after the 12-member debut
+    "tripleS": 24,    # five members dropped here for having no birth date
+    "IZ*ONE": 12,     # Sakura, Chaewon, Wonyoung and Yujin count under the
+                      # groups they are in now, so we ship fewer than twelve
 }
 
 # ---------------------------------------------------------------------------

@@ -133,7 +133,7 @@ const MEMBER_COLS = [
   {k:"size",        label:"Members",  kind:"num", tol:1},
   {k:"debut",       label:"Debut",    kind:"num", tol:2},
   {k:"birth",       label:"Born",     kind:"num", tol:2},
-  {k:"status",      label:"Status",   kind:"exact", fmt:v=>v.replace(" member","").replace(" group","")}
+  {k:"status",      label:"Status",   kind:"exact"}
 ];
 const GROUP_COLS = [
   {k:"company", label:"Company",    kind:"company", fmt:shortLabel},
@@ -322,7 +322,7 @@ function passes(item, f){
   if(gen  != null && f.gens.indexOf(gen)   < 0) return false;
   if(tier != null && f.tiers.indexOf(tier) < 0) return false;
   if(!f.disbanded && g && g.status !== "Active") return false;
-  if(!f.former && item.status === "Former member") return false;
+  if(!f.former && item.status === "Left") return false;
   return true;
 }
 
@@ -714,9 +714,11 @@ function tileHTML(guess, col, res){
   const val = Array.isArray(raw) ? raw.join(" / ")
             : (col.fmt ? col.fmt(raw) : raw);
   const arrow = res.dir==="up" ? "&uarr;" : res.dir==="down" ? "&darr;" : "";
+  // The arrow used to sit behind the value as a watermark, which made both
+  // harder to read. It is a line of its own now.
   return `<td><div class="tile ${res.r}">
-    ${arrow?`<span class="arrow">${arrow}</span>`:""}
-    <span>${esc(val)}</span></div></td>`;
+    <span class="val">${esc(val)}</span>
+    ${arrow?`<span class="arrow">${arrow}</span>`:""}</div></td>`;
 }
 
 function gridHTML(){
@@ -813,6 +815,13 @@ function renderHead(){
   h.style.left = Math.min(100, S.audio.currentTime/30*100).toFixed(2)+"%";
 }
 
+/* Song and Face give no per-column feedback, so a near miss looks exactly like
+   a wild one. Guessing another song by the right artist, or another member of
+   the right group, is real progress and now says so. */
+function sameArtist(guess){
+  if(!S.answer || !guess || guess.id === S.answer.id) return false;
+  return (guess.group || null) !== null && guess.group === S.answer.group;
+}
 function wrongsHTML(){
   const rows = S.guesses.map(g=>{
     if(!g) return `<div class="wrong skipped"><span class="x">&#8594;</span>
@@ -820,9 +829,15 @@ function wrongsHTML(){
     const th = thumbFor(g);
     const nm = g.display||g.title||g.name;
     const sub = S.mode==="song" ? g.group : (g.group||g.company||"");
-    return `<div class="wrong"><span class="x">&times;</span>
+    const close = sameArtist(g);
+    const note = close
+      ? `<span class="closenote">${S.mode==="song"
+            ? "right artist" : "right group"}</span>` : "";
+    return `<div class="wrong${close?" close":""}">
+      <span class="x">${close?"~":"&times;"}</span>
       ${th?`<img src="${esc(th)}" alt="" loading="lazy">`:""}
-      <span>${esc(nm)}</span><span class="sub">${esc(sub)}</span></div>`;
+      <span>${esc(nm)}</span>${note}
+      <span class="sub">${esc(sub)}</span></div>`;
   }).reverse().join("");
   return rows ? `<div class="wrongs">${rows}</div>` : "";
 }
@@ -1033,7 +1048,7 @@ function renderFilters(){
     </div>
     <div class="frow">
       <span class="flab">Include</span>
-      ${chip(f.former, "Former members", 'id="f-former"')}
+      ${chip(f.former, "Members who left", 'id="f-former"')}
       ${chip(f.disbanded, "Disbanded groups", 'id="f-disbanded"')}
     </div>
     <div class="count-line ${kept.length ? "" : "empty"}">${

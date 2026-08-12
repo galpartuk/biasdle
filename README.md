@@ -19,7 +19,7 @@ Four puzzles, each with a Daily and an Endless mode:
 Everything ships in one self-contained `index.html` (~361 KB). Portraits and
 audio are the only things fetched at runtime.
 
-**Content:** 217 group members across 31 groups, **18 soloists**, 347 tracks.
+**Content:** 205 group members across 29 groups, **15 soloists**, 365 tracks.
 3rd–5th generation, plus 2nd-generation soloists.
 
 Three colour themes (Bubblegum, Soda, Arena), a volume slider on Song mode, and
@@ -99,6 +99,32 @@ Jennie, Soyeon, Yuqi — are deliberately absent. Two entries for one person jus
 makes the search box worse. That check matches on **Wikidata QID, not name**:
 Wonder Girls' Yubin and tripleS's YuBin are different people, and a name check
 dropped the soloist.
+
+---
+
+## Members means the debut line-up
+
+Not the current one. A group that lost members should still read as the size
+people remember it being, so the column counts everyone we ship — current and
+former — which for K-pop *is* the debut line-up: members leave, they are almost
+never added. Three groups break that and are pinned in
+`overrides.ORIGINAL_SIZE`: Kep1er (Wikidata's list is missing two), WJSN
+(Yeonjung joined in 2016, after the twelve-member debut) and tripleS (five
+members dropped for having no birth date).
+
+**Status** distinguishes leaving from disbanding, and leaving wins. Checking the
+group's fate first told a member who quit in 2019 that she was "Disbanded"
+because the group folded in 2021 — two different facts, and the wrong one was
+winning. Values are `Active`, `Left`, `Disbanded`, `Inactive`, `Soloist`.
+
+### Members of more than one group
+
+IZ\*ONE's line-up overlaps heavily with IVE, LE SSERAFIM and Kep1er. Taking the
+first membership Wikidata happens to list put Sakura in IZ\*ONE with Off The
+Record as her label. **The group she is currently in wins**; a member who only
+ever had the disbanded one keeps it. A side effect worth knowing: Kwon Eunbi,
+Choi Yena and Jo Yuri stopped being soloist entries once IZ\*ONE joined the
+roster, because they became guessable through it.
 
 ---
 
@@ -239,8 +265,8 @@ recognise.
 
 | | with stage photos |
 |---|---|
-| groups | 29 / 31 |
-| members and soloists | 143 / 235 |
+| groups | 28 / 29 |
+| members and soloists | 146 / 220 |
 
 Up to 12 per subject, so a repeat shows a different shot. Daily indexes by day
 so everyone sees the same photo; Endless varies.
@@ -281,7 +307,7 @@ python build/resolve_soloists.py  # soloists -> verified QIDs + facts
 python build/fetch_previews.py    # songs.py -> Deezer track ids + preview urls
 python build/fetch_photos.py      # Commons stage photos (optional, ~20 min)
 python build/build.py             # merge + overrides + theme -> index.html
-node   web/test_logic.js          # 286 assertions against the built file
+node   web/test_logic.js          # 282 assertions against the built file
 ```
 
 Every fetch caches to `data/`, so re-running costs no network. Delete
@@ -320,6 +346,9 @@ character.
   categories, and filtering on categories alone let through
   `...concert 03 Yeji.jpg` and `...승희 (10).jpg`, which name a member only in
   the filename. Fold hyphens too, or our `Miyeon` misses `Cho Mi-yeon`.
+- **Adding a group can move existing members.** IZ*ONE arriving silently
+  reassigned Sakura, Wonyoung and Yujin to it, label and all, because the code
+  took `groups[0]`. Prefer the active group.
 - **Adding soloists broke the song year.** 78 solo tracks pushed six tier-3
   groups out of the 365 days entirely — their share rounded to zero. `schedule()`
   now floors every artist at one day; silence is worse than rarity.

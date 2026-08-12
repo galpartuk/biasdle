@@ -632,3 +632,33 @@ dialog .close{position:absolute;top:13px;right:14px}
 .pc.wide .pc-plate .pc-name{font-size:20px}
 .result .pc.wide{width:250px}
 @media (max-width:620px){ .result .pc.wide{width:200px} }
+
+/* ---------- tile: value on top, arrow underneath ---------- */
+.tile .val{display:block;line-height:1.15}
+.tile .arrow{
+  position:static;display:block;font-size:15px;line-height:1;opacity:.75;
+  margin-top:3px;font-weight:700;
+}
+.tile{align-content:center}
+
+/* ---------- "right artist, wrong pick" ---------- */
+.wrong.close{
+  border-color:var(--amber);
+  background:color-mix(in srgb, var(--amber) 14%, var(--riser));
+}
+.wrong.close .x{color:var(--amber);font-size:17px}
+.closenote{
+  font-size:10px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--amber);border:1px solid var(--amber);border-radius:999px;
+  padding:1px 7px;white-space:nowrap;
+}
+
+/* ---------- result art: it was too small to read ---------- */
+.result .pc{width:230px}
+.result .sleeve-art{width:230px}
+.result .pc.wide{width:320px}
+@media (max-width:620px){
+  .result .pc{width:180px}
+  .result .sleeve-art{width:180px}
+  .result .pc.wide{width:250px}
+}

@@ -211,21 +211,6 @@
   "image": "Everglow at Music Bank on April 12, 2019.png"
  },
  {
-  "name": "Rocket Punch",
-  "company": "Woollim Entertainment",
-  "debut": "2019-08-07",
-  "gen": 4,
-  "tier": 3,
-  "status": "ok",
-  "wd": "Q65771078",
-  "aka": [
-   "로켓펀치"
-  ],
-  "wd_label": "Rocket Punch",
-  "wd_members": 6,
-  "image": "Rocket Punch BRAND CUSTOMER LOYALTY AWARDS May 2024.jpg"
- },
- {
   "name": "STAYC",
   "company": "High Up Entertainment",
   "debut": "2020-11-12",
@@ -257,21 +242,6 @@
   "wd_label": "?",
   "wd_members": 4,
   "image": "Aespa 01.jpg"
- },
- {
-  "name": "Weeekly",
-  "company": "IST Entertainment",
-  "debut": "2020-06-30",
-  "gen": 4,
-  "tier": 3,
-  "status": "ok",
-  "wd": "Q65046002",
-  "aka": [
-   "위클리"
-  ],
-  "wd_label": "Weeekly",
-  "wd_members": 7,
-  "image": "위클리 단체.jpg"
  },
  {
   "name": "PURPLE KISS",
@@ -352,6 +322,24 @@
   "wd_label": "Nmixx",
   "wd_members": 7,
   "image": "NMIXX in Oakland.jpg"
+ },
+ {
+  "name": "IZ*ONE",
+  "company": "Off The Record",
+  "debut": "2018-10-29",
+  "gen": 4,
+  "tier": 1,
+  "status": "ok",
+  "wd": "Q56402353",
+  "aka": [
+   "아이즈원",
+   "IZONE",
+   "IZ ONE",
+   "Izone"
+  ],
+  "wd_label": "Iz*One",
+  "wd_members": 12,
+  "image": "190106 33회 골든디스크 시상식 레드카펫 아이즈원.jpg"
  },
  {
   "name": "LE SSERAFIM",
@@ -468,22 +456,6 @@
   "wd_label": "Meovv",
   "wd_members": 5,
   "image": "Meovv 250512.jpg"
- },
- {
-  "name": "izna",
-  "company": "WAKEONE",
-  "debut": "2024-11-25",
-  "gen": 5,
-  "tier": 2,
-  "status": "ok",
-  "wd": "Q127162707",
-  "aka": [
-   "이즈나",
-   "IZNA"
-  ],
-  "wd_label": "Izna",
-  "wd_members": 7,
-  "image": "Izna 250930.jpg"
  },
  {
   "name": "Hearts2Hearts",
