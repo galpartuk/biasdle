@@ -314,6 +314,27 @@
   "status": "ok"
  },
  {
+  "name": "Lee Chaeyeon",
+  "company": "WM Entertainment",
+  "debut": "2022-10-06",
+  "gen": 4,
+  "tier": 2,
+  "former": "IZ*ONE",
+  "aka": [
+   "이채연",
+   "Chaeyeon"
+  ],
+  "wd": "Q56441288",
+  "wd_label": "Chaeyeon",
+  "birth": "2000-01-11",
+  "nationality": [
+   "South Korean"
+  ],
+  "image": "260326 Lee Chaeyeon.png",
+  "kr": "이채연",
+  "status": "ok"
+ },
+ {
   "name": "Kwon Eunbi",
   "company": "Woollim Entertainment",
   "debut": "2021-08-24",

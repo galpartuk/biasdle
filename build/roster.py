@@ -164,6 +164,8 @@ SOLOISTS = [
          tier=3, former=None, aka=["알렉사"]),
     dict(name="Lee Young-ji", company="Grandline", debut="2020-05-27", gen=4,
          tier=2, former=None, aka=["이영지", "Youngji"]),
+    dict(name="Lee Chaeyeon", company="WM Entertainment", debut="2022-10-06",
+         gen=4, tier=2, former="IZ*ONE", aka=["이채연", "Chaeyeon"]),
     dict(name="Kwon Eunbi", company="Woollim Entertainment",
          debut="2021-08-24", gen=4, tier=2, former="IZ*ONE",
          aka=["권은비", "Eunbi"]),

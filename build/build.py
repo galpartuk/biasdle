@@ -91,15 +91,23 @@ def hangul_of(group):
 
 
 def searchable(*parts):
-    """Lowercased, punctuation-free forms the search box should accept."""
+    """Match keys for the search box, **already normalised**.
+
+    Pre-normalising here rather than in the browser matters now the song pool
+    is thousands of tracks: candidates() runs on every keystroke, and folding
+    three variants per entry at that point is tens of thousands of regex passes
+    per character typed. The query is folded the same way, so a space in
+    "won young" costs nothing.
+    """
     out = set()
     for p in parts:
         if not p:
             continue
-        p = str(p)
-        out.add(p.lower())
-        out.add(re.sub(r"[^a-z0-9가-힣]", "", p.lower()))
-        out.add(re.sub(r"[^a-z0-9가-힣 ]", " ", p.lower()).strip())
+        # NFKD first, exactly like the browser's norm(): without it "Rosé"
+        # folds to "ros" here and to "rose" there, and she becomes unfindable.
+        t = unicodedata.normalize("NFKD", str(p).lower())
+        t = "".join(c for c in t if not unicodedata.combining(c))
+        out.add(re.sub(r"[^a-z0-9가-힣]", "", t))
     return sorted(x for x in out if x)
 
 
@@ -252,17 +260,8 @@ def build_soloists(members):
         raw = json.load(f)
 
     photos = load_photos()
-    # Match on Wikidata QID, not on name. Wonder Girls' Yubin and tripleS's
-    # YuBin are different people who happen to share a romanisation, and a
-    # name check silently dropped the soloist.
-    taken = {m["qid"] for m in members if m.get("qid")}
     out, skipped = [], []
     for r in raw:
-        # A soloist who is also in a group is already guessable; two entries for
-        # one person just makes the search box worse.
-        if r["wd"] in taken:
-            skipped.append(r["name"])
-            continue
         rec = dict(
             qid=r["wd"], name=r["name"], group="Soloist",
             company=r["company"], parent=PARENT.get(r["company"], r["company"]),
@@ -279,8 +278,6 @@ def build_soloists(members):
         if got:
             rec["imgs"] = got
         out.append(rec)
-    if skipped:
-        print(f"soloists already in a group, skipped: {', '.join(skipped)}")
     return out
 
 
@@ -317,24 +314,73 @@ def build_groups(groups, members):
 # --------------------------------------------------------------------------
 # songs
 # --------------------------------------------------------------------------
+ART_PREFIX = "https://e-cdns-images.dzcdn.net/images/cover/"
+ART_SUFFIX = "/500x500-000000-80-0-0.jpg"
+
+
 def build_songs(raw, groups_by_name):
-    out = []
+    """Curated title tracks plus, if it has been fetched, the full catalogue.
+
+    Two pools in one list. `single: 1` marks the hand-curated title tracks;
+    Daily draws only from those, because a shared daily puzzle should be a song
+    people have heard. Endless plays everything, B-sides included — which is
+    the whole point of pulling discographies rather than typing titles.
+
+    Catalogue tracks carry no preview URL. Deezer signs those with an hour-long
+    expiry so they are resolved at play time from the track id anyway, and
+    storing ~3000 of them would add half a megabyte of dead text to the page.
+    """
+    out, seen = [], set()
+
+    def add(group, title, track, art, album, year, preview, single, by=None):
+        g = groups_by_name.get(group)
+        if not g or not track:
+            return
+        # The Deezer track id, not a slug of the title: a title written only in
+        # Hangul slugs to nothing, so "BLACKPINK - 해바라기" collided with the
+        # BLACKPINK group entry.
+        sid = "t" + str(track)
+        if sid in seen:
+            return
+        seen.add(sid)
+        keys = [title, f"{group} {title}"]
+        if by:
+            # A solo release is filed under the group but people look for it by
+            # the member's name — "yuna ice cream" has to find it.
+            keys += [by, f"{by} {title}"]
+        rec = dict(
+            id=sid, group=group, title=title, kr=hangul_of(g),
+            tier=g.get("tier", 3), gen=g.get("gen"), track=track,
+            art=art, album=album, year=year,
+            search=searchable(*keys),
+        )
+        if by:
+            rec["by"] = by
+        if single:
+            rec["single"] = 1
+        if preview:
+            rec["preview"] = preview
+        out.append(rec)
+
     for s in raw:
-        g = groups_by_name.get(s["group"])
-        if not g or not s.get("preview"):
+        if not s.get("preview"):
             continue
-        out.append(dict(
-            id=slug(f"{s['group']}-{s['title']}"),
-            group=s["group"], title=s["title"], kr=hangul_of(g),
-            tier=g.get("tier", 3), gen=g.get("gen"),
-            track=s["track_id"], preview=s["preview"],
-            art=s.get("artwork"), album=s.get("album"),
-            # Deezer's search response carries no release date, so the result
-            # card shows the release it came from instead of a bare year.
-            year=(s.get("released") or "")[:4],
-            search=searchable(s["title"], f"{s['group']} {s['title']}",
-                              s.get("found_title")),
-        ))
+        add(s["group"], s["title"], s.get("track_id"),
+            s.get("artwork"), s.get("album"), (s.get("released") or "")[:4],
+            s["preview"], True)
+
+    path = os.path.join(DATA, "catalogue.json")
+    if not os.path.exists(path):
+        print("(no data/catalogue.json — run build/fetch_catalogue.py for "
+              "B-sides and album tracks)")
+        return out
+    with open(path, encoding="utf-8") as f:
+        cat = json.load(f)
+    for group, tracks in cat.items():
+        for t in tracks:
+            art = (ART_PREFIX + t["art_md5"] + ART_SUFFIX) if t.get("art_md5")                 else None
+            add(group, t["title"], t.get("track_id"), art, t.get("album"),
+                (t.get("released") or "")[:4], None, False, t.get("by"))
     return out
 
 
@@ -508,7 +554,17 @@ def main():
     groups = build_groups(groups_meta, members)
     solo = build_soloists(members)
     known = {g["name"] for g in groups}
-    members = [m for m in members if m["group"] in known] + solo
+    members = [m for m in members if m["group"] in known]
+
+    # An active soloist is filed as a soloist, not as a member of the group she
+    # used to be in. Kwon Eunbi, Choi Yena and Jo Yuri are soloists now; their
+    # IZ*ONE bandmates who did not go solo stay IZ*ONE members who left. The
+    # group's Members column is unaffected — it is the pinned debut line-up.
+    solo_qids = {x["qid"] for x in solo if x.get("qid")}
+    moved = [m["name"] for m in members if m.get("qid") in solo_qids]
+    members = [m for m in members if m.get("qid") not in solo_qids] + solo
+    if moved:
+        print(f"filed as soloists rather than group members: {', '.join(moved)}")
 
     # Redo the shared-name disambiguation now the pools are merged: two people
     # can be called Yubin, and the player has to be able to tell which is which.
@@ -545,7 +601,10 @@ def main():
             # anyone with a picture at all, portrait or stage photo
             image=schedule([m for m in members if m.get("img") or m.get("imgs")],
                            "image/v1"),
-            song=schedule(songs, "song/v1", normalize_by_group=False),
+            # Daily uses the curated title tracks only. A shared daily puzzle
+            # built on album cuts would be unfair; Endless has all of them.
+            song=schedule([x for x in songs if x.get("single")], "song/v1",
+                          normalize_by_group=False),
         ),
     )
 

@@ -70,6 +70,31 @@ def names_of(ent):
     return out
 
 
+def former_group_match(ent, s):
+    """Was she actually in the group the roster says she came from?
+
+    The decisive test when names collide: "Chaeyeon" matched a singer born in
+    1978 before it matched the IZ*ONE member born in 2000. Membership settles
+    it. Returns None when the roster names no former group.
+    """
+    want = norm(s.get("former") or "")
+    if not want:
+        return None
+    ids = [v["id"] for v in wdapi.values(ent, "P463")
+           if isinstance(v, dict) and "id" in v]
+    if not ids:
+        return False
+    ents = wdapi.get_entities(ids, props="labels|aliases")
+    for q in ids:
+        e = ents.get(q, {})
+        names = {norm(e.get("labels", {}).get(lang, {}).get("value"))
+                 for lang in ("en", "ko")}
+        names |= {norm(a["value"]) for a in e.get("aliases", {}).get("en", [])}
+        if want in {n for n in names if n}:
+            return True
+    return False
+
+
 def score(ent, s):
     reasons = []
     types = [v["id"] for v in wdapi.values(ent, "P31")
@@ -126,7 +151,7 @@ def main():
             if cands else {}
 
         print(f"\n=== {s['name']}  ({len(cands)} candidates)")
-        best = None
+        ranked = []
         for qid in cands:
             ent = ents.get(qid)
             if not ent:
@@ -135,15 +160,30 @@ def main():
             lbl = wdapi.label(ent) or "?"
             print(f"  {'OK ' if ok else '   '}{qid:<12} {lbl:<26} "
                   f"| {'; '.join(reasons)}")
-            if ok and best is None:
-                best = (qid, ent, lbl)
+            if not ok:
+                continue
+            # Taking the first candidate that merely passed picked a singer
+            # born in 1978 for Lee Chaeyeon, because an alias matched her and
+            # she happened to sort first. Rank instead, and let membership of
+            # the group she came from settle it.
+            fg = former_group_match(ent, s)
+            exact = norm(lbl) == norm(s["name"])
+            birth = wdapi.wtime(wdapi.first(ent, "P569")) or "0000"
+            age = int(s["debut"][:4]) - int(birth[:4] or 0)
+            rank = (0 if fg else (1 if fg is None else 2),
+                    0 if exact else 1,
+                    0 if 10 <= age <= 30 else 1)
+            print(f"       rank={rank}  was in {s.get('former') or '-'}: {fg}"
+                  f"  age at solo debut: {age}")
+            ranked.append((rank, qid, ent, lbl))
 
-        if not best:
+        if not ranked:
             print("  -> UNRESOLVED")
             unresolved.append(s["name"])
             continue
 
-        qid, ent, lbl = best
+        ranked.sort(key=lambda x: x[0])
+        _r, qid, ent, lbl = ranked[0]
         birth = wdapi.wtime(wdapi.first(ent, "P569"))
         cits = [v["id"] for v in wdapi.values(ent, "P27")
                 if isinstance(v, dict) and "id" in v]

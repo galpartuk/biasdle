@@ -45,6 +45,10 @@ _FIXES = [
     ("Kep1er",       "Hikaru Ezaki",      "Hikaru",      "full Japanese name used as label"),
     ("Kep1er",       "Huening Bahiyyih",  "Bahiyyih",    "goes by Bahiyyih"),
     ("tripleS",      "Hsu Nien Tzu",      "Nien",        "full Taiwanese name used as label"),
+    ("IZ*ONE",       "Hitomi Honda",      "Hitomi",      "full Japanese name used as label"),
+    ("IZ*ONE",       "Nako Yabuki",       "Nako",        "full Japanese name used as label"),
+    ("IZ*ONE",       "Kim Min-ju",        "Minju",       "legal name used as label"),
+    ("IZ*ONE",       "Kang Hye-won",      "Hyewon",      "legal name used as label"),
     ("MEOVV",        "Anna Tanaka",       "Anna",        "full name used as label"),
     ("MEOVV",        "Ella Gross",        "Ella",        "full name used as label"),
 ]

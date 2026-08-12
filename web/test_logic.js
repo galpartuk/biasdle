@@ -331,10 +331,13 @@ eq(unlockedSeconds(), 30, "solving unlocks the whole preview");
 S.done = false; S.guesses = [];
 
 if (DATA.songs.length) {
-  const noPrev = DATA.songs.filter(s => !s.preview);
-  eq(noPrev.map(s => s.title), [], "every song has a preview url");
-  const badHost = DATA.songs.filter(s => !/^https:\/\//.test(s.preview));
-  eq(badHost.map(s => s.title), [], "preview urls are https");
+  /* Catalogue tracks deliberately carry no preview URL — Deezer signs those
+     with an hour-long expiry, so they are resolved at play time from the track
+     id. What every track must have is that id. */
+  eq(DATA.songs.filter(s => !s.track).map(s => s.title), [],
+     "every song has a Deezer track id");
+  const badHost = DATA.songs.filter(s => s.preview && !/^https:\/\//.test(s.preview));
+  eq(badHost.map(s => s.title), [], "stored preview urls, where present, are https");
 } else {
   console.log("   (no songs in payload yet — audio pool checks skipped)");
 }
@@ -584,6 +587,57 @@ eq(MEMBER_COLS.filter(c => c.k === "former").map(c => c.k), [],
    "'former group' is not a scored column");
 ok(solo.filter(m => m.former).length >= 5,
    "several soloists carry the group they came from");
+
+/* ====================================================================== */
+section("song catalogue");
+const versionTagged = DATA.songs.filter(
+  s => /ver\.?|version|instrumental|remix/i.test(s.title));
+eq(versionTagged.slice(0, 12).map(s => s.group + " / " + s.title), [],
+   "no alternate-version tracks leaked in");
+const singles = DATA.songs.filter(s => s.single);
+const cuts = DATA.songs.filter(s => !s.single);
+ok(singles.length > 200, `curated title tracks present (${singles.length})`);
+ok(DATA.songs.length > 1000,
+   `the catalogue actually landed (${DATA.songs.length} tracks, ` +
+   `${cuts.length} album cuts)`);
+
+/* Every track has to be playable: the URL is resolved at play time from the
+   id, so a missing id is a dead entry. */
+eq(DATA.songs.filter(s => !s.track).map(s => s.group + " / " + s.title), [],
+   "every track has a Deezer id to resolve at play time");
+
+/* Album art is rebuilt client-side from the cover hash. */
+const badArt = DATA.songs.filter(s => s.art && !/^https:\/\//.test(s.art));
+eq(badArt.map(s => s.title), [], "album art urls are absolute https");
+
+/* Daily must stay on title tracks — a shared daily puzzle built on album cuts
+   nobody has heard would be unfair. Endless is where the deep cuts live. */
+const singleIds = new Set(singles.map(s => s.id));
+const dailyCuts = (DATA.schedules.song || []).filter(id => !singleIds.has(id));
+eq([...new Set(dailyCuts)], [], "the daily song is always a title track");
+S.mode = "song"; S.play = "endless"; S.filters = G.defaultFilters();
+ok(endlessPool().length > singles.length,
+   `endless reaches past the title tracks (${endlessPool().length})`);
+
+/* ...and the switch to narrow it back down works. */
+S.filters = Object.assign(G.defaultFilters(), {singlesOnly: true});
+ok(endlessPool().every(s => s.single),
+   "\"title tracks only\" excludes album cuts");
+ok(endlessPool().length > 100, "and still leaves a real pool");
+S.filters = G.defaultFilters();
+
+/* Search keys are normalised at build time now; anything unfolded would never
+   match, because the query is folded before comparison. */
+const unfolded = DATA.songs.concat(DATA.members).slice(0, 400)
+  .filter(x => x.search.some(k => k !== norm(k)));
+eq(unfolded.map(x => x.title || x.name), [],
+   "search keys are already normalised");
+findsIt2("hype boy", "Hype Boy");
+function findsIt2(q, title) {
+  S.mode = "song"; S.play = "endless"; S.filters = G.defaultFilters();
+  ok(candidates(q).some(x => x.title === title), `"${q}" finds ${title}`);
+}
+S.mode = "member"; S.play = "daily";
 
 /* ====================================================================== */
 /* KEEP THIS LAST. Appending a section after the summary means it runs after

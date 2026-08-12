@@ -288,7 +288,8 @@ const defaultFilters = () => ({
   tiers: TIERS.map(t => t.v),
   groups: [],            // empty = every group
   former: true,          // include members who have left
-  disbanded: true        // include disbanded / inactive groups
+  disbanded: true,       // include disbanded / inactive groups
+  singlesOnly: false     // song mode: title tracks only, no album cuts
 });
 
 function loadFilters(){
@@ -303,7 +304,8 @@ function loadFilters(){
       // a group that left the roster must not linger as an invisible filter
       groups: Array.isArray(f.groups) ? f.groups.filter(g => known.has(g)) : [],
       former: f.former !== false,
-      disbanded: f.disbanded !== false
+      disbanded: f.disbanded !== false,
+      singlesOnly: !!f.singlesOnly
     };
   }catch(e){ return d; }
 }
@@ -323,6 +325,7 @@ function passes(item, f){
   if(tier != null && f.tiers.indexOf(tier) < 0) return false;
   if(!f.disbanded && g && g.status !== "Active") return false;
   if(!f.former && item.status === "Left") return false;
+  if(f.singlesOnly && item.track && !item.single) return false;
   return true;
 }
 
@@ -549,7 +552,8 @@ function srcFor(song){
     })
     // The build-time URL is almost certainly expired, but if the network is
     // down it is still the only thing we have — better than refusing to try.
-    .catch(() => song.preview);
+    // Catalogue tracks have none at all, so this can legitimately be empty.
+    .catch(() => song.preview || null);
 }
 
 function buildAudio(){
@@ -577,6 +581,11 @@ function playClip(){
 
   srcFor(song).then(url => {
     if(S.audio !== a || !S.playing) return;
+    if(!url){
+      stopAudio();
+      toast("Could not load the clip — check your connection");
+      return;
+    }
     if(a.src !== url){ a.src = url; }
     try{ a.currentTime = 0; }catch(e){}
 
@@ -643,11 +652,10 @@ function candidates(text){
   for(const it of pool){
     if(guessed.has(it.id)) continue;
     let best = -1;
-    for(const s of it.search){
-      const n = norm(s);
-      if(!n) continue;
+    // it.search is already normalised at build time — see searchable().
+    for(const n of it.search){
       if(n.startsWith(q)){ best = 0; break; }
-      if(n.indexOf(q)>=0) best = best<0 ? 1 : best;
+      if(best < 0 && n.indexOf(q) >= 0) best = 1;
     }
     if(best===0) starts.push(it);
     else if(best===1) contains.push(it);
@@ -670,7 +678,7 @@ function renderAC(list){
   box.innerHTML = list.map((it,i)=>{
     const th = thumbFor(it);
     const nm = it.display || it.title || it.name;
-    const sub = S.mode==="song" ? it.group
+    const sub = S.mode==="song" ? (it.by ? it.by+" · "+it.group : it.group)
               : S.mode==="group" ? it.company
               : (it.group||"");
     return `<div class="opt" role="option" data-i="${i}"
@@ -828,7 +836,8 @@ function wrongsHTML(){
       <span>Skipped</span></div>`;
     const th = thumbFor(g);
     const nm = g.display||g.title||g.name;
-    const sub = S.mode==="song" ? g.group : (g.group||g.company||"");
+    const sub = S.mode==="song" ? (g.by ? g.by+" · "+g.group : g.group)
+                : (g.group||g.company||"");
     const close = sameArtist(g);
     const note = close
       ? `<span class="closenote">${S.mode==="song"
@@ -843,11 +852,13 @@ function wrongsHTML(){
 }
 
 function factsFor(a){
-  if(S.mode==="song")
-    return [["Group",a.group],["From",a.album||"—"]];
+
   if(S.mode==="group")
     return [["Label",a.company],["Debut",a.debut],["Members",a.size],
             ["Gen",ordinal(a.gen)],["Status",a.status]];
+  if(S.mode === "song")
+    return [["Artist", a.by ? a.by + " of " + a.group : a.group],
+            ["From", a.album || "—"]];
   if(a.group === "Soloist")
     return [["Label",a.company],
             ...(a.former ? [["Formerly",a.former]] : []),
@@ -1050,6 +1061,8 @@ function renderFilters(){
       <span class="flab">Include</span>
       ${chip(f.former, "Members who left", 'id="f-former"')}
       ${chip(f.disbanded, "Disbanded groups", 'id="f-disbanded"')}
+      ${S.mode === "song"
+        ? chip(f.singlesOnly, "Title tracks only", 'id="f-singles"') : ""}
     </div>
     <div class="count-line ${kept.length ? "" : "empty"}">${
       kept.length
@@ -1070,6 +1083,8 @@ function renderFilters(){
   });
   $("#f-former").onclick    = () => { f.former = !f.former; applyFilters(); };
   $("#f-disbanded").onclick = () => { f.disbanded = !f.disbanded; applyFilters(); };
+  const singles = $("#f-singles");
+  if(singles) singles.onclick = () => { f.singlesOnly = !f.singlesOnly; applyFilters(); };
   $("#f-reset").onclick     = () => { S.filters = defaultFilters(); applyFilters(); };
   $("#f-groups").onclick    = () => {
     groupListOpen = !groupListOpen;
