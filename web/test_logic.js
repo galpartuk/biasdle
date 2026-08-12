@@ -43,7 +43,9 @@ const sandbox = {
                                currentTime: 0, addEventListener: noop}; },
   document: {
     querySelector: () => stubEl(), querySelectorAll: () => [],
+    getElementById: () => stubEl(),
     createElement: () => stubEl(), addEventListener: noop,
+    documentElement: stubEl(),
     body: {appendChild: noop},
   },
 };
@@ -639,6 +641,46 @@ function findsIt2(q, title) {
 }
 S.mode = "member"; S.play = "daily";
 
+section("hints");
+const { HINTS, hintsFor, takeHint } = G;
+S.play = "endless";
+
+/* Grid modes score every column already; a hint there would be a free tile. */
+S.mode = "member"; eq(hintsFor(), [], "no hints in Idol — the grid is the hint");
+S.mode = "group";  eq(hintsFor(), [], "no hints in Group");
+S.mode = "image";  ok(hintsFor().length >= 3, "Face offers hints");
+S.mode = "song";   ok(hintsFor().length >= 3, "Song offers hints");
+
+/* Every hint has to produce something for every possible answer, or a stuck
+   player spends a guess on an empty chip. */
+["image", "song"].forEach(mode => {
+  S.mode = mode;
+  const pool = MODES[mode].pool();
+  const sample = [pool[0], pool[(pool.length / 2) | 0], pool[pool.length - 1]];
+  hintsFor().forEach(h => {
+    const empty = sample.filter(a => {
+      const v = h.of(a);
+      return v == null || v === "" || v === "undefined";
+    });
+    eq(empty.length, 0, `${mode}: "${h.label}" resolves for every answer`);
+  });
+});
+
+/* A hint costs a guess — that is what stops it being a free win — and it must
+   never spend the last one. */
+S.mode = "song"; S.play = "endless";
+G.startRound(false);
+const guessesBeforeHint = S.guesses.length;
+takeHint();
+eq(S.guesses.length, guessesBeforeHint + 1, "a hint spends a guess");
+eq(S.hints.length, 1, "and is recorded");
+S.guesses = new Array(G.MAXG() - 1).fill(null);
+const stuck = S.hints.length;
+takeHint();
+eq(S.hints.length, stuck, "the last guess cannot be spent on a hint");
+S.guesses = []; S.hints = []; S.done = false;
+S.play = "daily"; S.mode = "member";
+
 /* ====================================================================== */
 /* KEEP THIS LAST. Appending a section after the summary means it runs after
    the exit code is decided, so a failure in it is reported and then ignored.
@@ -649,3 +691,5 @@ if (fail) {
   failures.forEach(f => console.log("  ✗ " + f));
   process.exit(1);
 }
+
+/* ====================================================================== */
