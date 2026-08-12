@@ -338,12 +338,18 @@ table.grid td{padding:0}
 .ticklabels{display:flex;justify-content:space-between;color:var(--dimmer);
   font-size:10px;font-variant-numeric:tabular-nums;margin-bottom:15px}
 .playrow{display:flex;align-items:center;gap:13px}
+/* Labelled, not just an icon. A bare circle with a triangle in it got read as
+   decoration — the word is what makes it obviously the thing you press. */
 .playbtn{
-  width:56px;height:56px;border-radius:50%;flex:none;border:0;cursor:pointer;
+  min-width:74px;height:56px;border-radius:28px;flex:none;border:0;
+  cursor:pointer;padding:0 18px 0 15px;
   background:linear-gradient(150deg,var(--coral),var(--iris));color:#fff;
-  display:grid;place-items:center;box-shadow:0 6px 20px rgba(255,61,113,.35);
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  box-shadow:0 6px 20px rgba(255,61,113,.35);
+  font:inherit;font-size:14px;font-weight:750;letter-spacing:-.01em;
 }
-.playbtn svg{width:23px;height:23px}
+.playbtn svg{width:20px;height:20px;flex:none}
+.playword{line-height:1}
 .playbtn:disabled{opacity:.35;cursor:default;box-shadow:none}
 .playinfo{flex:1;min-width:0}
 .playinfo .big{font-weight:750;font-size:15px;letter-spacing:-.015em}
@@ -819,38 +825,119 @@ function unlockedSeconds(){
   const wrong = Math.min(S.guesses.length, STEPS.length-1);
   return S.done ? 30 : STEPS[wrong];
 }
+/* Deezer signs its preview URLs with a short expiry:
+     ...mp3?hdnea=exp=1786531003~acl=...~hmac=...
+   They die inside the hour, so the URL captured at build time is worthless by
+   the time anyone plays the game — it answers 403. The track *id* is stable,
+   so the real URL is fetched when the player needs it.
+
+   api.deezer.com sends no Access-Control-Allow-Origin, so fetch() is out.
+   It does support JSONP, which is not subject to CORS at all. */
+function jsonp(url, ms){
+  return new Promise((resolve, reject)=>{
+    const cb = "__dz" + (jsonp._n = (jsonp._n||0) + 1);
+    const s = document.createElement("script");
+    let settled = false;
+    const cleanup = ()=>{ try{ delete window[cb]; }catch(e){ window[cb]=undefined; }
+                          s.remove(); };
+    window[cb] = data => { settled = true; cleanup(); resolve(data); };
+    s.onerror = ()=>{ if(!settled){ cleanup(); reject(new Error("network")); } };
+    s.src = url + (url.indexOf("?")>=0 ? "&" : "?")
+          + "output=jsonp&callback=" + cb;
+    document.head.appendChild(s);
+    setTimeout(()=>{ if(!settled){ cleanup(); reject(new Error("timeout")); } },
+               ms || 9000);
+  });
+}
+
+/* Resolve (and remember, for this round) a playable URL for the answer. */
+function srcFor(song){
+  if(srcFor._id === song.id && srcFor._url) return Promise.resolve(srcFor._url);
+  return jsonp("https://api.deezer.com/track/" + song.track)
+    .then(t => {
+      if(!t || !t.preview) throw new Error("no preview");
+      srcFor._id = song.id; srcFor._url = t.preview;
+      return t.preview;
+    })
+    // The build-time URL is almost certainly expired, but if the network is
+    // down it is still the only thing we have — better than refusing to try.
+    .catch(() => song.preview);
+}
+
 function buildAudio(){
   stopAudio();
-  if(S.mode!=="song" || !S.answer) { S.audio=null; return; }
+  srcFor._id = srcFor._url = null;
+  if(S.mode!=="song" || !S.answer){ S.audio=null; return; }
   const a = new Audio();
-  a.preload = "auto";
-  a.src = S.answer.preview;
-  a.addEventListener("error", ()=>{
-    toast("Preview unavailable — try Give up or a new round");
-  });
+  a.preload = "none";
   S.audio = a;
+  // Warm the URL up front so the first press plays instead of waiting.
+  srcFor(S.answer).then(u => { if(S.audio===a && !a.src) a.src = u; });
 }
+
 function playClip(){
-  if(!S.audio) return;
-  const limit = unlockedSeconds();
-  clearTimeout(playClip._t);
-  clearInterval(playClip._i);
-  try{ S.audio.currentTime = 0; }catch(e){}
-  const p = S.audio.play();
-  if(p && p.catch) p.catch(()=>toast("Tap play once to allow audio"));
-  S.playing = true;
+  const song = S.answer;
+  if(!S.audio || !song) return;
+  const a = S.audio, limit = unlockedSeconds();
+  clearTimeout(playClip._t); clearInterval(playClip._i);
+  clearTimeout(playClip._stall);
+
+  S.playing = true;                 // reflect intent immediately
   renderPlayer();
-  playClip._i = setInterval(()=>{
-    if(!S.audio) return;
-    if(S.audio.currentTime >= limit){ stopAudio(); }
-    else renderHead();
-  }, 60);
-  playClip._t = setTimeout(stopAudio, limit*1000 + 120);
+  setPlayNote("Loading…");
+
+  srcFor(song).then(url => {
+    if(S.audio !== a || !S.playing) return;
+    if(a.src !== url){ a.src = url; }
+    try{ a.currentTime = 0; }catch(e){}
+
+    // Start the clock when sound actually starts, not when the button was
+    // pressed — otherwise a slow load eats the whole one-second clip.
+    const begin = ()=>{
+      clearTimeout(playClip._stall);
+      setPlayNote(null);
+      playClip._i = setInterval(()=>{
+        if(!S.audio) return;
+        if(S.audio.currentTime >= limit) stopAudio(); else renderHead();
+      }, 60);
+      playClip._t = setTimeout(stopAudio, limit*1000 + 250);
+    };
+    a.addEventListener("playing", begin, {once:true});
+
+    playClip._stall = setTimeout(()=>{
+      if(S.playing && a.readyState === 0){
+        stopAudio();
+        toast("Could not load the clip — check your connection");
+      }
+    }, 9000);
+
+    const p = a.play();
+    if(p && p.catch) p.catch(err => {
+      clearTimeout(playClip._stall);
+      stopAudio();
+      // NotAllowedError is the only one a "press play" hint can fix. Anything
+      // else is a load failure, and telling the player to press the button
+      // they just pressed is worse than saying nothing.
+      toast(err && err.name === "NotAllowedError"
+        ? "Your browser blocked audio — press ▶ again to allow it"
+        : "That clip would not play — try Skip or a new round");
+    });
+  });
 }
+
+function setPlayNote(txt){
+  const el = document.getElementById("play-label");
+  if(!el) return;
+  if(txt){ el.dataset.was = el.dataset.was || el.textContent; el.textContent = txt; }
+  else if(el.dataset.was){ el.textContent = el.dataset.was; delete el.dataset.was; }
+}
+
 function stopAudio(){
   clearTimeout(playClip._t); clearInterval(playClip._i);
+  clearTimeout(playClip._stall);
   if(S.audio){ try{ S.audio.pause(); S.audio.currentTime=0; }catch(e){} }
   S.playing=false;
+  setPlayNote(null);
   renderHead(); renderPlayer();
 }
 function toggleAudio(){ S.playing ? stopAudio() : playClip(); }
@@ -987,15 +1074,17 @@ function playerHTML(){
   const ticks = STEPS.map(s=>`<i style="left:${(s/total*100).toFixed(1)}%"></i>`).join("");
   return `<div class="player">
     <div class="track">
+      <div class="waves"></div>
       <div class="unlocked" id="unl" style="width:${(unlocked/total*100).toFixed(1)}%"></div>
       <div class="ticks">${ticks}</div>
       <div class="head" id="head" style="left:0;opacity:0"></div>
     </div>
     <div class="ticklabels"><span>0:00</span><span>0:30</span></div>
     <div class="playrow">
-      <button class="playbtn" id="btn-play" aria-label="Play">
-        <svg viewBox="0 0 24 24" fill="currentColor" id="play-icon">
-          <path d="M8 5v14l11-7z"/></svg></button>
+      <button class="playbtn" id="btn-play" aria-label="Play the clip">
+        <svg viewBox="0 0 24 24" fill="currentColor" id="play-icon"
+             aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <span class="playword" id="play-word">Play</span></button>
       <div class="playinfo">
         <div class="big" id="play-label">${unlocked} second${unlocked===1?"":"s"} unlocked</div>
         <div class="sub">${S.done ? esc(a.group)+" — "+esc(a.title)
@@ -1012,7 +1101,8 @@ function renderPlayer(){
   $("#play-icon").innerHTML = S.playing
     ? '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'
     : '<path d="M8 5v14l11-7z"/>';
-  btn.setAttribute("aria-label", S.playing?"Stop":"Play");
+  const w=$("#play-word"); if(w) w.textContent = S.playing ? "Stop" : "Play";
+  btn.setAttribute("aria-label", S.playing?"Stop the clip":"Play the clip");
 }
 function renderHead(){
   const h=$("#head"); if(!h||!S.audio) return;

@@ -130,7 +130,29 @@ iTunes was the first choice and is now a cache-only fallback. It throttles hard:
 the same 274-song list got to 76 in fifty minutes with the 403 backoff still
 growing. Deezer did 273 in under ten minutes, needs no key, and sends CORS.
 
-Two things worth knowing:
+### Preview URLs expire — resolve them at play time
+
+This one cost a bug report. Deezer signs every preview URL with a short expiry:
+
+    ...88f9f423.mp3?hdnea=exp=1786531003~acl=...~hmac=0b28cc61...
+
+They die inside the hour. A URL captured at build time answers **403** by the
+time anyone opens the page, and `<audio>` reports that as a generic play()
+rejection — which the game used to mislabel "Tap play once to allow audio",
+advice that cannot possibly help.
+
+The **track id is stable**, so `srcFor()` fetches a live URL when the player
+needs one. `api.deezer.com` sends no `Access-Control-Allow-Origin`, so `fetch()`
+is not an option; it does support **JSONP** (`?output=jsonp&callback=`), which
+is not subject to CORS at all. `song.preview` in the payload is now only a
+last-resort fallback for when the network is down.
+
+iTunes URLs do *not* expire — they are plain unsigned CDN paths, and one
+fetched two hours earlier still answered 200. That would remove the runtime
+lookup entirely, but iTunes still throttles search hard enough (three requests
+then a connection reset) that resolving 274 songs through it is not viable.
+
+Two more things worth knowing:
 
 - **Previews usually start partway into the track**, often near the chorus,
   not at 0:00 like the original Heardle. The first second is more recognisable
