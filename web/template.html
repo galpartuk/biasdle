@@ -236,6 +236,7 @@ const S = {
   answer:null, guesses:[], done:false, won:false, skipped:0,
   audio:null, playing:false, endlessSeed:{},
   volume:0.8,
+  hints:[],               // hints revealed this round
   photoPick:0,            // which stage photo this endless round shows
   filters:null            // endless-only pool narrowing, filled by init()
 };
@@ -381,7 +382,7 @@ function persist(){
   st.rounds[stateKey()] = {
     a:S.answer?S.answer.id:null,
     g:S.guesses.map(x=>x&&x.id?x.id:"~skip"),
-    d:S.done, w:S.won
+    d:S.done, w:S.won, h:S.hints.length
   };
   // Keep the file small: daily rounds older than 30 days are dead weight.
   Object.keys(st.rounds).forEach(k=>{
@@ -468,7 +469,7 @@ function pickEndless(){
 
 function startRound(restore){
   stopAudio();
-  S.guesses=[]; S.done=false; S.won=false; S.skipped=0;
+  S.guesses=[]; S.done=false; S.won=false; S.skipped=0; S.hints=[];
   S.photoPick = Math.floor(Math.random()*1000);
   S.day = dayIndex();
 
@@ -491,6 +492,7 @@ function startRound(restore){
         S.guesses = (saved.g||[]).map(id => id==="~skip" ? null : byId(S.mode,id));
         S.skipped = S.guesses.filter(x=>!x).length;
         S.done=!!saved.d; S.won=!!saved.w;
+        S.hints = Array.from({length: saved.h || 0}, (_, i) => i);
       }
     }
   }
@@ -952,8 +954,9 @@ function render(){
 
   let body="";
   if(cfg.kind==="grid")       body = gridHTML();
-  else if(cfg.kind==="image") body = imageHTML();
+  else if(cfg.kind==="image") body = imageHTML() ;
   else if(cfg.kind==="song")  body = playerHTML();
+  if(cfg.kind!=="grid") body = hintsHTML() + body;
   $("#stage").innerHTML = body + resultHTML();
 
   renderGauge();
@@ -1025,6 +1028,56 @@ function statsHTML(){
    ================================================================== */
 /* Holo tilt: the foil sweep follows the pointer across the card. Without a
    pointer it just sits at rest — the ambient sway in CSS carries it. */
+/* ==================================================================
+   hints
+
+   Face and Song give no per-column feedback, so a player who is stuck is
+   simply stuck — there is nothing to reason from. A hint costs a guess, which
+   keeps it a real decision rather than a free win, and each one names a fact
+   that narrows the field without giving the answer away.
+   ================================================================== */
+const HINTS = {
+  image: [
+    {label:"Generation", of:a => ordinal(a.gen)},
+    {label:"Label",      of:a => shortLabel(a.company)},
+    {label:"From",       of:a => [].concat(a.nationality).join(" / ")},
+  ],
+  song: [
+    // Read from the track if it carries a generation, else from its artist —
+    // which of the two holds it differs by branch.
+    {label:"Generation", of:a => {
+      const g = a.gen != null ? a.gen : (groupByName[a.group] || {}).gen;
+      return g != null ? ordinal(g) : "—"; }},
+    {label:"Released",   of:a => a.year || "—"},
+    {label:"Release",    of:a => a.album || "—"},
+  ],
+};
+function hintsFor(){ return HINTS[S.mode] || []; }
+function takeHint(){
+  const list = hintsFor();
+  if(S.done || S.hints.length >= list.length) return;
+  if(S.guesses.length >= MAXG() - 1){
+    toast("Not enough guesses left to spend one");
+    return;
+  }
+  S.hints.push(S.hints.length);
+  S.guesses.push(null);          // a hint costs a guess, like a skip
+  persist();
+  render();
+}
+function hintsHTML(){
+  const list = hintsFor();
+  if(!list.length) return "";
+  const shown = list.slice(0, S.hints.length).map((h, i) =>
+    `<span class="hint"><b>${esc(h.label)}</b>${esc(h.of(S.answer))}</span>`
+  ).join("");
+  const left = list.length - S.hints.length;
+  const btn = (S.done || !left) ? "" :
+    `<button class="chip" id="btn-hint">Reveal ${esc(list[S.hints.length].label)}
+       <span class="cost">costs a guess</span></button>`;
+  return `<div class="hints">${shown}${btn}</div>`;
+}
+
 /* ==================================================================
    filter panel
    ================================================================== */
@@ -1152,6 +1205,7 @@ function wire(){
   }
   const vol=$("#vol");
   if(vol) vol.oninput = e => setVolume(+e.target.value / 100);
+  const hint=$("#btn-hint"); if(hint) hint.onclick=takeHint;
   const copy=$("#btn-copy"); if(copy) copy.onclick=copyShare;
   const again=$("#btn-again");
   if(again) again.onclick=()=>{
@@ -1253,7 +1307,7 @@ if(typeof module!=="undefined" && module.exports){
                     STEPS,shareText,startRound,submitGuess,
                     THEMES,defaultFilters,passes,endlessPool,groupByName,
                     PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume,
-                    photoOf,commons};
+                    photoOf,commons,HINTS,hintsFor,takeHint,MAXG};
 } else {
   document.addEventListener("DOMContentLoaded",init);
 }
