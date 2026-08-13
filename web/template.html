@@ -82,22 +82,7 @@
 </div>
 
 <dialog id="dlg-help"><button class="iconbtn close" data-close>&times;</button>
-  <div class="body">
-    <h2>How to play</h2><span class="kr">놀이 방법</span>
-    <p id="help-text"></p>
-    <div class="legend">
-      <div><span class="sw hit"></span> Exact match.</div>
-      <div><span class="sw near"></span> Close. Labels share a parent company;
-        nationalities overlap; numbers are within a year or two.</div>
-      <div><span class="sw"></span> No match. Arrows point toward the answer.</div>
-    </div>
-    <p><b>Idol</b> scores your guess against eight facts, <b>Group</b> against
-      six. <b>Face</b> slides a photocard out of its sleeve one band at a time.
-      <b>Song</b> gives you 1&nbsp;second, then 2, 4, 7, 11 and 16.</p>
-    <p><b>Daily</b> is the same puzzle for everyone and resets at midnight your
-      time; it leans toward groups you already know. <b>Endless</b> draws from
-      everyone in the game, deep cuts included.</p>
-  </div>
+  <div class="body" id="help-body"></div>
 </dialog>
 
 <dialog id="dlg-stats"><button class="iconbtn close" data-close>&times;</button>
@@ -758,7 +743,7 @@ function gridHTML(){
   const cols = CFG().cols;
   const rows = S.guesses.slice().reverse().filter(Boolean).map(g=>{
     const name = g.display || g.name;
-    const face = imgTag(g, "face", 80, "");
+    const face = imgTag(g, "face", 160, "");
     const head = `<td><div class="tile name"><div class="who">${face}
         <span>${esc(name)}</span></div></div></td>`;
     return "<tr>"+head+cols.map(c=>tileHTML(g,c,grade(g,S.answer,c))).join("")+"</tr>";
@@ -952,7 +937,6 @@ function render(){
   $("#submit").disabled = S.done;
   $("#btn-new").hidden = S.play!=="endless";
   $("#btn-give").hidden = S.done;
-  $("#help-text").textContent = cfg.help;
 
   let body="";
   if(cfg.kind==="grid")       body = gridHTML();
@@ -998,6 +982,105 @@ function fallbackCopy(t,cb){
   document.body.appendChild(ta); ta.select();
   try{ document.execCommand("copy"); cb(); }catch(e){ toast("Copy failed"); }
   ta.remove();
+}
+
+/* ==================================================================
+   how to play
+
+   Generated from the live data rather than written out, so the counts cannot
+   drift from what the game actually holds and the column table always matches
+   the mode you are looking at.
+   ================================================================== */
+const COLUMN_HELP = {
+  group:  ["Her group. A soloist shows <b>Soloist</b>.",
+           "never — right or wrong"],
+  company:["The label the group debuted under.",
+           "a <i>different</i> label under the same parent — Source Music and ADOR are both HYBE"],
+  nationality:["Every citizenship on record, so dual nationals show both.",
+           "the two sets overlap without matching"],
+  gen:    ["K-pop generation, taken from the debut year.",
+           "never. 3rd and 4th are not “close” — the arrow already says which way"],
+  size:   ["How many members the group <b>debuted</b> with, not how many are left today.",
+           "within 1"],
+  debut:  ["The year the group debuted. For a soloist, her solo debut.",
+           "within 2 years"],
+  birth:  ["Her birth year.", "within 2 years"],
+  status: ["<b>Active</b>, <b>Left</b>, <b>Disbanded</b>, <b>Inactive</b> or <b>Soloist</b>. Leaving the group wins over the group disbanding.",
+           "never"],
+  foreign:["How many members are not South Korean.", "within 1"],
+};
+
+function helpHTML(){
+  const nSolo = DATA.members.filter(m => m.group === "Soloist").length;
+  const nMembers = DATA.members.length - nSolo;
+  const cols = CFG().cols;
+  const which = S.mode === "group" ? "Group" : "Idol";
+
+  const table = cols ? '<table class="helpcols"><tbody>' + cols.map(c => {
+      const h = COLUMN_HELP[c.k] || ["", ""];
+      return '<tr><th>' + esc(c.label) + '</th><td>' + h[0] +
+             '<div class="amber">amber: ' + h[1] + '</div></td></tr>';
+    }).join("") + '</tbody></table>' : "";
+
+  const colsBlock = cols
+    ? '<h3>What the columns mean</h3><p class="note">Showing the ' + which +
+      ' grid. Amber always means one specific thing — it is never a vague ' +
+      'nudge.</p>' + table
+    : '<h3>No columns here</h3><p class="note">Face and Song are ' +
+      'all-or-nothing, so each offers three <b>hints</b>. A hint costs a ' +
+      'guess, and you cannot spend your last one on it. A wrong guess that ' +
+      'still names the right artist or group is marked, because that is real ' +
+      'progress.</p>';
+
+  return '<h2>How to play</h2><span class="kr">놀이 방법</span>' +
+
+    '<div class="legend">' +
+      '<div><span class="sw hit"></span> Exact match.</div>' +
+      '<div><span class="sw near"></span> Close — what that means depends ' +
+        'on the column.</div>' +
+      '<div><span class="sw"></span> No match. On number columns the arrow ' +
+        'points from your guess toward the answer.</div>' +
+    '</div>' +
+
+    '<h3>The four puzzles</h3>' +
+    '<div class="helpmode"><b>Idol</b> <span class="kr">아이돌</span> Name the ' +
+      'idol. Eight columns of feedback, eight guesses. Soloists are in this ' +
+      'pool too.</div>' +
+    '<div class="helpmode"><b>Group</b> <span class="kr">그룹</span> Name the ' +
+      'group. Six columns, eight guesses.</div>' +
+    '<div class="helpmode"><b>Face</b> <span class="kr">얼굴</span> A photocard ' +
+      'in a frosted sleeve. Each miss slides it further out, revealing another ' +
+      'band from the bottom up — so you get the outfit and hair first and ' +
+      'the eyes last. Six guesses.</div>' +
+    '<div class="helpmode"><b>Song</b> <span class="kr">노래</span> Name the ' +
+      'track. You hear 1 second, then 2, 4, 7, 11 and 16 as you miss. ' +
+      'Skipping costs a guess and buys the next step.</div>' +
+
+    colsBlock +
+
+    '<h3>Daily and Endless</h3>' +
+    '<p><b>Daily</b> <span class="kr">오늘</span> is the same puzzle for ' +
+      'everyone and resets at midnight in your own timezone. It leans toward ' +
+      'groups you would recognise, and in Song mode it only ever asks for a ' +
+      'title track — a shared daily built on an album cut nobody has heard ' +
+      'would not be fair. Only Daily counts toward your streak.</p>' +
+    '<p><b>Endless</b> <span class="kr">무한</span> plays the whole pool, ' +
+      'B-sides and deep cuts included, and unlocks the filters: generation, ' +
+      'fame, specific groups, whether to include members who left and ' +
+      'disbanded groups, and a switch to stay on title tracks. Filters never ' +
+      'touch Daily.</p>' +
+
+    '<h3>What is in the game</h3>' +
+    '<p><b>' + nMembers + '</b> members across <b>' + DATA.groups.length +
+      '</b> groups, <b>' + nSolo + '</b> soloists and <b>' +
+      DATA.songs.length.toLocaleString("en") + '</b> tracks. Songs come from ' +
+      'each artist’s full discography, so album cuts, B-sides and ' +
+      'Japanese releases are all there — as are solo releases by members ' +
+      'and sub-units such as MISAMO, filed under their group and findable ' +
+      'under either name.</p>' +
+    '<p class="note">Girl groups, 3rd generation onward; soloists reach back ' +
+      'to the 2nd. Facts from Wikidata, portraits from Wikimedia Commons, ' +
+      '30-second previews from Deezer.</p>';
 }
 
 function statsHTML(){
@@ -1249,7 +1332,10 @@ function init(){
     $("#p-"+p).onclick=()=>setPlay(p));
   $("#btn-new").onclick=()=>startRound(false);
   $("#btn-give").onclick=giveUp;
-  $("#btn-help").onclick=()=>$("#dlg-help").showModal();
+  $("#btn-help").onclick=()=>{
+    $("#help-body").innerHTML = helpHTML();
+    $("#dlg-help").showModal();
+  };
   $("#btn-stats").onclick=()=>{
     $("#stats-body").innerHTML=statsHTML(); $("#dlg-stats").showModal(); };
   $("#btn-share").onclick=copyShare;
@@ -1292,6 +1378,7 @@ function init(){
 
   if(!loadStore().seen){
     const st=loadStore(); st.seen=1; saveStore(st);
+    $("#help-body").innerHTML = helpHTML();
     $("#dlg-help").showModal();
   }
   startRound(true);
