@@ -187,6 +187,60 @@ def find_artist(names, known_titles=()):
     return aid, aname, f"{-fans} fans, unconfirmed — most followed match"
 
 
+# Sub-units release under their own name, so nothing in the parent group's
+# discography points at them and they were missing entirely. Their tracks are
+# filed under the parent and tagged with the unit's name, exactly like a
+# member's solo work.
+SUBUNITS = {
+    "MISAMO": ("TWICE", ["MISAMO"]),                       # Momo, Sana, Mina
+    "MAMAMOO+": ("MAMAMOO", ["MAMAMOO+", "MAMAMOO PLUS"]),  # Solar, Moonbyul
+    "IRENE & SEULGI": ("Red Velvet",
+                       ["Red Velvet - IRENE & SEULGI", "IRENE & SEULGI"]),
+    "OH MY GIRL BANHANA": ("OH MY GIRL",
+                           ["OH MY GIRL BANHANA", "Oh My Girl Banhana"]),
+    "WJSN CHOCOME": ("WJSN", ["WJSN Chocome", "WJSN CHOCOME"]),
+    "ODD EYE CIRCLE": ("LOONA",
+                       ["ODD EYE CIRCLE", "LOONA / ODD EYE CIRCLE"]),
+}
+
+
+def find_subunit_artist(variants, parent, parent_members):
+    """A sub-unit's Deezer page.
+
+    Not the same problem as a member's. Which group a unit belongs to is
+    asserted by hand in SUBUNITS, so it does not need confirming; what needs
+    confirming is that we landed on the right *page* for that name. An exact
+    match on a declared spelling does that — "Masego" never matches "MISAMO".
+
+    Deezer's related list is a weak signal here anyway: MISAMO's names NAYEON
+    but not TWICE, ODD EYE CIRCLE's names artms and CHUU but not LOONA, and
+    OH MY GIRL BANHANA's is empty. It is used only to break ties.
+    """
+    want = {norm(v) for v in variants}
+    near = {norm(parent)} | {norm(m) for m in parent_members}
+    # norm() drops the "+", so norm("MAMAMOO+") == norm("MAMAMOO") and the
+    # parent group itself passed as its own sub-unit — 118 of its tracks came
+    # back a second time tagged MAMAMOO+.
+    want.discard(norm(parent))
+    best = None
+    for v in variants:
+        d = api("/search/artist?q=" + urllib.parse.quote(v) + "&limit=15")
+        for a in d.get("data", []):
+            if norm(a.get("name")) not in want:
+                continue
+            if norm(a.get("name")) == norm(parent):
+                continue
+            rel = api(f"/artist/{a['id']}/related?limit=25").get("data", [])
+            linked = any(norm(r.get("name")) in near for r in rel)
+            score = (0 if linked else 1, -(a.get("nb_fan") or 0))
+            if best is None or score < best[0]:
+                best = (score, a["id"], a.get("name"), a.get("nb_fan") or 0,
+                        linked)
+    if not best:
+        return None
+    return best[1], best[2], best[3]
+
+
 def find_member_artist(member, group, group_names):
     """A group member's own Deezer artist page, or None.
 
@@ -297,10 +351,12 @@ def main():
     # be asked about, and neither is in a group's discography. They are filed
     # under the group, tagged with whose solo it is.
     game_path = os.path.join(DATA, "game_data.json")
+    game_members = []
     if os.path.exists(game_path):
         with open(game_path, encoding="utf-8") as f:
             game = json.load(f)
         members = [m for m in game["members"] if m["group"] != "Soloist"]
+        game_members = members
         print(f"\nlooking for solo releases by {len(members)} group members")
         found = 0
         for j, m in enumerate(members):
@@ -345,6 +401,53 @@ def main():
             if j % 25 == 0:
                 save_cache()
         print(f"solo releases found for {found} members")
+
+    # ---- sub-units --------------------------------------------------------
+    print("\nlooking for sub-units")
+    for unit, (parent, variants) in SUBUNITS.items():
+        if parent not in out:
+            print(f"   {unit}: parent {parent} is not in the roster — skipped")
+            continue
+        members_of = [m["name"] for m in
+                      game_members
+                      if m.get("group") == parent]
+        hit = find_subunit_artist(variants, parent, members_of)
+        if not hit:
+            print(f"   {unit}: no verified artist page — skipped")
+            continue
+        aid, aname, fans = hit
+        picked = {}
+        for alb in albums(aid):
+            if alb.get("record_type") not in ("album", "ep", "single", None):
+                continue
+            for t in api(f"/album/{alb['id']}/tracks?limit=100").get("data", []):
+                title = t.get("title_short") or t.get("title") or ""
+                full = t.get("title") or title
+                if not t.get("preview"):
+                    continue
+                if norm((t.get("artist") or {}).get("name")) != norm(aname):
+                    continue
+                if JUNK.search(title) or JUNK.search(full):
+                    continue
+                _b, tag = split_title(title)
+                _fb, ftag = split_title(full)
+                if BAD_VERSION.search(tag) or BAD_VERSION.search(ftag):
+                    continue
+                key = base_title(title)
+                rel = alb.get("release_date") or "9999"
+                if key in picked and picked[key]["released"] <= rel:
+                    continue
+                picked[key] = dict(
+                    title=title, released=rel, track_id=t.get("id"),
+                    rank=t.get("rank") or 0, album=alb.get("title"),
+                    by=unit, art_md5=alb.get("md5_image") or "",
+                    duration=t.get("duration") or 0)
+        if picked:
+            out[parent].extend(picked.values())
+            print(f"   {unit} -> {parent}: {len(picked)} tracks "
+                  f"[{aname}, {fans} fans]")
+        else:
+            print(f"   {unit}: artist found but no usable tracks")
 
     save_cache()
     with open(OUT, "w", encoding="utf-8") as f:

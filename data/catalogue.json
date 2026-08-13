@@ -3552,6 +3552,126 @@
    "by": "Yeri",
    "art_md5": "ec2420d6a969882ab842796285f2c35b",
    "duration": 167
+  },
+  {
+   "title": "TILT",
+   "released": "2025-05-26",
+   "track_id": 3376163341,
+   "rank": 416423,
+   "album": "TILT - The 2nd Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "9cefc180dd5ac9e7e738c0877240accd",
+   "duration": 184
+  },
+  {
+   "title": "What's Your Problem?",
+   "released": "2025-05-26",
+   "track_id": 3376163351,
+   "rank": 245738,
+   "album": "TILT - The 2nd Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "9cefc180dd5ac9e7e738c0877240accd",
+   "duration": 175
+  },
+  {
+   "title": "Irresistible",
+   "released": "2025-05-26",
+   "track_id": 3376163361,
+   "rank": 205667,
+   "album": "TILT - The 2nd Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "9cefc180dd5ac9e7e738c0877240accd",
+   "duration": 177
+  },
+  {
+   "title": "Girl Next Door",
+   "released": "2025-05-26",
+   "track_id": 3376163371,
+   "rank": 253429,
+   "album": "TILT - The 2nd Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "9cefc180dd5ac9e7e738c0877240accd",
+   "duration": 173
+  },
+  {
+   "title": "Trampoline",
+   "released": "2025-05-26",
+   "track_id": 3376163381,
+   "rank": 227327,
+   "album": "TILT - The 2nd Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "9cefc180dd5ac9e7e738c0877240accd",
+   "duration": 156
+  },
+  {
+   "title": "Heaven",
+   "released": "2025-05-26",
+   "track_id": 3376163391,
+   "rank": 354514,
+   "album": "TILT - The 2nd Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "9cefc180dd5ac9e7e738c0877240accd",
+   "duration": 180
+  },
+  {
+   "title": "Monster",
+   "released": "2020-07-06",
+   "track_id": 1009351772,
+   "rank": 441838,
+   "album": "Monster - The 1st Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "acb15b5e25e575e96ca10938e1904ced",
+   "duration": 178
+  },
+  {
+   "title": "Diamond",
+   "released": "2020-07-06",
+   "track_id": 1009351782,
+   "rank": 141438,
+   "album": "Monster - The 1st Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "acb15b5e25e575e96ca10938e1904ced",
+   "duration": 196
+  },
+  {
+   "title": "Feel Good",
+   "released": "2020-07-06",
+   "track_id": 1009351792,
+   "rank": 203159,
+   "album": "Monster - The 1st Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "acb15b5e25e575e96ca10938e1904ced",
+   "duration": 193
+  },
+  {
+   "title": "Jelly",
+   "released": "2020-07-06",
+   "track_id": 1009351802,
+   "rank": 159801,
+   "album": "Monster - The 1st Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "acb15b5e25e575e96ca10938e1904ced",
+   "duration": 192
+  },
+  {
+   "title": "Uncover (Sung by SEULGI)",
+   "released": "2020-07-06",
+   "track_id": 1009351812,
+   "rank": 146871,
+   "album": "Monster - The 1st Mini Album",
+   "by": "IRENE & SEULGI",
+   "art_md5": "acb15b5e25e575e96ca10938e1904ced",
+   "duration": 221
+  },
+  {
+   "title": "놀이 Naughty",
+   "released": "2020-07-20",
+   "track_id": 1022024132,
+   "rank": 364120,
+   "album": "놀이 Naughty",
+   "by": "IRENE & SEULGI",
+   "art_md5": "52d6fa2bed841b0b7e6db32d7f80d6c9",
+   "duration": 198
   }
  ],
  "GFRIEND": [
@@ -5365,6 +5485,86 @@
    "album": "Weather Diary",
    "art_md5": "354e05034f34ffd19b7b2b363b532326",
    "duration": 184
+  },
+  {
+   "title": "Ukiuki Waikiki (Intro)",
+   "released": "2018-04-02",
+   "track_id": 2927782271,
+   "rank": 29068,
+   "album": "Banana Allergy Monkey",
+   "by": "OH MY GIRL BANHANA",
+   "art_md5": "75b7006f8b8fd33bddfbc8d6e59f9035",
+   "duration": 52
+  },
+  {
+   "title": "Banana Ga Taberenai Saru",
+   "released": "2018-08-29",
+   "track_id": 976460562,
+   "rank": 11808,
+   "album": "BANANA ALLERGY MONKEY Japanese ver.",
+   "by": "OH MY GIRL BANHANA",
+   "art_md5": "acf716c532a24cf5814b6a69518d2c1c",
+   "duration": 223
+  },
+  {
+   "title": "Sounandatte",
+   "released": "2018-08-29",
+   "track_id": 976460572,
+   "rank": 18183,
+   "album": "BANANA ALLERGY MONKEY Japanese ver.",
+   "by": "OH MY GIRL BANHANA",
+   "art_md5": "acf716c532a24cf5814b6a69518d2c1c",
+   "duration": 212
+  },
+  {
+   "title": "Horetannjanai",
+   "released": "2018-08-29",
+   "track_id": 976460582,
+   "rank": 19205,
+   "album": "BANANA ALLERGY MONKEY Japanese ver.",
+   "by": "OH MY GIRL BANHANA",
+   "art_md5": "acf716c532a24cf5814b6a69518d2c1c",
+   "duration": 197
+  },
+  {
+   "title": "Banana Allergy Monkey",
+   "released": "2018-04-02",
+   "track_id": 2927782281,
+   "rank": 125677,
+   "album": "Banana Allergy Monkey",
+   "by": "OH MY GIRL BANHANA",
+   "art_md5": "75b7006f8b8fd33bddfbc8d6e59f9035",
+   "duration": 223
+  },
+  {
+   "title": "It Is Said",
+   "released": "2018-04-02",
+   "track_id": 2927782291,
+   "rank": 16646,
+   "album": "Banana Allergy Monkey",
+   "by": "OH MY GIRL BANHANA",
+   "art_md5": "75b7006f8b8fd33bddfbc8d6e59f9035",
+   "duration": 211
+  },
+  {
+   "title": "I'm Not in Love with You",
+   "released": "2018-04-02",
+   "track_id": 2927782301,
+   "rank": 17919,
+   "album": "Banana Allergy Monkey",
+   "by": "OH MY GIRL BANHANA",
+   "art_md5": "75b7006f8b8fd33bddfbc8d6e59f9035",
+   "duration": 194
+  },
+  {
+   "title": "Love is",
+   "released": "2022-08-14",
+   "track_id": 1859174917,
+   "rank": 30877,
+   "album": "Love is",
+   "by": "OH MY GIRL BANHANA",
+   "art_md5": "ba1ef5c6f2c256cb7bc659d17b827fb7",
+   "duration": 188
   }
  ],
  "TWICE": [
@@ -7718,6 +7918,276 @@
    "by": "Tzuyu",
    "art_md5": "52c665269fc530980b37893f80523bce",
    "duration": 213
+  },
+  {
+   "title": "Confetti",
+   "released": "2026-01-16",
+   "track_id": 3755997802,
+   "rank": 284396,
+   "album": "Confetti",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 158
+  },
+  {
+   "title": "Hmm",
+   "released": "2026-02-04",
+   "track_id": 3756080322,
+   "rank": 187589,
+   "album": "PLAY",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 192
+  },
+  {
+   "title": "Not a Goodbye",
+   "released": "2026-02-04",
+   "track_id": 3756080332,
+   "rank": 204122,
+   "album": "PLAY",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 206
+  },
+  {
+   "title": "Deep Eden",
+   "released": "2026-02-04",
+   "track_id": 3756080342,
+   "rank": 176978,
+   "album": "PLAY",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 169
+  },
+  {
+   "title": "Red Diamond",
+   "released": "2026-02-04",
+   "track_id": 3756080352,
+   "rank": 153158,
+   "album": "PLAY",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 137
+  },
+  {
+   "title": "Catch My Eye",
+   "released": "2026-02-04",
+   "track_id": 3756080372,
+   "rank": 166387,
+   "album": "PLAY",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 193
+  },
+  {
+   "title": "Kitty (MOMO)",
+   "released": "2026-02-04",
+   "track_id": 3756080392,
+   "rank": 196057,
+   "album": "PLAY",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 162
+  },
+  {
+   "title": "Ma Cherry (SANA)",
+   "released": "2026-02-04",
+   "track_id": 3756080402,
+   "rank": 145247,
+   "album": "PLAY",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 108
+  },
+  {
+   "title": "Turning Tables (MINA)",
+   "released": "2026-02-04",
+   "track_id": 3756080412,
+   "rank": 222693,
+   "album": "PLAY",
+   "by": "MISAMO",
+   "art_md5": "254714cfcb46a5e71a3cee1d46f32364",
+   "duration": 167
+  },
+  {
+   "title": "Identity",
+   "released": "2024-10-28",
+   "track_id": 3046507361,
+   "rank": 196850,
+   "album": "Identity",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 140
+  },
+  {
+   "title": "Do not touch",
+   "released": "2023-07-14",
+   "track_id": 2354855975,
+   "rank": 432067,
+   "album": "Do not touch",
+   "by": "MISAMO",
+   "art_md5": "121f98f5c86f1493cdff576b77349c20",
+   "duration": 185
+  },
+  {
+   "title": "Message",
+   "released": "2025-04-28",
+   "track_id": 3316871631,
+   "rank": 41664,
+   "album": "Message",
+   "by": "MISAMO",
+   "art_md5": "02b6755f78345d9ad99b92bf52aa7e49",
+   "duration": 245
+  },
+  {
+   "title": "RUNWAY",
+   "released": "2024-11-06",
+   "track_id": 3038865771,
+   "rank": 299838,
+   "album": "HAUTE COUTURE",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 163
+  },
+  {
+   "title": "Wah Wah Wah",
+   "released": "2024-11-06",
+   "track_id": 3038865781,
+   "rank": 143995,
+   "album": "HAUTE COUTURE",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 187
+  },
+  {
+   "title": "Baby, I'm good",
+   "released": "2024-11-06",
+   "track_id": 3038865791,
+   "rank": 148733,
+   "album": "HAUTE COUTURE",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 179
+  },
+  {
+   "title": "Daydream",
+   "released": "2024-11-06",
+   "track_id": 3038865801,
+   "rank": 211010,
+   "album": "HAUTE COUTURE",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 165
+  },
+  {
+   "title": "NEW LOOK",
+   "released": "2024-10-09",
+   "track_id": 3028822241,
+   "rank": 192874,
+   "album": "NEW LOOK",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 196
+  },
+  {
+   "title": "Jealousy",
+   "released": "2024-11-06",
+   "track_id": 3038865821,
+   "rank": 151563,
+   "album": "HAUTE COUTURE",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 199
+  },
+  {
+   "title": "Misty (MINA)",
+   "released": "2024-11-06",
+   "track_id": 3038865831,
+   "rank": 177351,
+   "album": "HAUTE COUTURE",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 194
+  },
+  {
+   "title": "Money In My Pocket (MOMO)",
+   "released": "2024-11-06",
+   "track_id": 3038865841,
+   "rank": 174032,
+   "album": "HAUTE COUTURE",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 149
+  },
+  {
+   "title": "Mirage (SANA)",
+   "released": "2024-11-06",
+   "track_id": 3038865851,
+   "rank": 118956,
+   "album": "HAUTE COUTURE",
+   "by": "MISAMO",
+   "art_md5": "58b9ad3bc6ee17e8a407a36f54782ee1",
+   "duration": 180
+  },
+  {
+   "title": "Behind The Curtain",
+   "released": "2023-07-26",
+   "track_id": 2351753425,
+   "rank": 236574,
+   "album": "Masterpiece",
+   "by": "MISAMO",
+   "art_md5": "121f98f5c86f1493cdff576b77349c20",
+   "duration": 178
+  },
+  {
+   "title": "Marshmallow",
+   "released": "2023-06-16",
+   "track_id": 2320299525,
+   "rank": 267720,
+   "album": "Marshmallow",
+   "by": "MISAMO",
+   "art_md5": "121f98f5c86f1493cdff576b77349c20",
+   "duration": 182
+  },
+  {
+   "title": "Funny Valentine",
+   "released": "2023-07-26",
+   "track_id": 2351753445,
+   "rank": 251885,
+   "album": "Masterpiece",
+   "by": "MISAMO",
+   "art_md5": "121f98f5c86f1493cdff576b77349c20",
+   "duration": 197
+  },
+  {
+   "title": "It's not easy for you",
+   "released": "2023-07-26",
+   "track_id": 2351753455,
+   "rank": 187724,
+   "album": "Masterpiece",
+   "by": "MISAMO",
+   "art_md5": "121f98f5c86f1493cdff576b77349c20",
+   "duration": 140
+  },
+  {
+   "title": "Rewind you",
+   "released": "2023-07-26",
+   "track_id": 2351753465,
+   "rank": 181628,
+   "album": "Masterpiece",
+   "by": "MISAMO",
+   "art_md5": "121f98f5c86f1493cdff576b77349c20",
+   "duration": 197
+  },
+  {
+   "title": "Bouquet",
+   "released": "2023-01-25",
+   "track_id": 2111655787,
+   "rank": 189151,
+   "album": "Bouquet",
+   "by": "MISAMO",
+   "art_md5": "a0fd9b77a3cafa70c82f67e7bfb23483",
+   "duration": 264
   }
  ],
  "WJSN": [
@@ -8395,6 +8865,46 @@
    "album": "Bloom hour",
    "art_md5": "88d997cc2601b0717590ad8f8192c5e8",
    "duration": 191
+  },
+  {
+   "title": "Super Yuppers!",
+   "released": "2022-01-05",
+   "track_id": 1610930642,
+   "rank": 161889,
+   "album": "Super Yuppers!",
+   "by": "WJSN CHOCOME",
+   "art_md5": "1ead9e3cd76dc41d33f588a1b09c0140",
+   "duration": 217
+  },
+  {
+   "title": "Sweetie",
+   "released": "2022-01-05",
+   "track_id": 1610930652,
+   "rank": 52495,
+   "album": "Super Yuppers!",
+   "by": "WJSN CHOCOME",
+   "art_md5": "1ead9e3cd76dc41d33f588a1b09c0140",
+   "duration": 192
+  },
+  {
+   "title": "Hmph!",
+   "released": "2020-10-07",
+   "track_id": 1101883042,
+   "rank": 166836,
+   "album": "Hmph!",
+   "by": "WJSN CHOCOME",
+   "art_md5": "5e1b971b85e7ec1f5af3832c75835eaf",
+   "duration": 199
+  },
+  {
+   "title": "Ya Ya Ya",
+   "released": "2020-10-07",
+   "track_id": 1101883052,
+   "rank": 47053,
+   "album": "Hmph!",
+   "by": "WJSN CHOCOME",
+   "art_md5": "5e1b971b85e7ec1f5af3832c75835eaf",
+   "duration": 177
   }
  ],
  "BLACKPINK": [
@@ -12691,6 +13201,66 @@
    "by": "Haseul",
    "art_md5": "8383717e464e2d674832a7045d4bcd7c",
    "duration": 190
+  },
+  {
+   "title": "Did You Wait?",
+   "released": "2023-07-12",
+   "track_id": 2722445102,
+   "rank": 67288,
+   "album": "ODD EYE CIRCLE <Version Up>",
+   "by": "ODD EYE CIRCLE",
+   "art_md5": "79f87654ffbe8a524ab7610d8a689941",
+   "duration": 70
+  },
+  {
+   "title": "Air Force One",
+   "released": "2023-07-12",
+   "track_id": 2722445112,
+   "rank": 213451,
+   "album": "ODD EYE CIRCLE <Version Up>",
+   "by": "ODD EYE CIRCLE",
+   "art_md5": "79f87654ffbe8a524ab7610d8a689941",
+   "duration": 163
+  },
+  {
+   "title": "Je Ne Sais Quoi",
+   "released": "2023-07-12",
+   "track_id": 2722445122,
+   "rank": 203273,
+   "album": "ODD EYE CIRCLE <Version Up>",
+   "by": "ODD EYE CIRCLE",
+   "art_md5": "79f87654ffbe8a524ab7610d8a689941",
+   "duration": 174
+  },
+  {
+   "title": "Lucid",
+   "released": "2023-07-12",
+   "track_id": 2722445132,
+   "rank": 182662,
+   "album": "ODD EYE CIRCLE <Version Up>",
+   "by": "ODD EYE CIRCLE",
+   "art_md5": "79f87654ffbe8a524ab7610d8a689941",
+   "duration": 213
+  },
+  {
+   "title": "Love Me Like",
+   "released": "2023-07-12",
+   "track_id": 2722445142,
+   "rank": 142427,
+   "album": "ODD EYE CIRCLE <Version Up>",
+   "by": "ODD EYE CIRCLE",
+   "art_md5": "79f87654ffbe8a524ab7610d8a689941",
+   "duration": 178
+  },
+  {
+   "title": "My Secret Playlist",
+   "released": "2023-07-12",
+   "track_id": 2722445152,
+   "rank": 112512,
+   "album": "ODD EYE CIRCLE <Version Up>",
+   "by": "ODD EYE CIRCLE",
+   "art_md5": "79f87654ffbe8a524ab7610d8a689941",
+   "duration": 152
   }
  ],
  "ITZY": [
