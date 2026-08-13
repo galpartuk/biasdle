@@ -877,3 +877,24 @@ table.helpcols .amber{color:var(--amber);font-size:11.5px;margin-top:2px}
   background:linear-gradient(150deg,var(--coral),var(--iris));
   color:#fff;border-color:transparent;
 }
+
+/* ---------- past days dialog ---------- */
+.daygrid{
+  display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;
+  max-height:min(52vh,420px);overflow-y:auto;padding:2px;
+}
+.daygrid .chip{min-width:56px;justify-content:center;text-align:center}
+.daygrid .chip.won{border-color:var(--mint);color:var(--mint)}
+.daygrid .chip.lost{border-color:#FF6B8A;color:#FF6B8A}
+.daygrid .chip[aria-pressed="true"]{
+  background:linear-gradient(150deg,var(--coral),var(--iris));
+  color:#fff;border-color:transparent;
+}
+.monthblock{margin-top:14px}
+.monthlab{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dimmer);font-weight:800;margin-bottom:6px;
+}
+.monthblock .daygrid{max-height:none;margin-top:0}
+#archive-grid{max-height:min(54vh,440px);overflow-y:auto;padding-right:4px}
+.daygrid .chip.day{min-width:40px;padding:6px 9px}

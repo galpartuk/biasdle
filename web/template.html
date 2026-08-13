@@ -31,6 +31,8 @@
       <button class="swatch t-arena" data-theme="arena"
               title="Arena" aria-label="Arena theme"></button>
     </div>
+    <button class="iconbtn" id="btn-archive" title="Past days"
+            aria-label="Past days">&#8630;</button>
     <button class="iconbtn" id="btn-stats" title="Statistics"
             aria-label="Statistics">&#9636;</button>
     <button class="iconbtn" id="btn-help" title="How to play"
@@ -84,6 +86,14 @@
 
 <dialog id="dlg-help"><button class="iconbtn close" data-close>&times;</button>
   <div class="body" id="help-body"></div>
+</dialog>
+
+<dialog id="dlg-archive"><button class="iconbtn close" data-close>&times;</button>
+  <div class="body">
+    <h2>Past days</h2><span class="kr">지난 날짜</span>
+    <p class="note" id="archive-note"></p>
+    <div id="archive-grid"></div>
+  </div>
 </dialog>
 
 <dialog id="dlg-stats"><button class="iconbtn close" data-close>&times;</button>
@@ -1004,6 +1014,8 @@ function render(){
   $("#q").disabled = S.done;
   $("#submit").disabled = S.done;
   $("#btn-new").hidden = S.play!=="endless";
+  // Endless has no past days to replay.
+  $("#btn-archive").hidden = S.play!=="daily" || !archiveDays().length;
   $("#btn-give").hidden = S.done;
 
   let body="";
@@ -1256,6 +1268,15 @@ function archiveDays(){
   const n = Math.max(0, Math.min(S.day, len ? len - 1 : 0));
   return Array.from({length: n}, (_, i) => S.day - 1 - i);
 }
+function dayDate(d){
+  const [y,m,dd] = DATA.epoch.split("-").map(Number);
+  return new Date(y, m-1, dd + d);
+}
+function monthLabel(d){
+  return dayDate(d).toLocaleDateString("en-GB",
+                                       {month:"long", year:"numeric"});
+}
+function dayNum(d){ return String(dayDate(d).getDate()); }
 function dayLabel(d){
   const [y,m,dd] = DATA.epoch.split("-").map(Number);
   const dt = new Date(y, m-1, dd + d);
@@ -1264,26 +1285,70 @@ function dayLabel(d){
   // and an English button reads as a rendering fault.
   return dt.toLocaleDateString("en-GB", {day:"numeric", month:"short"});
 }
+function dayState(d){
+  const r = (loadStore().rounds || {})[S.mode + ":d" + d];
+  return r && r.d ? (r.w ? "won" : "lost") : "";
+}
+
+/* The full picker, behind the Past days button. A permanent strip of sixty
+   chips took up the top of the board for something you reach for occasionally. */
+function renderArchiveDialog(){
+  const days = archiveDays();
+  const cur = shownDay();
+  const played = days.filter(d => dayState(d)).length;
+  $("#archive-note").textContent = days.length
+    ? `Every past day has a fixed answer. ${played} of ${days.length} played — `
+      + `replaying one never touches your streak.`
+    : "Nothing to replay yet — come back tomorrow.";
+  // 223 bare numbers is a wall. Grouped by month, a player can find "the one
+  // from last Tuesday" without hovering every chip for its tooltip.
+  const months = [];
+  days.forEach(d => {
+    const m = monthLabel(d);
+    if(!months.length || months[months.length-1].m !== m)
+      months.push({m, days: []});
+    months[months.length-1].days.push(d);
+  });
+  $("#archive-grid").innerHTML = `
+    <div class="daygrid">
+      <button class="chip" data-today="1" aria-pressed="${S.viewDay==null}">
+        Today</button>
+    </div>
+    ${months.map(g => `<div class="monthblock">
+      <div class="monthlab">${esc(g.m)}</div>
+      <div class="daygrid">${g.days.map(d =>
+        `<button class="chip day ${dayState(d)}" data-day="${d}"
+           aria-pressed="${cur===d}" title="#${d} · ${esc(dayLabel(d))}"
+           >${esc(dayNum(d))}</button>`).join("")}</div>
+    </div>`).join("")}`;
+  const pick = fn => { fn(); $("#dlg-archive").close(); startRound(true); };
+  $("#archive-grid").querySelector("[data-today]").onclick =
+    () => pick(() => { S.viewDay = null; });
+  $("#archive-grid").querySelectorAll("[data-day]").forEach(b =>
+    b.onclick = () => pick(() => { S.viewDay = +b.dataset.day; }));
+}
+
+/* Inline, the strip appears only while you are actually replaying a past day —
+   so there is always an obvious way back to today and a way to step between
+   days without reopening the dialog. */
 function renderArchive(){
   const host = $("#archive");
-  if(S.play !== "daily"){ host.innerHTML = ""; return; }
+  if(S.play !== "daily" || S.viewDay == null){ host.innerHTML = ""; return; }
   const days = archiveDays();
-  if(!days.length){ host.innerHTML = ""; return; }
-  const store = loadStore().rounds || {};
-  const done = d => {
-    const r = store[S.mode + ":d" + d];
-    return r && r.d ? (r.w ? "won" : "lost") : "";
-  };
   const cur = shownDay();
+  const near = days.filter(d => Math.abs(d - cur) <= 6);
   host.innerHTML = `<div class="archive">
-    <button class="chip ${S.viewDay==null?"":""}" id="a-today"
-            aria-pressed="${S.viewDay==null}">Today</button>
-    <div class="days">${days.slice(0,60).map(d =>
-      `<button class="chip day ${done(d)}" data-day="${d}"
+    <button class="chip" id="a-today">&larr; Today</button>
+    <div class="days">${near.map(d =>
+      `<button class="chip day ${dayState(d)}" data-day="${d}"
                aria-pressed="${cur===d}">#${d} · ${esc(dayLabel(d))}</button>`
       ).join("")}</div>
+    <button class="chip" id="a-more">All days</button>
   </div>`;
   $("#a-today").onclick = () => { S.viewDay = null; startRound(true); };
+  $("#a-more").onclick = () => {
+    renderArchiveDialog(); $("#dlg-archive").showModal();
+  };
   host.querySelectorAll("[data-day]").forEach(b => b.onclick = () => {
     S.viewDay = +b.dataset.day;
     startRound(true);
@@ -1451,6 +1516,9 @@ function init(){
     $("#help-body").innerHTML = helpHTML();
     $("#dlg-help").showModal();
   };
+  $("#btn-archive").onclick=()=>{
+    renderArchiveDialog(); $("#dlg-archive").showModal();
+  };
   $("#btn-stats").onclick=()=>{
     $("#stats-body").innerHTML=statsHTML(); $("#dlg-stats").showModal(); };
   $("#btn-share").onclick=copyShare;
@@ -1513,7 +1581,7 @@ if(typeof module!=="undefined" && module.exports){
                     PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume,
                     photoOf,commons,HINTS,hintsFor,takeHint,MAXG,
                     loadFilters,photoSeed,puzzleSeed,thumbFor,seekTo,
-                    playClip,shownDay,archiveDays,dayLabel};
+                    playClip,shownDay,archiveDays,dayLabel,renderArchiveDialog,dayState,monthLabel,dayNum};
 } else {
   document.addEventListener("DOMContentLoaded",init);
 }
