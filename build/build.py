@@ -550,6 +550,19 @@ def render(payload):
     css_path = os.path.join(ROOT, "web", "theme.css")
     with open(css_path, encoding="utf-8") as f:
         css = f.read()
+
+    # A stray merge marker once survived into theme.css and took a closing
+    # brace with it, so every rule after it sat inside an @media block that
+    # never matched — the CSS was all there and none of it applied. Cheap to
+    # check, invisible if you don't.
+    for marker in ("<<<<<<<", "=======", ">>>>>>>"):
+        if any(line.startswith(marker) for line in css.splitlines()):
+            raise SystemExit(f"theme.css still contains a {marker} merge marker")
+    stripped = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    depth = stripped.count("{") - stripped.count("}")
+    if depth:
+        raise SystemExit(f"theme.css has {depth} unclosed brace(s) — "
+                         f"everything after it silently stops applying")
     if "/*__CSS__*/" not in tpl:
         raise SystemExit("template.html lost its /*__CSS__*/ marker")
     tpl = tpl.replace("/*__CSS__*/", css, 1)
