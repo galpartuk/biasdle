@@ -1006,8 +1006,13 @@ function photoOf(item, n){
 function photoSeed(){
   return S.play === "daily" ? S.day : S.photoPick;
 }
-function imgTag(item, cls, width, alt){
-  const pick = photoOf(item, photoSeed());
+/* Face mode showed the SAME photo as the thumbnail beside her name, so you
+   could scroll the suggestion list and match the picture without spending a
+   guess. The puzzle takes the next photo in her set instead — a different one
+   whenever she has more than one. */
+function puzzleSeed(){ return photoSeed() + 1; }
+function imgTag(item, cls, width, alt, seed){
+  const pick = photoOf(item, seed == null ? photoSeed() : seed);
   if(!pick) return "";
   // Prefer the P18 portrait as the fallback — editors maintain it. A couple of
   // members have stage photos but no portrait at all, so for them the next
@@ -1022,6 +1027,10 @@ function imgTag(item, cls, width, alt){
 
 function thumbFor(item){
   if(MODE()==="song") return ART(item.art);
+  // Never in Face mode. Eighty-one of the idols in that pool have exactly one
+  // photo, so shuffling cannot hide them — and putting faces in the picker of
+  // a game about recognising a face defeats the whole thing.
+  if(MODE()==="image") return "";
   const pick = photoOf(item, photoSeed());
   return pick ? commons(pick,90) : "";
 }
@@ -1590,7 +1599,8 @@ function imageHTML(){
   const frost = `--frost:${SLEEVE_FROST[i]}px;--sat:${SLEEVE_SAT[i]}`;
   return `<div class="artstage"><div class="sleeve-wrap">
       <div class="pc">
-        ${imgTag(a, "pc-photo", 600, "Photocard of the idol to identify")}
+        ${imgTag(a, "pc-photo", 600, "Photocard of the idol to identify",
+                 puzzleSeed())}
       </div>
       <div class="sleeve${S.done?" gone":""}"
            style="--cover:${cover}%;${frost}"></div>
@@ -1662,7 +1672,10 @@ function wrongsHTML(){
   const rows = S.guesses.map(g=>{
     if(!g) return `<div class="wrong skipped"><span class="x">&#8594;</span>
       <span>Skipped</span></div>`;
-    const th = thumbFor(g);
+    // A guess already cost you something, so its portrait is shown even in
+    // Face mode — unlike the free browsing in the picker.
+    const th = (S.mode === "image" && g.img)
+      ? commons(photoOf(g, photoSeed()), 90) : thumbFor(g);
     const nm = g.display||g.title||g.name;
     const sub = S.mode==="song" ? (g.by ? g.by+" · "+g.group : g.group)
                 : (g.group||g.company||"");
@@ -1711,8 +1724,12 @@ function photocardHTML(a){
   // A group card names the group and its label; a member card names her and
   // the group she is in.
   const line2 = isGroup ? shortLabel(a.company||"") : (a.group||"");
+  // In Face mode the result must show the photo that was on the card, not a
+  // different one — otherwise the reveal does not answer what you were staring
+  // at.
+  const seed = S.mode === "image" ? puzzleSeed() : null;
   return `<div class="pc holo${isGroup?" wide":""}">
-    ${imgTag(a, "pc-photo", isGroup?800:500, "")}
+    ${imgTag(a, "pc-photo", isGroup?800:500, "", seed)}
     <div class="pc-plate">${kr}
       <div class="pc-name">${esc(isGroup ? a.name : (a.name||a.display))}</div>
       <div class="pc-group">${esc(line2)}</div>
@@ -2214,7 +2231,7 @@ if(typeof module!=="undefined" && module.exports){
                     STEPS,shareText,startRound,submitGuess,
                     THEMES,defaultFilters,passes,endlessPool,groupByName,
                     PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume,
-                    photoOf,commons,HINTS,hintsFor,takeHint,MAXG,loadFilters};
+                    photoOf,commons,HINTS,hintsFor,takeHint,MAXG,loadFilters,photoSeed,puzzleSeed,thumbFor};
 } else {
   document.addEventListener("DOMContentLoaded",init);
 }

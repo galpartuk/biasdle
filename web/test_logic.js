@@ -736,6 +736,40 @@ eq(dupSongs.slice(0, 8).map(v => v[0].group + " / " + v[0].title), [],
 const stillSingles = DATA.songs.filter(s => s.single).length;
 ok(stillSingles > 200, `title tracks survived deduping (${stillSingles})`);
 
+
+/* ====================================================================== */
+section("Face mode does not leak its answer");
+const { puzzleSeed, thumbFor } = G;
+S.play = "daily"; S.mode = "image"; S.viewDay = null;
+
+/* The picker showed the very photo that was on the card, so you could scroll
+   the suggestions and match it without spending a guess. */
+const facePool = MODES.image.pool();
+eq(thumbFor(facePool[0]), "", "Face mode shows no portrait in the picker");
+S.mode = "member";
+ok(thumbFor(facePool[0]) !== "", "...but Idol mode still does");
+S.mode = "group";
+ok(thumbFor(DATA.groups[0]) !== "", "...and so does Group mode");
+S.mode = "image";
+
+/* Where an idol has more than one photo, the puzzle uses a different one from
+   the browse thumbnail. */
+ok(puzzleSeed() !== photoSeed0(), "the puzzle seed differs from the browse seed");
+function photoSeed0(){ return G.photoSeed(); }
+const multi = facePool.filter(m => m.imgs && m.imgs.length > 1);
+ok(multi.length > 50, `${multi.length} idols have more than one photo`);
+const sameAnyway = multi.filter(
+  m => photoOf(m, G.photoSeed()) === photoOf(m, puzzleSeed()));
+eq(sameAnyway.slice(0, 5).map(m => m.name), [],
+   "with 2+ photos the puzzle never reuses the browse photo");
+
+/* With exactly one photo there is nothing to swap — which is why hiding the
+   picker thumbnail is the fix that actually closes the hole. */
+const single = facePool.filter(m => !m.imgs || m.imgs.length < 2);
+ok(single.length > 0,
+   `${single.length} idols have a single photo and rely on the hidden picker`);
+S.mode = "member"; S.play = "daily";
+
 /* ====================================================================== */
 /* KEEP THIS LAST. Appending a section after the summary means it runs after
    the exit code is decided, so a failure in it is reported and then ignored.
