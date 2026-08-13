@@ -696,6 +696,27 @@ eq(S.hints.length, stuck, "the last guess cannot be spent on a hint");
 S.guesses = []; S.hints = []; S.done = false;
 S.play = "daily"; S.mode = "member";
 
+
+/* ====================================================================== */
+section("filters do not persist a group pick");
+/* Generation, fame and the include-switches are standing preferences and are
+   remembered. A specific group is not: reloading into a filter set weeks ago
+   makes Endless look permanently narrow. */
+const saved = JSON.stringify({gens: [4], tiers: [1], groups: ["TWICE"],
+                              former: false, disbanded: false,
+                              singlesOnly: true});
+sandbox.localStorage.setItem("biasdle.filters", saved);
+const restored = G.loadFilters ? G.loadFilters() : null;
+ok(restored, "loadFilters is reachable");
+if (restored) {
+  eq(restored.groups, [], "a saved group pick is not restored");
+  eq(restored.gens, [4], "generation preference survives");
+  eq(restored.tiers, [1], "fame preference survives");
+  eq(restored.former, false, "the include-switches survive");
+  eq(restored.singlesOnly, true, "title-tracks-only survives");
+}
+sandbox.localStorage.setItem("biasdle.filters", "");
+
 /* ====================================================================== */
 /* KEEP THIS LAST. Appending a section after the summary means it runs after
    the exit code is decided, so a failure in it is reported and then ignored.

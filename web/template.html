@@ -318,12 +318,14 @@ function loadFilters(){
   try{
     const f = JSON.parse(localStorage.getItem(FILTER_KEY));
     if(!f) return d;
-    const known = new Set(DATA.groups.map(g => g.name));
     return {
       gens:  Array.isArray(f.gens)  ? f.gens.filter(g => GENS.includes(g)) : d.gens,
       tiers: Array.isArray(f.tiers) ? f.tiers.filter(t => t>=1 && t<=3)    : d.tiers,
-      // a group that left the roster must not linger as an invisible filter
-      groups: Array.isArray(f.groups) ? f.groups.filter(g => known.has(g)) : [],
+      // Deliberately NOT restored. Generation, fame and the include-switches
+      // are standing preferences; picking a specific group is a "right now"
+      // action, and reloading into it weeks later reads as though Endless has
+      // always been that narrow. Endless starts on the full pool.
+      groups: [],
       former: f.former !== false,
       disbanded: f.disbanded !== false,
       singlesOnly: !!f.singlesOnly
@@ -1307,7 +1309,7 @@ if(typeof module!=="undefined" && module.exports){
                     STEPS,shareText,startRound,submitGuess,
                     THEMES,defaultFilters,passes,endlessPool,groupByName,
                     PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume,
-                    photoOf,commons,HINTS,hintsFor,takeHint,MAXG};
+                    photoOf,commons,HINTS,hintsFor,takeHint,MAXG,loadFilters};
 } else {
   document.addEventListener("DOMContentLoaded",init);
 }
