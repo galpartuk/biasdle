@@ -330,7 +330,20 @@ def build_songs(raw, groups_by_name):
     expiry so they are resolved at play time from the track id anyway, and
     storing ~3000 of them would add half a megabyte of dead text to the page.
     """
-    out, seen = [], set()
+    out, seen, by_title = [], set(), set()
+
+    def title_key(group, title):
+        """Group plus the title with any trailing tag dropped.
+
+        The same recording ships as a single and again on the album with a
+        different track id, so deduping on the id alone let "One More Time",
+        "BDZ" and "Peek-A-Boo" into the pool twice — and a player who names one
+        of them can be told they are wrong.
+        """
+        base = re.sub(r"\s*[\(\[].*$|\s+-\s.*$", "", title or "")
+        t = unicodedata.normalize("NFKD", base.lower())
+        t = "".join(c for c in t if not unicodedata.combining(c))
+        return group, re.sub(r"[^a-z0-9가-힣]", "", t)
 
     def add(group, title, track, art, album, year, preview, single, by=None):
         g = groups_by_name.get(group)
@@ -342,7 +355,13 @@ def build_songs(raw, groups_by_name):
         sid = "t" + str(track)
         if sid in seen:
             return
+        # Curated title tracks are added first, so keeping the first sighting
+        # keeps the `single` flag on the row that earns it.
+        tk = title_key(group, title)
+        if tk in by_title:
+            return
         seen.add(sid)
+        by_title.add(tk)
         keys = [title, f"{group} {title}"]
         if by:
             # A solo release is filed under the group but people look for it by

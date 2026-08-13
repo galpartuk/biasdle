@@ -717,6 +717,25 @@ if (restored) {
 }
 sandbox.localStorage.setItem("biasdle.filters", "");
 
+
+/* ====================================================================== */
+section("no song appears twice");
+/* The same recording ships as a single and again on the album under a
+   different track id. Two rows for one song means a player can name it
+   correctly and be told they are wrong. */
+const songKey = s => s.group + "|" + norm(
+  (s.title || "").replace(/\s*[([].*$|\s+-\s.*$/, ""));
+const bySong = {};
+DATA.songs.forEach(s => { (bySong[songKey(s)] = bySong[songKey(s)] || []).push(s); });
+const dupSongs = Object.values(bySong).filter(v => v.length > 1);
+eq(dupSongs.slice(0, 8).map(v => v[0].group + " / " + v[0].title), [],
+   "each song appears once per artist");
+
+/* The curated title track is the row that must survive deduping — losing it
+   would empty the daily pool. */
+const stillSingles = DATA.songs.filter(s => s.single).length;
+ok(stillSingles > 200, `title tracks survived deduping (${stillSingles})`);
+
 /* ====================================================================== */
 /* KEEP THIS LAST. Appending a section after the summary means it runs after
    the exit code is decided, so a failure in it is reported and then ignored.
