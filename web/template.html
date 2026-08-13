@@ -218,12 +218,30 @@ function imgTag(item, cls, width, alt, seed){
     + ` loading="lazy">`;
 }
 
+/* A picture for the picker that is NOT the one on the card.
+ *
+ * Most idols have both a P18 portrait and stage photography, and the Face card
+ * always uses a stage photo — so the portrait is a genuinely different picture
+ * of the same person. That is the useful thing to show: you can still compare
+ * a face against the card, but you have to actually recognise her rather than
+ * spot two copies of one image.
+ *
+ * 69 of the 201 idols in the pool have only a single picture. They get no
+ * thumbnail rather than a free answer. That leaks nothing — a missing
+ * thumbnail says nothing about whether she is today's answer.
+ */
+function pickerPhoto(item){
+  const onCard = photoOf(item, puzzleSeed());
+  const options = (item.img ? [item.img] : []).concat(item.imgs || []);
+  return options.find(f => f && f !== onCard) || null;
+}
+
 function thumbFor(item){
   if(MODE()==="song") return ART(item.art);
-  // Never in Face mode. Eighty-one of the idols in that pool have exactly one
-  // photo, so shuffling cannot hide them — and putting faces in the picker of
-  // a game about recognising a face defeats the whole thing.
-  if(MODE()==="image") return "";
+  if(MODE()==="image"){
+    const alt = pickerPhoto(item);
+    return alt ? commons(alt, 90) : "";
+  }
   const pick = photoOf(item, photoSeed());
   return pick ? commons(pick,90) : "";
 }
@@ -829,8 +847,8 @@ const SLEEVE_COVER = [88, 74, 58, 42, 24, 10];
 /* The frost was a flat 13px, which read as "grey rectangle" rather than "card
    behind plastic". It is gentler now and eases off slightly per guess, so the
    part still inside the sleeve gets a little clearer as well as smaller. */
-const SLEEVE_FROST = [9, 8, 7, 6, 5, 4];
-const SLEEVE_SAT   = [.55, .62, .70, .78, .86, .94];
+const SLEEVE_FROST = [6, 5, 4, 3, 2, 1.2];
+const SLEEVE_SAT   = [.70, .76, .82, .88, .94, 1];
 
 function imageHTML(){
   const a=S.answer; if(!a) return "";
@@ -915,10 +933,7 @@ function wrongsHTML(){
   const rows = S.guesses.map(g=>{
     if(!g) return `<div class="wrong skipped"><span class="x">&#8594;</span>
       <span>Skipped</span></div>`;
-    // A guess already cost you something, so its portrait is shown even in
-    // Face mode — unlike the free browsing in the picker.
-    const th = (S.mode === "image" && g.img)
-      ? commons(photoOf(g, photoSeed()), 90) : thumbFor(g);
+    const th = thumbFor(g);
     const nm = g.display||g.title||g.name;
     const sub = S.mode==="song" ? (g.by ? g.by+" · "+g.group : g.group)
                 : (g.group||g.company||"");
@@ -1580,7 +1595,7 @@ if(typeof module!=="undefined" && module.exports){
                     THEMES,defaultFilters,passes,endlessPool,groupByName,
                     PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume,
                     photoOf,commons,HINTS,hintsFor,takeHint,MAXG,
-                    loadFilters,photoSeed,puzzleSeed,thumbFor,seekTo,
+                    loadFilters,photoSeed,puzzleSeed,thumbFor,pickerPhoto,seekTo,
                     playClip,shownDay,archiveDays,dayLabel,renderArchiveDialog,dayState,monthLabel,dayNum};
 } else {
   document.addEventListener("DOMContentLoaded",init);

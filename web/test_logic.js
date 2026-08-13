@@ -745,9 +745,18 @@ S.play = "daily"; S.mode = "image"; S.viewDay = null;
 /* The picker showed the very photo that was on the card, so you could scroll
    the suggestions and match it without spending a guess. */
 const facePool = MODES.image.pool();
-eq(thumbFor(facePool[0]), "", "Face mode shows no portrait in the picker");
+/* The picker shows a picture again — but never the one on the card. */
+const withAlt = facePool.filter(m => G.pickerPhoto(m));
+ok(withAlt.length > 100,
+   `${withAlt.length}/${facePool.length} idols get a picker thumbnail`);
+eq(withAlt.filter(m => G.pickerPhoto(m) === photoOf(m, puzzleSeed()))
+     .slice(0, 5).map(m => m.name), [],
+   "a picker thumbnail is never the photo on the card");
+const noAlt = facePool.filter(m => !G.pickerPhoto(m));
+eq(noAlt.filter(m => thumbFor(m) !== "").map(m => m.name), [],
+   "an idol with only one picture gets no thumbnail rather than a free answer");
 S.mode = "member";
-ok(thumbFor(facePool[0]) !== "", "...but Idol mode still does");
+ok(thumbFor(facePool[0]) !== "", "...but Idol mode still shows one");
 S.mode = "group";
 ok(thumbFor(DATA.groups[0]) !== "", "...and so does Group mode");
 S.mode = "image";
