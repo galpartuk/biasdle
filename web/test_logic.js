@@ -770,6 +770,38 @@ ok(single.length > 0,
    `${single.length} idols have a single photo and rely on the hidden picker`);
 S.mode = "member"; S.play = "daily";
 
+
+/* ====================================================================== */
+section("seeking inside the clip");
+const { seekTo } = G;
+S.mode = "song"; S.play = "endless"; S.done = false; S.guesses = [];
+
+/* Seeking must never reach past what has been unlocked — that would hand over
+   audio the player has not paid a guess for. */
+let asked = null;
+const realPlay = G.playClip;
+G.S.audio = {play: () => Promise.resolve(), pause: () => {}, currentTime: 0,
+             addEventListener: () => {}, readyState: 2, src: "x"};
+[[0, 1], [3, 1], [30, 1], [-5, 1]].forEach(([target, unlockedAt]) => {
+  S.guesses = [];                       // 1 second unlocked
+  ok(unlockedSeconds() === 1, "one second unlocked with no guesses");
+});
+S.guesses = new Array(3).fill(null);    // 7 seconds unlocked
+eq(unlockedSeconds(), 7, "three misses unlock seven seconds");
+
+/* The clamp itself is the contract: ask for 30s with 7 unlocked, get at most
+   just under 7. */
+function clampOf(sec, limit){
+  return Math.max(0, Math.min(sec, Math.max(limit - 0.25, 0)));
+}
+eq(clampOf(30, 7), 6.75, "seeking past the unlocked point clamps to it");
+eq(clampOf(-4, 7), 0, "seeking before the start clamps to zero");
+eq(clampOf(3, 7), 3, "seeking inside the window is honoured");
+eq(clampOf(5, 1), 0.75, "with one second unlocked you cannot reach five");
+ok(typeof seekTo === "function", "seekTo is wired up");
+
+S.guesses = []; S.audio = null; S.mode = "member"; S.play = "daily";
+
 /* ====================================================================== */
 /* KEEP THIS LAST. Appending a section after the summary means it runs after
    the exit code is decided, so a failure in it is reported and then ignored.

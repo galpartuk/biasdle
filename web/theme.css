@@ -850,3 +850,13 @@ table.helpcols .amber{color:var(--amber);font-size:11.5px;margin-top:2px}
   .tile img.face{width:44px}
   .tile.name span{font-size:10.5px;padding-right:6px}
 }
+
+/* ---------- the track bar is a control now, not a readout ---------- */
+.track{cursor:pointer}
+.track:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+/* the locked remainder should look locked */
+.track .unlocked::after{
+  content:"";position:absolute;right:0;top:0;bottom:0;width:2px;
+  background:rgba(255,255,255,.55);
+}
+.track:hover .unlocked{filter:brightness(1.12)}

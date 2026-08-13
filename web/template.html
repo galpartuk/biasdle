@@ -587,10 +587,14 @@ function buildAudio(){
   srcFor(S.answer).then(u => { if(S.audio===a && !a.src) a.src = u; });
 }
 
-function playClip(){
+function playClip(from){
   const song = S.answer;
   if(!S.audio || !song) return;
   const a = S.audio, limit = unlockedSeconds();
+  // Replaying a 16-second clip from zero to hear the last two seconds is a
+  // waste of the player's time, so playback can start anywhere inside what
+  // they have already unlocked — never past it.
+  const start = Math.max(0, Math.min(+from || 0, Math.max(limit - 0.25, 0)));
   clearTimeout(playClip._t); clearInterval(playClip._i);
   clearTimeout(playClip._stall);
 
@@ -606,7 +610,11 @@ function playClip(){
       return;
     }
     if(a.src !== url){ a.src = url; }
-    try{ a.currentTime = 0; }catch(e){}
+    const seek = () => { try{ a.currentTime = start; }catch(e){} };
+    seek();
+    // A fresh src may not accept a seek until it has metadata.
+    if(start > 0 && a.readyState < 1)
+      a.addEventListener("loadedmetadata", seek, {once:true});
 
     // Start the clock when sound actually starts, not when the button was
     // pressed — otherwise a slow load eats the whole one-second clip.
@@ -617,7 +625,8 @@ function playClip(){
         if(!S.audio) return;
         if(S.audio.currentTime >= limit) stopAudio(); else renderHead();
       }, 60);
-      playClip._t = setTimeout(stopAudio, limit*1000 + 250);
+      playClip._t = setTimeout(stopAudio,
+                               Math.max(limit - start, 0.2)*1000 + 250);
     };
     a.addEventListener("playing", begin, {once:true});
 
@@ -658,6 +667,33 @@ function stopAudio(){
   renderHead(); renderPlayer();
 }
 function toggleAudio(){ S.playing ? stopAudio() : playClip(); }
+
+/* Click (or arrow-key) anywhere in the unlocked part of the bar to play from
+   there. Clicking past the unlocked point clamps rather than doing nothing —
+   silently ignoring a click reads as a broken control. */
+function seekTo(sec){
+  const limit = unlockedSeconds();
+  const at = Math.max(0, Math.min(sec, Math.max(limit - 0.25, 0)));
+  if(sec > limit) toast("That part is still locked — spend a guess for more");
+  stopAudio();
+  playClip(at);
+}
+function wireTrack(){
+  const t = $("#track");
+  if(!t) return;
+  const posOf = e => {
+    const r = t.getBoundingClientRect();
+    return Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * 30;
+  };
+  t.onclick = e => seekTo(posOf(e));
+  t.onkeydown = e => {
+    const step = e.shiftKey ? 5 : 1;
+    if(e.key === "ArrowRight"){ e.preventDefault(); seekTo(playHead() + step); }
+    else if(e.key === "ArrowLeft"){ e.preventDefault(); seekTo(playHead() - step); }
+    else if(e.key === "Home"){ e.preventDefault(); seekTo(0); }
+  };
+}
+function playHead(){ return S.audio ? (S.audio.currentTime || 0) : 0; }
 
 /* ==================================================================
    search
@@ -798,7 +834,10 @@ function playerHTML(){
   const total=30, unlocked=unlockedSeconds();
   const ticks = STEPS.map(s=>`<i style="left:${(s/total*100).toFixed(1)}%"></i>`).join("");
   return `<div class="player">
-    <div class="track">
+    <div class="track" id="track" role="slider" tabindex="0"
+         aria-label="Seek inside the unlocked part of the clip"
+         aria-valuemin="0" aria-valuemax="${unlocked}"
+         aria-valuenow="0" title="Click to play from here">
       <div class="waves"></div>
       <div class="unlocked" id="unl" style="width:${(unlocked/total*100).toFixed(1)}%"></div>
       <div class="ticks">${ticks}</div>
@@ -1299,6 +1338,7 @@ function wireGridScroll(){
 function wire(){
   wireHolo();
   wireGridScroll();
+  wireTrack();
   const play=$("#btn-play");
   if(play){
     play.onclick=toggleAudio;
@@ -1413,7 +1453,7 @@ if(typeof module!=="undefined" && module.exports){
                     STEPS,shareText,startRound,submitGuess,
                     THEMES,defaultFilters,passes,endlessPool,groupByName,
                     PINNED,SLEEVE_COVER,SLEEVE_FROST,SLEEVE_SAT,loadVolume,
-                    photoOf,commons,HINTS,hintsFor,takeHint,MAXG,loadFilters,photoSeed,puzzleSeed,thumbFor};
+                    photoOf,commons,HINTS,hintsFor,takeHint,MAXG,loadFilters,photoSeed,puzzleSeed,thumbFor,seekTo,playClip};
 } else {
   document.addEventListener("DOMContentLoaded",init);
 }
